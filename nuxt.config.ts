@@ -29,7 +29,6 @@ export default defineNuxtConfig({
     name: "Ripwords",
   },
   modules: [
-    "@nuxt/fonts",
     "@vueuse/nuxt",
     "@nuxt/image",
     "@nuxtjs/seo",
