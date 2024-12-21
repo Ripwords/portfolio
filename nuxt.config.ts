@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     googleFormNameId: "",
   },
   site: {
-    url: "",
+    url: "https://ripwords.link",
     name: "Ripwords",
   },
   modules: [
