@@ -74,7 +74,7 @@ const sendMail = async () => {
       <template #header>
         <div class="relative">
           <div class="absolute top-0 left-0 text-2xl font-bold">
-            Get in touch
+            Get in touch!
           </div>
           <div class="w-full h-[300px] relative">
             <ObjectSaturn />
@@ -134,7 +134,7 @@ const sendMail = async () => {
         </UFormGroup>
 
         <div class="flex justify-end">
-          <UButton type="submit">Send Mail</UButton>
+          <UButton type="submit">Contact Me</UButton>
         </div>
       </UForm>
     </UCard>

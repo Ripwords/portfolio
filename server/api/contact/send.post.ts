@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
   } catch {
     throw createError({
       statusCode: 500,
-      statusMessage: "Failed to send mail",
+      statusMessage: "Failed to send message",
     })
   }
 })
