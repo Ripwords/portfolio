@@ -1,9 +1,18 @@
 <script lang="ts" setup>
+import { breakpointsTailwind } from "@vueuse/core"
 const showStats = import.meta.dev
 
 const yRotation = shallowRef(0)
 useRenderLoop().onLoop(({ delta }) => {
   yRotation.value += 0.02 * delta
+})
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const smAndLarger = breakpoints.greaterOrEqual("sm")
+
+const scale = computed(() => {
+  if (smAndLarger.value) return 0.05
+  return 0.04
 })
 </script>
 
@@ -14,7 +23,7 @@ useRenderLoop().onLoop(({ delta }) => {
       model-path="/models/saturn_planet_gltf/scene.gltf"
       :initial-position="[0, 0.55, 0]"
       :initial-rotation="[0, 0.3, 0.1]"
-      :model-scale="0.05"
+      :model-scale="scale"
     />
     <TresDirectionalLight
       :intensity="2"
