@@ -69,59 +69,74 @@ const sendMail = async () => {
 </script>
 
 <template>
-  <div>
-    <UForm
-      class="space-y-4"
-      :state="formState"
-      :schema="formSchema"
-      :validation="formValidation"
-      @submit="sendMail"
-    >
-      <UFormGroup
-        label="Email"
-        name="email"
-      >
-        <UInput
-          v-model="formState.email"
-          placeholder="you@example.com"
-          icon="i-heroicons-envelope"
-        />
-      </UFormGroup>
+  <div class="p-4">
+    <UCard>
+      <template #header>
+        <div class="relative">
+          <div class="absolute top-0 left-0 text-2xl font-bold">
+            Get in touch
+          </div>
+          <div class="w-full h-[300px] relative">
+            <ObjectSaturn />
+          </div>
+        </div>
+      </template>
 
-      <UFormGroup
-        label="Name"
-        name="name"
+      <UForm
+        class="space-y-4"
+        :state="formState"
+        :schema="formSchema"
+        :validation="formValidation"
+        @submit="sendMail"
       >
-        <UInput
-          v-model="formState.name"
-          placeholder="John Doe"
-          icon="i-heroicons-user"
-        />
-      </UFormGroup>
+        <UFormGroup
+          label="Email"
+          name="email"
+        >
+          <UInput
+            v-model="formState.email"
+            placeholder="you@example.com"
+            icon="i-heroicons-envelope"
+          />
+        </UFormGroup>
 
-      <UFormGroup
-        label="Subject"
-        name="subject"
-      >
-        <UInput
-          v-model="formState.subject"
-          placeholder="Hello World"
-          icon="i-heroicons-envelope"
-        />
-      </UFormGroup>
+        <UFormGroup
+          label="Name"
+          name="name"
+        >
+          <UInput
+            v-model="formState.name"
+            placeholder="John Doe"
+            icon="i-heroicons-user"
+          />
+        </UFormGroup>
 
-      <UFormGroup
-        label="Text"
-        name="text"
-      >
-        <UInput
-          v-model="formState.text"
-          placeholder="Hello World"
-          icon="i-heroicons-envelope"
-        />
-      </UFormGroup>
+        <UFormGroup
+          label="Subject"
+          name="subject"
+        >
+          <UInput
+            v-model="formState.subject"
+            placeholder="Hello World"
+            icon="i-heroicons-envelope"
+          />
+        </UFormGroup>
 
-      <UButton type="submit">Send Mail</UButton>
-    </UForm>
+        <UFormGroup
+          label="Text"
+          name="text"
+        >
+          <UInput
+            v-model="formState.text"
+            placeholder="Hello World"
+            icon="i-heroicons-envelope"
+          />
+        </UFormGroup>
+
+        <div class="flex justify-end">
+          <UButton type="submit">Send Mail</UButton>
+        </div>
+      </UForm>
+    </UCard>
   </div>
 </template>

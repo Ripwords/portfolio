@@ -28,11 +28,15 @@ export default defineNuxtConfig({
     url: "https://ripwords.link",
     name: "Ripwords",
   },
+  tres: {
+    devtools: true,
+  },
   modules: [
     "@vueuse/nuxt",
     "@nuxt/image",
     "@nuxtjs/seo",
     "@nuxt/eslint",
     "@nuxt/ui",
+    "@tresjs/nuxt",
   ],
 })
