@@ -41,7 +41,7 @@ const formValidation = (state: typeof formState): FormError[] => {
 
 const sendMail = async () => {
   try {
-    await $fetch("/api/mail/send", {
+    await $fetch("/api/contact/send", {
       method: "POST",
       body: {
         email: formState.email,
