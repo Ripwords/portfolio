@@ -8,6 +8,16 @@ export default defineNuxtConfig({
     typedPages: true,
   },
   devtools: { enabled: true },
+  nitro: {
+    storage: {
+      state: {
+        driver: "mongodb",
+        connectionString: process.env.MONGO_CONNECTION_STRING,
+        databaseName: "ripwords",
+        collectionName: "state",
+      },
+    },
+  },
   app: {
     head: {
       htmlAttrs: {
