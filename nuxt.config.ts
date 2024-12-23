@@ -38,5 +38,6 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxt/ui",
     "@tresjs/nuxt",
+    "nuxt-security",
   ],
 })
