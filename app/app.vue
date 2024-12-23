@@ -1,20 +1,19 @@
 <script setup lang="ts">
 const links = [
   [
-    // {
-    //   label: "General",
-    //   icon: "i-heroicons-user-circle",
-    // },
-    // {
-    //   label: "Members",
-    //   icon: "i-heroicons-user-group",
-    // },
-    // {
-    //   label: "Notifications",
-    //   icon: "i-heroicons-bell",
-    // },
+    {
+      label: "Resume",
+      icon: "line-md:file-document",
+      to: "/resume",
+      target: "_blank",
+    },
   ],
   [
+    {
+      icon: "line-md:linkedin",
+      to: "https://www.linkedin.com/in/jjteoh/",
+      target: "_blank",
+    },
     {
       icon: "line-md:github-loop",
       to: "https://github.com/Ripwords",
