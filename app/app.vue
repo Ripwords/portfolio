@@ -31,6 +31,8 @@ const links = [
     },
   ],
 ]
+
+onMounted(() => $fetch("/api/visit", { method: "POST" }))
 </script>
 
 <template>
