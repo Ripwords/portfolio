@@ -33,13 +33,11 @@ watchOnce(modelRef, (value) => {
 
 <template>
   <TresMesh ref="modelRef">
-    <Suspense>
-      <GLTFModel
-        :path="modelPath"
-        material="basic"
-        :scale="modelScale"
-        draco
-      />
-    </Suspense>
+    <GLTFModel
+      :path="modelPath"
+      material="basic"
+      :scale="modelScale"
+      draco
+    />
   </TresMesh>
 </template>
