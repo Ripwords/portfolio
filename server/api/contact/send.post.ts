@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
   const url = `${formUrl}?usp=pp_url&${urlEncodedData.toString()}`
 
   try {
+    console.log(url)
     await $fetch(url, {
       method: "POST",
     })

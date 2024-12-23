@@ -10,6 +10,7 @@ const formState = reactive({
   name: undefined,
 })
 
+const isSending = ref(false)
 const formValidation = (state: typeof formState): FormError[] => {
   const errors: FormError[] = []
   if (!state.email) {
@@ -40,6 +41,7 @@ const formValidation = (state: typeof formState): FormError[] => {
 }
 
 const sendMail = async () => {
+  isSending.value = true
   try {
     await $fetch("/api/contact/send", {
       method: "POST",
@@ -57,13 +59,31 @@ const sendMail = async () => {
       color: "green",
       timeout: 3000,
     })
-  } catch {
-    toast.add({
-      title: "Failed to Submit",
-      description: "Please try again later",
-      icon: "i-heroicons-exclamation-circle",
-      color: "red",
-    })
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      "statusCode" in error &&
+      error.statusCode === 429
+    ) {
+      toast.add({
+        title: "Too many requests",
+        description: "Please try again later",
+        icon: "i-heroicons-exclamation-circle",
+        color: "red",
+      })
+    } else {
+      toast.add({
+        title: "Failed to Submit",
+        description: "Please try again later",
+        icon: "i-heroicons-exclamation-circle",
+        color: "red",
+      })
+    }
+  } finally {
+    isSending.value = false
+    for (const key in formState) {
+      formState[key as keyof typeof formState] = undefined
+    }
   }
 }
 </script>
@@ -134,7 +154,11 @@ const sendMail = async () => {
         </UFormGroup>
 
         <div class="flex justify-end">
-          <UButton type="submit">Contact Me</UButton>
+          <UButton
+            :loading="isSending"
+            type="submit"
+            >Contact Me</UButton
+          >
         </div>
       </UForm>
     </UCard>

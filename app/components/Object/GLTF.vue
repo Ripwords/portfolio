@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { TresInstance } from "@tresjs/core"
-
+import { dispose } from "@tresjs/core"
 const {
   initialPosition = [0, 0, 0],
   initialRotation = [0, 0, 0],
@@ -29,8 +29,13 @@ watchOnce(modelRef, (value) => {
     modelRef.value.scale.set(modelScale, modelScale, modelScale)
   }
 })
-</script>
 
+onUnmounted(() => {
+  if (modelRef.value) {
+    dispose(modelRef.value)
+  }
+})
+</script>
 <template>
   <TresMesh ref="modelRef">
     <GLTFModel

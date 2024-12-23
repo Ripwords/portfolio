@@ -24,6 +24,12 @@ export default defineNuxtConfig({
     googleFormTextId: "",
     googleFormNameId: "",
   },
+  security: {
+    rateLimiter: {
+      interval: 60000,
+      tokensPerInterval: 5,
+    },
+  },
   site: {
     url: "https://ripwords.link",
     name: "Ripwords",
