@@ -15,6 +15,12 @@ export default defineNuxtConfig({
       },
       title: "title",
       charset: "utf-8",
+      meta: [
+        {
+          name: "google-site-verification",
+          content: "yZ-l-sUc1eJt6xjRk2Row8v_khp9Rw-X_Ax0APv24IU",
+        },
+      ],
     },
   },
   runtimeConfig: {
