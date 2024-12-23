@@ -32,8 +32,8 @@ export default defineNuxtConfig({
   },
   security: {
     rateLimiter: {
-      interval: 60000,
-      tokensPerInterval: 5,
+      interval: 120000,
+      tokensPerInterval: 25,
     },
   },
   site: {
