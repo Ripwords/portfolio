@@ -23,12 +23,12 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
-      title: "title",
+      title: "JJ Teoh",
       charset: "utf-8",
       meta: [
         {
           name: "google-site-verification",
-          content: "yZ-l-sUc1eJt6xjRk2Row8v_khp9Rw-X_Ax0APv24IU",
+          content: "7AlIEVHApOdcvrTQYsuIfcGOyszAV1XQXEoWGaEAJgc",
         },
       ],
     },
