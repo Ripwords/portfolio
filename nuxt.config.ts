@@ -47,8 +47,8 @@ export default defineNuxtConfig({
     },
   },
   site: {
-    url: "https://ripwords.link",
-    name: "Ripwords",
+    url: "https://jjteoh.com",
+    name: "JJ Teoh",
   },
   tres: {
     devtools: true,
