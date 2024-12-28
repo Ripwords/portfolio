@@ -66,6 +66,7 @@ const cardStyle = computed(() => ({
       <template #header>
         <NuxtImg
           src="/img/morning_moon.jpeg"
+          loading="lazy"
           alt="morning moon"
           class="object-cover overflow-hidden w-full h-[300px]"
         />
