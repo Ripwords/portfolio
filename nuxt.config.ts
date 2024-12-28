@@ -16,6 +16,12 @@ export default defineNuxtConfig({
         databaseName: "ripwords",
         collectionName: "state",
       },
+      rawState: {
+        driver: "mongodb",
+        connectionString: process.env.MONGO_CONNECTION_STRING,
+        databaseName: "ripwords",
+        collectionName: "rawState",
+      },
     },
   },
   app: {

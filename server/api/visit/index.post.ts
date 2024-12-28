@@ -1,3 +1,3 @@
-export default defineEventHandler(async () => {
-  await useCounter("visitCounter")
+export default defineEventHandler(async (event) => {
+  await useCounter(event, "visitCounter")
 })

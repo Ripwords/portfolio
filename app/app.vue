@@ -6,6 +6,7 @@ const links = [
       icon: "line-md:file-document",
       to: "/resume",
       target: "_blank",
+      external: true,
     },
   ],
   [
