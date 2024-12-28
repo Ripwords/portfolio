@@ -1,7 +1,7 @@
 import type { TStateSchema, TCounterSchema } from "#shared/schema"
 import type { H3Event } from "h3"
 
-export const useCounter = async (event: H3Event, key: keyof TStateSchema) => {
+export const useCounter = async (event: H3Event, key: string) => {
   const clientIp =
     getHeader(event, "x-forwarded-for")?.split(",")[0]?.trim() ?? ""
 
@@ -17,11 +17,20 @@ export const useCounter = async (event: H3Event, key: keyof TStateSchema) => {
 
   if (!clientIp) return
 
-  const counter = await state.getItem(key)
-  if (!counter) return
+  const stateItem = await state.getItem(key)
+  if (!stateItem) {
+    await state.setItem(key, {
+      counter: {
+        [clientIp]: {
+          lastVisit: 0,
+          count: 0,
+        },
+      },
+    })
+  }
 
   const records =
-    counter[clientIp] ??
+    stateItem?.counter[clientIp] ??
     ({
       lastVisit: 0,
       count: 0,
@@ -41,5 +50,8 @@ export const useCounter = async (event: H3Event, key: keyof TStateSchema) => {
   }
 
   // Save updated records in a single operation
-  await state.setItem(key, { ...counter, [clientIp]: records })
+  await state.setItem(key, {
+    ...stateItem,
+    counter: { ...stateItem?.counter, [clientIp]: records },
+  })
 }
