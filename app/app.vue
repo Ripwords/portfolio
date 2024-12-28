@@ -2,6 +2,16 @@
 const links = [
   [
     {
+      label: "Home",
+      icon: "line-md:home-md-twotone",
+      to: "/",
+    },
+    {
+      label: "Astrophotography",
+      icon: "line-md:sunny-outline-to-moon-alt-loop-transition",
+      to: "/astrophotography",
+    },
+    {
       label: "Resume",
       icon: "line-md:file-document",
       to: "/resume",

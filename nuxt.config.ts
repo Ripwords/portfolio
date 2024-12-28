@@ -29,7 +29,6 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
-      title: "JJ Teoh",
       charset: "utf-8",
       meta: [
         {
@@ -67,5 +66,6 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@tresjs/nuxt",
     "nuxt-security",
+    "@vueuse/motion/nuxt",
   ],
 })
