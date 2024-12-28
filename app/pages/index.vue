@@ -7,5 +7,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <ContactForm />
+  <div>
+    <ContactForm />
+  </div>
 </template>

@@ -1,5 +1,13 @@
 import { z } from "zod"
 
+export const rawStateSchema = z.object({
+  count: z.number().default(0),
+})
+export type TRawStateSchema = z.infer<typeof rawStateSchema>
+
+export const counterTypes = z.enum(["resumeCounter", "visitCounter"])
+export type TCounterTypes = z.infer<typeof counterTypes>
+
 const counterSchema = z.record(
   z.string(),
   z.object({

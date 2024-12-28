@@ -1,12 +1,17 @@
-import type { TStateSchema, TCounterSchema } from "#shared/schema"
+import type {
+  TStateSchema,
+  TCounterSchema,
+  TCounterTypes,
+  TRawStateSchema,
+} from "#shared/schema"
 import type { H3Event } from "h3"
 
-export const useCounter = async (event: H3Event, key: string) => {
+export const useCounter = async (event: H3Event, key: TCounterTypes) => {
   const clientIp =
     getHeader(event, "x-forwarded-for")?.split(",")[0]?.trim() ?? ""
 
   const state = useStorage<TStateSchema>("state")
-  const rawState = useStorage<{ count: number }>("rawState")
+  const rawState = useStorage<TRawStateSchema>("rawState")
 
   const rawStateItem = await rawState.getItem(key)
   if (!import.meta.dev) {
