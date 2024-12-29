@@ -7,7 +7,7 @@ const links = [
       to: "/",
     },
     {
-      label: "Astrophotography",
+      label: "Astro",
       icon: "line-md:sunny-outline-to-moon-alt-loop-transition",
       to: "/astrophotography",
     },
@@ -21,28 +21,32 @@ const links = [
   ],
   [
     {
-      label: "",
+      label: "LinkedIn",
       icon: "line-md:linkedin",
       to: "https://www.linkedin.com/in/jjteoh/",
       target: "_blank",
+      slot: "social",
     },
     {
-      label: "",
+      label: "GitHub",
       icon: "line-md:github-loop",
       to: "https://github.com/Ripwords",
       target: "_blank",
+      slot: "social",
     },
     {
-      label: "",
+      label: "X",
       icon: "line-md:twitter-x",
       to: "https://x.com/Ripwords_",
       target: "_blank",
+      slot: "social",
     },
     {
-      label: "",
+      label: "Bluesky",
       icon: "meteor-icons:bluesky",
       to: "https://bsky.app/profile/ripwords.bsky.social",
       target: "_blank",
+      slot: "social",
     },
   ],
 ]
@@ -51,12 +55,21 @@ onMounted(() => $fetch("/api/visit", { method: "POST" }))
 </script>
 
 <template>
-  <div>
+  <UApp
+    :toaster="{
+      position: 'top-right',
+      duration: 3000,
+    }"
+  >
     <NuxtRouteAnnouncer />
     <UContainer>
-      <UHorizontalNavigation :links />
+      <UNavigationMenu :items="links">
+        <template #social-label="{ item }">
+          <!-- @vue-ignore -->
+          <span :aria-label="item.label" />
+        </template>
+      </UNavigationMenu>
       <NuxtPage />
     </UContainer>
-    <UNotifications />
-  </div>
+  </UApp>
 </template>

@@ -15,25 +15,25 @@ const formValidation = (state: typeof formState): FormError[] => {
   const errors: FormError[] = []
   if (!state.email) {
     errors.push({
-      path: "email",
+      name: "email",
       message: "Email is required",
     })
   }
   if (!state.subject) {
     errors.push({
-      path: "subject",
+      name: "subject",
       message: "Subject is required",
     })
   }
   if (!state.text) {
     errors.push({
-      path: "text",
+      name: "text",
       message: "Text is required",
     })
   }
   if (!state.name) {
     errors.push({
-      path: "name",
+      name: "name",
       message: "Name is required",
     })
   }
@@ -56,8 +56,7 @@ const sendMail = async () => {
       title: "Success",
       description: "Mail sent successfully",
       icon: "i-heroicons-check-circle",
-      color: "green",
-      timeout: 3000,
+      color: "primary",
     })
   } catch (error) {
     if (
@@ -69,14 +68,14 @@ const sendMail = async () => {
         title: "Too many requests",
         description: "Please try again later",
         icon: "i-heroicons-exclamation-circle",
-        color: "red",
+        color: "error",
       })
     } else {
       toast.add({
         title: "Failed to Submit",
         description: "Please try again later",
         icon: "i-heroicons-exclamation-circle",
-        color: "red",
+        color: "error",
       })
     }
   } finally {
@@ -109,49 +108,53 @@ const sendMail = async () => {
         :validation="formValidation"
         @submit="sendMail"
       >
-        <UFormGroup
+        <UFormField
           label="Email"
           name="email"
         >
           <UInput
             v-model="formState.email"
+            class="w-full"
             placeholder="you@example.com"
             icon="i-heroicons-envelope"
           />
-        </UFormGroup>
+        </UFormField>
 
-        <UFormGroup
+        <UFormField
           label="Name"
           name="name"
         >
           <UInput
             v-model="formState.name"
+            class="w-full"
             placeholder="John Doe"
             icon="i-heroicons-user"
           />
-        </UFormGroup>
+        </UFormField>
 
-        <UFormGroup
+        <UFormField
           label="Subject"
           name="subject"
         >
           <UInput
             v-model="formState.subject"
+            class="w-full"
             placeholder="Hello World"
             icon="i-heroicons-envelope"
           />
-        </UFormGroup>
+        </UFormField>
 
-        <UFormGroup
+        <UFormField
           label="Text"
           name="text"
         >
           <UInput
             v-model="formState.text"
+            class="w-full"
             placeholder="Hello World"
             icon="i-heroicons-envelope"
           />
-        </UFormGroup>
+        </UFormField>
 
         <div class="flex justify-end">
           <UButton
