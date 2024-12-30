@@ -40,11 +40,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    googleFormId: "",
-    googleFormEmailId: "",
-    googleFormSubjectId: "",
-    googleFormTextId: "",
-    googleFormNameId: "",
+    brevoKey: "",
   },
   security: {
     rateLimiter: {
