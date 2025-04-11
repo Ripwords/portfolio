@@ -55,11 +55,6 @@ onMounted(() => $fetch("/api/visit", { method: "POST" }))
 </script>
 
 <template>
-  <script
-    defer
-    src="https://umami.jjteoh.com/script.js"
-    data-website-id="206487a8-ebf4-4a35-bed7-572c3b0fa224"
-  />
   <UApp
     :toaster="{
       position: 'top-right',
