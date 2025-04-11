@@ -51,6 +51,18 @@ const links = [
   ],
 ]
 
+if (import.meta.env.PROD) {
+  useHead({
+    script: [
+      {
+        src: "https://umami.jjteoh.com/script.js",
+        "data-website-id": "206487a8-ebf4-4a35-bed7-572c3b0fa224",
+        defer: true,
+      },
+    ],
+  })
+}
+
 onMounted(() => $fetch("/api/visit", { method: "POST" }))
 </script>
 
