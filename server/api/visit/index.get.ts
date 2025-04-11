@@ -2,7 +2,7 @@ import type {
   TCounterTypes,
   TRawStateSchema,
   TStateSchema,
-} from "#shared/schema"
+} from "~~/shared/schema"
 
 export default defineEventHandler(async () => {
   const state = useStorage<TStateSchema>("state")

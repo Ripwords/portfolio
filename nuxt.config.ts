@@ -64,5 +64,6 @@ export default defineNuxtConfig({
     "@tresjs/nuxt",
     "nuxt-security",
     "@vueuse/motion/nuxt",
+    "motion-v/nuxt",
   ],
 })
