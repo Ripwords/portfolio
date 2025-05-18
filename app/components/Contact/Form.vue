@@ -96,7 +96,7 @@ const sendMail = async () => {
             Get in touch!
           </div>
           <div class="w-full h-[300px] relative">
-            <ObjectSaturn />
+            <LazyObjectSaturn />
           </div>
         </div>
       </template>

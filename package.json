@@ -16,7 +16,7 @@
     "@nuxtjs/seo": "^3.0.3",
     "@tresjs/cientos": "^4.3.1",
     "@tresjs/nuxt": "^3.0.8",
-    "@unhead/vue": "^2.0.8",
+    "@unhead/vue": "^2.0.9",
     "@vueuse/core": "^13.2.0",
     "@vueuse/motion": "^3.0.3",
     "@vueuse/nuxt": "^13.2.0",

@@ -76,9 +76,11 @@ onMounted(() => {
   >
     <NuxtRouteAnnouncer />
     <UContainer>
-      <UNavigationMenu :items="links">
+      <UNavigationMenu
+        :items="links"
+        :external-icon="false"
+      >
         <template #social-label="{ item }">
-          <!-- @vue-ignore -->
           <span :aria-label="item.label" />
         </template>
       </UNavigationMenu>
