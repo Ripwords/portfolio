@@ -146,7 +146,7 @@ onMounted(() => {
         >
           <NuxtLink
             :to="item.to"
-            :target="item.target || '_blank'"
+            :target="item.target || '_self'"
             rel="noopener noreferrer"
             :external="item.external"
             class="flex flex-col items-center justify-center px-2 py-1 text-xs text-muted-foreground hover:text-accent-foreground transition-colors"
