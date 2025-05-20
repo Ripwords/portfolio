@@ -72,7 +72,6 @@ onMounted(() => {
       ],
     })
   }
-  $fetch("/api/visit", { method: "POST" })
 })
 </script>
 
