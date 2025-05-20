@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties } from "vue"
+import { Card, CardHeader, CardContent } from "@/components/ui/card"
 
 const target = ref()
 
@@ -61,58 +62,61 @@ const cardStyle = computed(() => ({
 </script>
 
 <template>
-  <div class="p-4">
-    <UCard>
-      <template #header>
+  <div class="p-4 w-full flex justify-center">
+    <Card class="w-full max-w-3xl">
+      <CardHeader class="p-0">
         <NuxtImg
           src="/img/morning_moon.jpeg"
           loading="lazy"
           alt="morning moon"
           class="object-cover overflow-hidden w-full h-[300px]"
         />
-      </template>
-      <div class="flex flex-col md:gap-10 md:flex-row">
-        <div
-          ref="target"
-          :style="targetStyle"
-        >
-          <div :style="containerStyle">
-            <div :style="cardStyle">
-              <div :style="cardWindowStyle">
-                <NuxtImg
-                  :style="layer0"
-                  loading="lazy"
-                  src="/img/lagoon.jpeg"
-                  alt="morning moon"
-                />
-                <NuxtImg
-                  :style="layer1"
-                  loading="lazy"
-                  src="/img/lagoon_no_bg.png"
-                  alt="lagoon no background"
-                />
+      </CardHeader>
+      <CardContent>
+        <div class="flex flex-col md:gap-10 md:flex-row">
+          <div
+            ref="target"
+            :style="targetStyle"
+          >
+            <div :style="containerStyle">
+              <div :style="cardStyle">
+                <div :style="cardWindowStyle">
+                  <NuxtImg
+                    :style="layer0"
+                    loading="lazy"
+                    src="/img/lagoon.jpeg"
+                    alt="morning moon"
+                  />
+                  <NuxtImg
+                    :style="layer1"
+                    loading="lazy"
+                    src="/img/lagoon_no_bg.png"
+                    alt="lagoon no background"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div>
-          <div class="flex flex-col gap-4 py-8">
-            <p>
-              My journey with astrophotography started with a fascination with
-              the stars. How the universe makes us feel small and insignificant.
-            </p>
-            <p>
-              In 2020, I bought my first telescope, and started imaging the
-              night sky, and here are some of my favorite images.
-            </p>
-            <p>
-              The process of capturing these images required a lot of learning
-              and patience, learning the software required to process the images
-              and the hardware required to capture the images.
-            </p>
+          <div>
+            <div class="flex flex-col gap-4 py-8">
+              <p>
+                My journey with astrophotography started with a fascination with
+                the stars. How the universe makes us feel small and
+                insignificant.
+              </p>
+              <p>
+                In 2020, I bought my first telescope, and started imaging the
+                night sky, and here are some of my favorite images.
+              </p>
+              <p>
+                The process of capturing these images required a lot of learning
+                and patience, learning the software required to process the
+                images and the hardware required to capture the images.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </UCard>
+      </CardContent>
+    </Card>
   </div>
 </template>

@@ -1,169 +1,196 @@
 <script lang="ts" setup>
-import { formSchema } from "#shared/form"
-import type { FormError } from "#ui/types"
+import { toTypedSchema } from "@vee-validate/zod"
+import * as z from "zod"
+import { useForm } from "vee-validate"
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "~/components/ui/form"
+import { toast } from "vue-sonner"
+import { ref, onMounted, onUnmounted } from "vue"
 
-const toast = useToast()
-const formState = reactive({
-  email: undefined,
-  subject: undefined,
-  text: undefined,
-  name: undefined,
+const formSchema = toTypedSchema(
+  z.object({
+    email: z.string().email().min(1, { message: "Email is required" }),
+    name: z.string().min(1, { message: "Name is required" }),
+    subject: z.string().min(1, { message: "Subject is required" }),
+    text: z.string().min(1, { message: "Text is required" }),
+  })
+)
+
+const form = useForm({
+  validationSchema: formSchema,
 })
 
 const isSending = ref(false)
-const formValidation = (state: typeof formState): FormError[] => {
-  const errors: FormError[] = []
-  if (!state.email) {
-    errors.push({
-      name: "email",
-      message: "Email is required",
-    })
+
+interface FetchError extends Error {
+  statusCode?: number
+  data?: {
+    statusCode?: number
   }
-  if (!state.subject) {
-    errors.push({
-      name: "subject",
-      message: "Subject is required",
-    })
-  }
-  if (!state.text) {
-    errors.push({
-      name: "text",
-      message: "Text is required",
-    })
-  }
-  if (!state.name) {
-    errors.push({
-      name: "name",
-      message: "Name is required",
-    })
-  }
-  return errors
 }
 
-const sendMail = async () => {
+const onSubmit = form.handleSubmit(async (values) => {
   isSending.value = true
   try {
     await $fetch("/api/mail/send", {
       method: "POST",
       body: {
-        from: formState.email,
-        subject: formState.subject,
-        content: formState.text,
-        name: formState.name,
+        from: values.email,
+        subject: values.subject,
+        content: values.text,
+        name: values.name,
       },
     })
-    toast.add({
-      title: "Success",
-      description: "Mail sent successfully",
-      icon: "i-heroicons-check-circle",
-      color: "primary",
-    })
-  } catch (error) {
-    if (
-      error instanceof Error &&
-      "statusCode" in error &&
-      error.statusCode === 429
-    ) {
-      toast.add({
-        title: "Too many requests",
+    toast.success("Mail sent successfully")
+    form.resetForm()
+  } catch (e) {
+    const error = e as FetchError
+    let statusCode = 500 // Default to 500
+
+    if (error.statusCode) {
+      statusCode = error.statusCode
+    } else if (error.data && error.data.statusCode) {
+      statusCode = error.data.statusCode
+    }
+
+    if (statusCode === 429) {
+      toast.error("Too many requests", {
         description: "Please try again later",
-        icon: "i-heroicons-exclamation-circle",
-        color: "error",
       })
     } else {
-      toast.add({
-        title: "Failed to Submit",
+      toast.error("Failed to Submit", {
         description: "Please try again later",
-        icon: "i-heroicons-exclamation-circle",
-        color: "error",
       })
     }
   } finally {
     isSending.value = false
-    for (const key in formState) {
-      formState[key as keyof typeof formState] = undefined
-    }
   }
+})
+
+const resizeKey = ref(0)
+
+function handleResize() {
+  resizeKey.value++
 }
+
+onMounted(() => {
+  window.addEventListener("resize", handleResize)
+})
+onUnmounted(() => {
+  window.removeEventListener("resize", handleResize)
+})
 </script>
 
 <template>
-  <div class="p-4">
-    <UCard>
-      <template #header>
+  <div class="p-4 flex justify-center w-full">
+    <Card class="w-full max-w-3xl">
+      <CardHeader>
         <div class="relative">
           <div class="absolute top-0 left-0 text-2xl font-bold">
-            Get in touch!
+            <CardTitle>Get in touch!</CardTitle>
           </div>
-          <div class="w-full h-[300px] relative">
-            <LazyObjectSaturn />
+          <div class="w-full h-[300px]">
+            <LazyObjectSaturn :key="resizeKey" />
           </div>
         </div>
-      </template>
-
-      <UForm
-        class="space-y-4"
-        :state="formState"
-        :schema="formSchema"
-        :validation="formValidation"
-        @submit="sendMail"
-      >
-        <UFormField
-          label="Email"
-          name="email"
+      </CardHeader>
+      <CardContent>
+        <form
+          class="space-y-4"
+          @submit="onSubmit"
         >
-          <UInput
-            v-model="formState.email"
-            class="w-full"
-            placeholder="you@example.com"
-            icon="i-heroicons-envelope"
-          />
-        </UFormField>
-
-        <UFormField
-          label="Name"
-          name="name"
-        >
-          <UInput
-            v-model="formState.name"
-            class="w-full"
-            placeholder="John Doe"
-            icon="i-heroicons-user"
-          />
-        </UFormField>
-
-        <UFormField
-          label="Subject"
-          name="subject"
-        >
-          <UInput
-            v-model="formState.subject"
-            class="w-full"
-            placeholder="Hello World"
-            icon="i-heroicons-envelope"
-          />
-        </UFormField>
-
-        <UFormField
-          label="Text"
-          name="text"
-        >
-          <UInput
-            v-model="formState.text"
-            class="w-full"
-            placeholder="Hello World"
-            icon="i-heroicons-envelope"
-          />
-        </UFormField>
-
-        <div class="flex justify-end">
-          <UButton
-            :loading="isSending"
-            type="submit"
-            >Contact Me</UButton
+          <FormField
+            v-slot="{ componentField }"
+            name="email"
           >
-        </div>
-      </UForm>
-    </UCard>
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  placeholder="you@example.com"
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormDescription />
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <FormField
+            v-slot="{ componentField }"
+            name="name"
+          >
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input
+                  type="text"
+                  placeholder="John Doe"
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormDescription />
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <FormField
+            v-slot="{ componentField }"
+            name="subject"
+          >
+            <FormItem>
+              <FormLabel>Subject</FormLabel>
+              <FormControl>
+                <Input
+                  type="text"
+                  placeholder="Hello World"
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormDescription />
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <FormField
+            v-slot="{ componentField }"
+            name="text"
+          >
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="Your message..."
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormDescription />
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <div class="flex justify-end">
+            <Button
+              :disabled="isSending"
+              type="submit"
+            >
+              <span
+                v-if="isSending"
+                class="i-lucide-loader-2 animate-spin mr-2"
+              />
+              Contact Me
+            </Button>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
   </div>
 </template>

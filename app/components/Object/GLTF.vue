@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { TresInstance } from "@tresjs/core"
 import { dispose } from "@tresjs/core"
+
 const {
   initialPosition = [0, 0, 0],
   initialRotation = [0, 0, 0],

@@ -1,3 +1,5 @@
+import tailwindcss from "@tailwindcss/vite"
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
@@ -6,6 +8,9 @@ export default defineNuxtConfig({
   },
   experimental: {
     typedPages: true,
+  },
+  vite: {
+    plugins: [tailwindcss()],
   },
   devtools: { enabled: true },
   nitro: {
@@ -25,6 +30,13 @@ export default defineNuxtConfig({
     },
   },
   css: ["~/assets/css/main.css"],
+  shadcn: {
+    prefix: "",
+    componentDir: "app/components/ui",
+  },
+  colorMode: {
+    classSuffix: "",
+  },
   app: {
     head: {
       htmlAttrs: {
@@ -57,13 +69,15 @@ export default defineNuxtConfig({
   },
   modules: [
     "@vueuse/nuxt",
+    "@nuxtjs/color-mode",
     "@nuxt/image",
     "@nuxtjs/seo",
     "@nuxt/eslint",
-    "@nuxt/ui",
     "@tresjs/nuxt",
     "nuxt-security",
     "@vueuse/motion/nuxt",
     "motion-v/nuxt",
+    "shadcn-nuxt",
+    "@nuxt/icon",
   ],
 })

@@ -27,7 +27,7 @@ const handleError = (error: Error) => {
     <TresCanvas>
       <TresPerspectiveCamera />
       <Suspense>
-        <ObjectGLTF
+        <LazyObjectGLTF
           model-path="/models/saturn_planet_gltf/scene.gltf"
           :initial-position="[0, 0.55, 0]"
           :initial-rotation="[0, 0.3, 0.1]"
@@ -40,7 +40,7 @@ const handleError = (error: Error) => {
         cast-shadow
       />
       <Suspense>
-        <Stars
+        <LazyStars
           :rotation="[0, yRotation, 0]"
           :radius="50"
           :depth="50"
