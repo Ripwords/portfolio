@@ -63,7 +63,13 @@ const cardStyle = computed(() => ({
 
 <template>
   <div class="p-4 w-full flex justify-center">
-    <Card class="w-full max-w-3xl">
+    <Card
+      v-motion
+      :initial="{ opacity: 0, y: 40 }"
+      :enter="{ opacity: 1, y: 0 }"
+      :duration="800"
+      class="w-full max-w-3xl"
+    >
       <CardHeader class="p-0">
         <NuxtImg
           src="/img/morning_moon.jpeg"
@@ -72,7 +78,12 @@ const cardStyle = computed(() => ({
           class="object-cover overflow-hidden w-full h-[300px]"
         />
       </CardHeader>
-      <CardContent>
+      <CardContent
+        v-motion
+        :initial="{ opacity: 0, x: 40 }"
+        :enter="{ opacity: 1, x: 0 }"
+        :duration="1000"
+      >
         <div class="flex flex-col md:gap-10 md:flex-row">
           <div
             ref="target"

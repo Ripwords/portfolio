@@ -6,7 +6,12 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
+  <div
+    v-motion
+    :initial="{ opacity: 0, y: 40 }"
+    :enter="{ opacity: 1, y: 0 }"
+    :duration="800"
+  >
     <ParallaxDayMoon />
   </div>
 </template>

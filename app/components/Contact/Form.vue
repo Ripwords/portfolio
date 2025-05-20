@@ -90,8 +90,19 @@ onUnmounted(() => {
 
 <template>
   <div class="p-4 flex justify-center w-full">
-    <Card class="w-full max-w-3xl">
-      <CardHeader>
+    <Card
+      v-motion
+      :initial="{ opacity: 0, y: 40 }"
+      :enter="{ opacity: 1, y: 0 }"
+      :duration="800"
+      class="w-full max-w-3xl"
+    >
+      <CardHeader
+        v-motion
+        :initial="{ opacity: 0, x: -40 }"
+        :enter="{ opacity: 1, x: 0 }"
+        :duration="1000"
+      >
         <div class="relative">
           <div class="absolute top-0 left-0 text-2xl font-bold">
             <CardTitle>Get in touch!</CardTitle>
