@@ -4,7 +4,7 @@
     "": {
       "name": "ripwords",
       "dependencies": {
-        "@nuxt/eslint": "^1.4.0",
+        "@nuxt/eslint": "^1.4.1",
         "@nuxt/icon": "1.13.0",
         "@nuxt/image": "^1.10.0",
         "@nuxtjs/seo": "^3.0.3",

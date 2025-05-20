@@ -78,9 +78,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <ClientOnly>
-      <Toaster />
-    </ClientOnly>
+    <Toaster />
     <NuxtRouteAnnouncer />
     <!-- Top bar: main links (desktop left), social links (desktop right) -->
     <nav class="w-full py-2 px-2 flex items-center justify-between">
