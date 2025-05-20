@@ -72,19 +72,6 @@ const onSubmit = form.handleSubmit(async (values) => {
     isSending.value = false
   }
 })
-
-const resizeKey = ref(0)
-
-function handleResize() {
-  resizeKey.value++
-}
-
-onMounted(() => {
-  window.addEventListener("resize", handleResize)
-})
-onUnmounted(() => {
-  window.removeEventListener("resize", handleResize)
-})
 </script>
 
 <template>
@@ -107,7 +94,7 @@ onUnmounted(() => {
             <CardTitle>Get in touch!</CardTitle>
           </div>
           <div class="w-full h-[300px]">
-            <LazyObjectSaturn :key="resizeKey" />
+            <LazyObjectSaturn />
           </div>
         </div>
       </CardHeader>
