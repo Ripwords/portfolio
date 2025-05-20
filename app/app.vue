@@ -80,7 +80,9 @@ onMounted(() => {
     <Toaster />
     <NuxtRouteAnnouncer />
     <!-- Top bar: main links (desktop left), social links (desktop right) -->
-    <nav class="w-full py-2 px-2 flex items-center justify-between">
+    <nav
+      class="w-full py-2 px-2 flex items-center justify-end sm:justify-between"
+    >
       <!-- Main navigation links: desktop only -->
       <ul class="hidden sm:flex flex-row gap-2">
         <li
