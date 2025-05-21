@@ -89,11 +89,15 @@ const onSubmit = form.handleSubmit(async (values) => {
         :enter="{ opacity: 1, x: 0 }"
         :duration="1000"
       >
-        <div class="relative">
+        <div
+          class="relative flex flex-col items-center justify-center h-[300px]"
+        >
           <div class="absolute top-0 left-0 text-2xl font-bold">
             <CardTitle>Get in touch!</CardTitle>
           </div>
-          <div class="w-full h-[300px]">
+          <div
+            class="w-full absolute top-0 left-0 overflow-hidden bottom-0 right-0"
+          >
             <LazyObjectSaturn />
           </div>
         </div>
