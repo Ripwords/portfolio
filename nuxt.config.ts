@@ -11,24 +11,25 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: [
+        'three',
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'vue-sonner',
+        '@vee-validate/zod',
+        'zod',
+        'vee-validate',
+        'class-variance-authority',
+        'reka-ui',
+        'clsx',
+        'tailwind-merge',
+        '@tresjs/cientos',
+        '@tresjs/core',
+      ]
+    }
   },
   devtools: { enabled: true },
-  nitro: {
-    storage: {
-      state: {
-        driver: "mongodb",
-        connectionString: process.env.MONGO_CONNECTION_STRING,
-        databaseName: "ripwords",
-        collectionName: "state",
-      },
-      rawState: {
-        driver: "mongodb",
-        connectionString: process.env.MONGO_CONNECTION_STRING,
-        databaseName: "ripwords",
-        collectionName: "rawState",
-      },
-    },
-  },
   css: ["~/assets/css/main.css"],
   shadcn: {
     prefix: "",
@@ -53,6 +54,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     brevoKey: "",
+    public: {
+      umamiWebsiteId: "",
+    }
   },
   security: {
     rateLimiter: {
@@ -65,7 +69,7 @@ export default defineNuxtConfig({
     name: "JJ Teoh",
   },
   tres: {
-    devtools: true,
+    devtools: false,
   },
   modules: [
     "@vueuse/nuxt",
