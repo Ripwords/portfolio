@@ -1,17 +1,37 @@
 <script lang="ts" setup>
+import { useActiveSection } from "~/composables/useActiveSection"
+
+const { observeSections } = useActiveSection()
+
 useSeoMeta({
+  title: "JJ Teoh — Software Developer",
   description:
-    "Hi! 👋 I am JJ Teoh, a Mechatronics Engineer, driven by a passion for software and experience in modern web technologies.",
+    "Software developer specializing in distributed systems, full-stack applications, and infrastructure. From edge device sync engines to financial platforms and compliance systems.",
+})
+
+onMounted(() => {
+  observeSections()
 })
 </script>
 
 <template>
-  <div
-    v-motion
-    :initial="{ opacity: 0, y: 40 }"
-    :enter="{ opacity: 1, y: 0 }"
-    :duration="800"
-  >
-    <ContactForm />
+  <div>
+    <SectionHero />
+    <SectionAbout />
+    <SectionProjects />
+    <SectionSkills />
+    <SectionArchitecture />
+    <SectionWriting />
+    <SectionExperience />
+    <SectionPhilosophy />
+
+    <section
+      id="contact"
+      class="py-16 md:py-24"
+    >
+      <div class="container mx-auto px-4 max-w-6xl">
+        <ContactForm />
+      </div>
+    </section>
   </div>
 </template>
