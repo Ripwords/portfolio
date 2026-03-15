@@ -3,7 +3,7 @@ import { z } from "zod"
 const config = useRuntimeConfig()
 
 const bodySchema = z.object({
-  from: z.string().email(),
+  from: z.email(),
   name: z.string(),
   subject: z.string(),
   content: z.string(),

@@ -89,10 +89,8 @@ const onSubmit = form.handleSubmit(async (values) => {
         :enter="{ opacity: 1, x: 0 }"
         :duration="1000"
       >
-        <div
-          class="relative flex flex-col items-center justify-center h-[300px]"
-        >
-          <div class="absolute top-0 left-0 text-2xl font-bold">
+        <div class="relative flex flex-col items-center justify-center h-75">
+          <div class="absolute top-0 left-0 text-2xl font-bold z-1">
             <CardTitle>Get in touch!</CardTitle>
           </div>
           <div
