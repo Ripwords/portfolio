@@ -27,26 +27,24 @@ const isHome = computed(() => route.path === '/')
       </NuxtLink>
 
     <ul class="flex flex-row gap-1">
-      <!-- Section anchor links (only shown on home page) -->
-      <template v-if="isHome">
-        <li
-          v-for="item in sectionLinks"
-          :key="item.to"
+      <!-- Section anchor links -->
+      <li
+        v-for="item in sectionLinks"
+        :key="item.to"
+      >
+        <NuxtLink
+          :to="isHome ? item.to : `/${item.to}`"
+          class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground transition-colors"
+          :class="isHome && activeSection === item.to.slice(1) ? 'bg-accent text-accent-foreground' : ''"
         >
-          <a
-            :href="item.to"
-            class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground transition-colors"
-            :class="activeSection === item.to.slice(1) ? 'bg-accent text-accent-foreground' : ''"
-          >
-            <Icon
-              v-if="item.icon"
-              :name="item.icon"
-              class="mr-1 text-base"
-            />
-            <span>{{ item.label }}</span>
-          </a>
-        </li>
-      </template>
+          <Icon
+            v-if="item.icon"
+            :name="item.icon"
+            class="mr-1 text-base"
+          />
+          <span>{{ item.label }}</span>
+        </NuxtLink>
+      </li>
 
       <!-- Page links -->
       <li
