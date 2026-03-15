@@ -62,6 +62,11 @@ export default defineNuxtConfig({
     }
   },
   security: {
+    headers: {
+      contentSecurityPolicy: {
+        'img-src': ["'self'", 'data:', 'https://raw.githubusercontent.com'],
+      },
+    },
     rateLimiter: {
       interval: 120000,
       tokensPerInterval: 25,

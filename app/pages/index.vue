@@ -25,6 +25,30 @@ onMounted(() => {
     <SectionExperience />
     <SectionPhilosophy />
 
+    <div
+      v-motion
+      :initial="{ opacity: 0 }"
+      :visible-once="{ opacity: 1 }"
+      :duration="800"
+      class="container mx-auto px-4 max-w-6xl py-8"
+    >
+      <picture>
+        <source
+          media="(prefers-color-scheme: dark)"
+          srcset="https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake-dark.svg"
+        />
+        <source
+          media="(prefers-color-scheme: light)"
+          srcset="https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake.svg"
+        />
+        <img
+          alt="GitHub contribution grid snake animation"
+          src="https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake-dark.svg"
+          class="w-full opacity-60"
+        />
+      </picture>
+    </div>
+
     <section
       id="contact"
       class="py-16 md:py-24"
