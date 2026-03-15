@@ -2,7 +2,16 @@
 import type { CSSProperties } from "vue"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
 
+const colorMode = useColorMode()
 const target = ref()
+
+const bannerImage = computed(() =>
+  colorMode.value === 'dark' ? '/img/morning_moon.jpeg' : '/img/night_moon.jpeg'
+)
+
+const bannerAlt = computed(() =>
+  colorMode.value === 'dark' ? 'morning moon' : 'night moon'
+)
 
 const parallax = reactive(useParallax(target))
 
@@ -47,14 +56,16 @@ const layer1 = computed(() => ({
 }))
 
 const cardStyle = computed(() => ({
-  background: "#fff",
+  background: colorMode.value === 'dark' ? '#1c1c1c' : '#fff',
   height: "13rem",
   width: "15rem",
   borderRadius: "5px",
-  border: "1px solid #cdcdcd",
+  border: colorMode.value === 'dark' ? '1px solid #333' : '1px solid #cdcdcd',
   overflow: "hidden",
   transition: ".3s ease-out all",
-  boxShadow: "0 0 20px 0 rgba(255, 255, 255, 0.25)",
+  boxShadow: colorMode.value === 'dark'
+    ? '0 0 20px 0 rgba(255, 255, 255, 0.1)'
+    : '0 0 20px 0 rgba(0, 0, 0, 0.15)',
   transform: `rotateX(${parallax.roll * 20}deg) rotateY(${
     parallax.tilt * 20
   }deg)`,
@@ -72,9 +83,9 @@ const cardStyle = computed(() => ({
     >
       <CardHeader class="p-0">
         <NuxtImg
-          src="/img/morning_moon.jpeg"
+          :src="bannerImage"
           loading="lazy"
-          alt="morning moon"
+          :alt="bannerAlt"
           class="object-cover overflow-hidden w-full h-[300px]"
         />
       </CardHeader>
