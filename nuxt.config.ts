@@ -26,6 +26,7 @@ export default defineNuxtConfig({
         'tailwind-merge',
         '@tresjs/cientos',
         '@tresjs/core',
+        '@unhead/schema-org/vue',
       ]
     }
   },
@@ -37,6 +38,8 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: "",
+    preference: "dark",
+    fallback: "dark",
   },
   app: {
     head: {
@@ -71,6 +74,11 @@ export default defineNuxtConfig({
   tres: {
     devtools: false,
   },
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth',
+    },
+  },
   modules: [
     "@vueuse/nuxt",
     "@nuxtjs/color-mode",
@@ -82,5 +90,6 @@ export default defineNuxtConfig({
     "@vueuse/motion/nuxt",
     "shadcn-nuxt",
     "@nuxt/icon",
+    "@nuxt/content",
   ],
 })

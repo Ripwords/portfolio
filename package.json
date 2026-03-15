@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/content": "^3.12.0",
     "@nuxt/eslint": "^1.15.2",
     "@nuxt/icon": "2.2.1",
     "@nuxt/image": "^2.0.0",
@@ -22,6 +23,7 @@
     "@vueuse/core": "^14.2.1",
     "@vueuse/motion": "^3.0.3",
     "@vueuse/nuxt": "^14.2.1",
+    "better-sqlite3": "^12.8.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "eslint": "^10.0.3",
@@ -43,9 +45,13 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@iconify-json/devicon": "^1.2.60",
+    "@iconify-json/ix": "^1.2.11",
     "@iconify-json/line-md": "^1.2.16",
+    "@iconify-json/logos": "^1.2.10",
     "@iconify-json/lucide": "^1.2.98",
     "@iconify-json/meteor-icons": "^1.2.1",
+    "@iconify-json/skill-icons": "^1.2.4",
     "@nuxtjs/color-mode": "^4.0.0",
     "@types/three": "^0.183.1"
   }
