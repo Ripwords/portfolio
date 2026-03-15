@@ -1,11 +1,6 @@
 <script lang="ts" setup>
 import { breakpointsTailwind } from "@vueuse/core"
 
-const yRotation = shallowRef(0)
-useRenderLoop().onLoop(({ delta }) => {
-  yRotation.value += 0.02 * delta
-})
-
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const smAndLarger = breakpoints.greaterOrEqual("sm")
 
@@ -40,14 +35,7 @@ const handleError = (error: Error) => {
         cast-shadow
       />
       <Suspense>
-        <Stars
-          :rotation="[0, yRotation, 0]"
-          :radius="50"
-          :depth="50"
-          :count="5000"
-          :size="0.3"
-          :size-attenuation="true"
-        />
+        <ObjectAnimatedStars />
       </Suspense>
       <TresAmbientLight :intensity="1" />
     </TresCanvas>
