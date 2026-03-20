@@ -18,11 +18,11 @@ onMounted(() => {
   <div>
     <SectionHero />
     <SectionAbout />
-    <SectionProjects />
     <SectionSkills />
-    <SectionArchitecture />
-    <SectionWriting />
     <SectionExperience />
+    <SectionWriting />
+    <SectionProjects />
+    <SectionArchitecture />
     <SectionPhilosophy />
 
     <div
@@ -57,5 +57,33 @@ onMounted(() => {
         <ContactForm />
       </div>
     </section>
+
+    <footer class="border-t border-border py-6">
+      <div class="container mx-auto px-4 max-w-6xl text-xs text-muted-foreground">
+        <p>
+          3D model
+          <a
+            href="https://sketchfab.com/3d-models/smart-cube-93c9330b3eba470c9c2f26fad0e1d8f7"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline hover:text-foreground"
+          >"Smart Cube"</a>
+          by
+          <a
+            href="https://sketchfab.com/ABSoln"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline hover:text-foreground"
+          >ABSoln</a>
+          is licensed under
+          <a
+            href="http://creativecommons.org/licenses/by-nc/4.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline hover:text-foreground"
+          >CC-BY-NC-4.0</a>.
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
