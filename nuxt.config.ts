@@ -64,6 +64,7 @@ export default defineNuxtConfig({
   security: {
     headers: {
       contentSecurityPolicy: {
+        'script-src': ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "https:"],
         'img-src': ["'self'", 'data:', 'https://raw.githubusercontent.com'],
       },
     },
