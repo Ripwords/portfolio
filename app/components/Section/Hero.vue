@@ -21,7 +21,7 @@ const highlights = [
     <!-- Desktop: 3D cube (v-if prevents mount + asset loading on mobile) -->
     <div
       v-if="isDesktop"
-      class="absolute inset-0 left-1/3 opacity-50 pointer-events-none"
+      class="absolute inset-0 left-1/3 opacity-50 pointer-events-none hero-cube-mask"
     >
       <LazyObjectCube />
     </div>
@@ -128,6 +128,11 @@ const highlights = [
 </template>
 
 <style scoped>
+/* Desktop cube: fade left edge */
+.hero-cube-mask {
+  mask-image: linear-gradient(to right, transparent, black 30%);
+}
+
 /* Dot grid pattern */
 .hero-grid {
   background-image: radial-gradient(
