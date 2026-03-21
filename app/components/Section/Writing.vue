@@ -15,7 +15,7 @@ function formatDate(date: string) {
 </script>
 
 <template>
-  <section :id="sectionId" class="py-16 md:py-24">
+  <section v-if="articles?.length" :id="sectionId" class="py-16 md:py-24">
     <div class="container mx-auto px-4 max-w-6xl">
       <h2
         v-motion
@@ -68,20 +68,6 @@ function formatDate(date: string) {
         </NuxtLink>
       </div>
 
-      <!-- Empty state -->
-      <Card
-        v-else
-        v-motion
-        :initial="{ opacity: 0, y: 40 }"
-        :visible-once="{ opacity: 1, y: 0, transition: { delay: 200, duration: 500 } }"
-      >
-        <CardContent class="flex flex-col items-center justify-center py-16 text-center">
-          <Icon name="lucide:notebook-pen" class="size-12 text-muted-foreground/50 mb-4" />
-          <p class="text-muted-foreground">
-            Articles coming soon. Check back for technical deep-dives and engineering notes.
-          </p>
-        </CardContent>
-      </Card>
     </div>
   </section>
 </template>
