@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite"
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   future: {
-    compatibilityVersion: 4,
+    compatibilityVersion: 5,
   },
   experimental: {
     typedPages: true,
@@ -26,6 +26,7 @@ export default defineNuxtConfig({
         'tailwind-merge',
         '@tresjs/cientos',
         '@tresjs/core',
+        '@unhead/schema-org/vue',
       ]
     }
   },
@@ -37,6 +38,8 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: "",
+    preference: "dark",
+    fallback: "dark",
   },
   app: {
     head: {
@@ -59,6 +62,12 @@ export default defineNuxtConfig({
     }
   },
   security: {
+    headers: {
+      contentSecurityPolicy: {
+        'script-src': ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "https:"],
+        'img-src': ["'self'", 'data:', 'https://raw.githubusercontent.com'],
+      },
+    },
     rateLimiter: {
       interval: 120000,
       tokensPerInterval: 25,
@@ -71,6 +80,11 @@ export default defineNuxtConfig({
   tres: {
     devtools: false,
   },
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth',
+    },
+  },
   modules: [
     "@vueuse/nuxt",
     "@nuxtjs/color-mode",
@@ -82,5 +96,6 @@ export default defineNuxtConfig({
     "@vueuse/motion/nuxt",
     "shadcn-nuxt",
     "@nuxt/icon",
+    "@nuxt/content",
   ],
 })

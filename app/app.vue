@@ -5,6 +5,9 @@ const {
   public: { umamiWebsiteId },
 } = useRuntimeConfig()
 
+const colorMode = useColorMode()
+colorMode.preference = 'dark'
+
 onMounted(() => {
   if (import.meta.env.PROD) {
     useHead({

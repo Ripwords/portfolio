@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { navLinks as links } from "~/lib/nav-links"
+import { mobileLinks } from "~/lib/nav-links"
 </script>
 
 <template>
@@ -14,14 +14,11 @@ import { navLinks as links } from "~/lib/nav-links"
   >
     <ul class="flex flex-row justify-around items-center h-16">
       <li
-        v-for="item in links[0]"
+        v-for="item in mobileLinks"
         :key="item.to"
       >
         <NuxtLink
           :to="item.to"
-          :target="item.target || '_self'"
-          rel="noopener noreferrer"
-          :external="item.external"
           class="flex flex-col items-center justify-center px-2 py-1 text-xs text-muted-foreground hover:text-accent-foreground transition-colors"
           active-class="text-primary"
         >

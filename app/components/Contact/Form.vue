@@ -2,7 +2,7 @@
 import { toTypedSchema } from "@vee-validate/zod"
 import * as z from "zod"
 import { useForm } from "vee-validate"
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card"
 import {
   FormControl,
   FormDescription,
@@ -75,71 +75,63 @@ const onSubmit = form.handleSubmit(async (values) => {
 </script>
 
 <template>
-  <div class="p-4 flex justify-center w-full">
+  <div class="flex justify-center w-full">
     <Card
       v-motion
       :initial="{ opacity: 0, y: 40 }"
-      :enter="{ opacity: 1, y: 0 }"
+      :visible-once="{ opacity: 1, y: 0 }"
       :duration="800"
       class="w-full max-w-3xl"
     >
-      <CardHeader
-        v-motion
-        :initial="{ opacity: 0, x: -40 }"
-        :enter="{ opacity: 1, x: 0 }"
-        :duration="1000"
-      >
-        <div class="relative flex flex-col items-center justify-center h-75">
-          <div class="absolute top-0 left-0 text-2xl font-bold z-1">
-            <CardTitle>Get in touch!</CardTitle>
-          </div>
-          <div
-            class="w-full absolute top-0 left-0 overflow-hidden bottom-0 right-0"
-          >
-            <LazyObjectSaturn />
-          </div>
+      <CardHeader class="space-y-2">
+        <div class="flex items-center gap-3">
+          <Icon name="lucide:mail" class="size-6 text-primary" />
+          <CardTitle class="text-2xl font-bold">Get in touch!</CardTitle>
         </div>
+        <CardDescription>
+          Have a project in mind, want to collaborate, or just say hello? Drop me a message.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <form
-          class="space-y-4"
+          class="space-y-5"
           @submit="onSubmit"
         >
-          <FormField
-            v-slot="{ componentField }"
-            name="email"
-          >
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input
-                  type="email"
-                  placeholder="you@example.com"
-                  v-bind="componentField"
-                />
-              </FormControl>
-              <FormDescription />
-              <FormMessage />
-            </FormItem>
-          </FormField>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <FormField
+              v-slot="{ componentField }"
+              name="email"
+            >
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input
+                    type="email"
+                    placeholder="you@example.com"
+                    v-bind="componentField"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
 
-          <FormField
-            v-slot="{ componentField }"
-            name="name"
-          >
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input
-                  type="text"
-                  placeholder="John Doe"
-                  v-bind="componentField"
-                />
-              </FormControl>
-              <FormDescription />
-              <FormMessage />
-            </FormItem>
-          </FormField>
+            <FormField
+              v-slot="{ componentField }"
+              name="name"
+            >
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="John Doe"
+                    v-bind="componentField"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+          </div>
 
           <FormField
             v-slot="{ componentField }"
@@ -154,7 +146,6 @@ const onSubmit = form.handleSubmit(async (values) => {
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormDescription />
               <FormMessage />
             </FormItem>
           </FormField>
@@ -168,24 +159,31 @@ const onSubmit = form.handleSubmit(async (values) => {
               <FormControl>
                 <Textarea
                   placeholder="Your message..."
+                  class="min-h-[120px]"
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormDescription />
               <FormMessage />
             </FormItem>
           </FormField>
 
-          <div class="flex justify-end">
+          <div class="flex justify-end pt-2">
             <Button
               :disabled="isSending"
               type="submit"
+              size="lg"
             >
-              <span
+              <Icon
                 v-if="isSending"
-                class="i-lucide-loader-2 animate-spin mr-2"
+                name="lucide:loader-2"
+                class="size-4 animate-spin mr-2"
               />
-              Contact Me
+              <Icon
+                v-else
+                name="lucide:send"
+                class="size-4 mr-2"
+              />
+              Send Message
             </Button>
           </div>
         </form>

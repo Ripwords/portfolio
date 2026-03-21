@@ -1,0 +1,11 @@
+Model Information:
+* title:	Smart Cube
+* source:	https://sketchfab.com/3d-models/smart-cube-93c9330b3eba470c9c2f26fad0e1d8f7
+* author:	ABSoln (https://sketchfab.com/ABSoln)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Smart Cube" (https://sketchfab.com/3d-models/smart-cube-93c9330b3eba470c9c2f26fad0e1d8f7) by ABSoln (https://sketchfab.com/ABSoln) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
