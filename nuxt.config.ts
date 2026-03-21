@@ -1,4 +1,4 @@
-import tailwindcss from "@tailwindcss/vite"
+import tailwindcss from "@tailwindcss/vite";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -8,27 +8,31 @@ export default defineNuxtConfig({
   },
   experimental: {
     typedPages: true,
+    nitroAutoImports: true,
   },
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
       include: [
-        'three',
-        '@vue/devtools-core',
-        '@vue/devtools-kit',
-        'vue-sonner',
-        '@vee-validate/zod',
-        'zod',
-        'vee-validate',
-        'class-variance-authority',
-        'reka-ui',
-        'clsx',
-        'tailwind-merge',
-        '@tresjs/cientos',
-        '@tresjs/core',
-        '@unhead/schema-org/vue',
-      ]
-    }
+        "three",
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "vue-sonner",
+        "@vee-validate/zod",
+        "zod",
+        "vee-validate",
+        "class-variance-authority",
+        "reka-ui",
+        "clsx",
+        "tailwind-merge",
+        "@tresjs/cientos",
+        "@tresjs/core",
+        "@unhead/schema-org/vue",
+      ],
+    },
+    build: {
+      sourcemap: false,
+    },
   },
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
@@ -59,13 +63,13 @@ export default defineNuxtConfig({
     brevoKey: "",
     public: {
       umamiWebsiteId: "",
-    }
+    },
   },
   security: {
     headers: {
       contentSecurityPolicy: {
-        'script-src': ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "https:"],
-        'img-src': ["'self'", 'data:', 'https://raw.githubusercontent.com'],
+        "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "https:"],
+        "img-src": ["'self'", "data:", "https://raw.githubusercontent.com"],
       },
     },
     rateLimiter: {
@@ -82,7 +86,7 @@ export default defineNuxtConfig({
   },
   router: {
     options: {
-      scrollBehaviorType: 'smooth',
+      scrollBehaviorType: "smooth",
     },
   },
   modules: [
@@ -90,7 +94,6 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@nuxt/image",
     "@nuxtjs/seo",
-    "@nuxt/eslint",
     "@tresjs/nuxt",
     "nuxt-security",
     "@vueuse/motion/nuxt",
@@ -98,4 +101,4 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@nuxt/content",
   ],
-})
+});

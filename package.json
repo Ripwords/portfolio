@@ -7,11 +7,15 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "prepare": "husky"
   },
   "dependencies": {
     "@nuxt/content": "^3.12.0",
-    "@nuxt/eslint": "^1.15.2",
     "@nuxt/icon": "2.2.1",
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/seo": "^3.4.0",
@@ -26,7 +30,6 @@
     "better-sqlite3": "^12.8.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "eslint": "^10.0.3",
     "lucide-vue-next": "^0.577.0",
     "mongodb": "^7.1.0",
     "motion-v": "^2.0.0",
@@ -53,6 +56,19 @@
     "@iconify-json/meteor-icons": "^1.2.1",
     "@iconify-json/skill-icons": "^1.2.4",
     "@nuxtjs/color-mode": "^4.0.0",
-    "@types/three": "^0.183.1"
+    "@types/three": "^0.183.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "oxfmt": "^0.41.0",
+    "oxlint": "^1.56.0"
+  },
+  "lint-staged": {
+    "*.{ts,vue,js,mjs}": [
+      "oxlint --fix",
+      "oxfmt"
+    ],
+    "*.{json,css,md}": [
+      "oxfmt"
+    ]
   }
 }
