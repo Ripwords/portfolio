@@ -39,6 +39,9 @@ const skillIcons: Record<string, string> = {
   'Hono': 'logos:hono',
   'WebSocket': 'logos:websocket',
   'MQTT': 'ix:mqtt',
+  'Vitest': 'devicon:vitest',
+  'Playwright': 'devicon:playwright',
+  'Jest': 'devicon-plain:jest',
 }
 
 const invertIcons = new Set(['WebSocket'])
@@ -76,6 +79,6 @@ export const skills: SkillCategory[] = [
   {
     title: 'Tools & Practices',
     icon: 'lucide:wrench',
-    skills: toSkills(['Git', 'TDD', 'Monorepos', 'Tauri', 'MQTT', 'PKI/X.509']),
+    skills: toSkills(['Git', 'TDD', 'Vitest', 'Jest', 'Playwright', 'Monorepos', 'Tauri', 'MQTT', 'PKI/X.509']),
   },
 ]
