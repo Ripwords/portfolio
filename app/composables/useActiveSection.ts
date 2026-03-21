@@ -1,7 +1,7 @@
 import { ref, readonly } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 
-export const SECTION_IDS = ['hero', 'about', 'skills', 'experience', 'writing', 'projects', 'architecture', 'philosophy', 'contact'] as const
+export const SECTION_IDS = ['hero', 'about', 'projects', 'experience', 'skills', 'writing', 'architecture', 'contact'] as const
 
 export type SectionId = typeof SECTION_IDS[number]
 

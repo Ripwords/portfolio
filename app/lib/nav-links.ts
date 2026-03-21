@@ -1,5 +1,10 @@
 export const sectionLinks = [
   {
+    label: "Projects",
+    icon: "line-md:document-list",
+    to: "#projects",
+  },
+  {
     label: "Experience",
     icon: "line-md:briefcase",
     to: "#experience",
@@ -8,11 +13,6 @@ export const sectionLinks = [
     label: "Writing",
     icon: "line-md:edit-twotone",
     to: "#writing",
-  },
-  {
-    label: "Projects",
-    icon: "line-md:document-list",
-    to: "#projects",
   },
   {
     label: "Contact",
@@ -49,6 +49,11 @@ export const mobileLinks = [
     to: "/#hero",
   },
   {
+    label: "Projects",
+    icon: "line-md:document-list",
+    to: "/#projects",
+  },
+  {
     label: "Experience",
     icon: "line-md:briefcase",
     to: "/#experience",
@@ -57,11 +62,6 @@ export const mobileLinks = [
     label: "Writing",
     icon: "line-md:edit-twotone",
     to: "/#writing",
-  },
-  {
-    label: "Projects",
-    icon: "line-md:document-list",
-    to: "/#projects",
   },
   {
     label: "Astro",

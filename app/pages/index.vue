@@ -18,12 +18,11 @@ onMounted(() => {
   <div>
     <SectionHero />
     <SectionAbout />
-    <SectionSkills />
-    <SectionExperience />
-    <SectionWriting />
     <SectionProjects />
+    <SectionExperience />
+    <SectionSkills />
+    <SectionWriting />
     <SectionArchitecture />
-    <SectionPhilosophy />
 
     <div
       v-motion
