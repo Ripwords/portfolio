@@ -41,7 +41,6 @@ onUnmounted(() => {
   <TresMesh ref="modelRef">
     <GLTFModel
       :path="modelPath"
-      material="basic"
       :scale="modelScale"
       draco
     />
