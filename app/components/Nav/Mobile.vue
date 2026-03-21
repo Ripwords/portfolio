@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { mobileLinks } from "~/lib/nav-links"
+import { mobileLinks } from "~/lib/nav-links";
 </script>
 
 <template>
@@ -13,20 +13,13 @@ import { mobileLinks } from "~/lib/nav-links"
     "
   >
     <ul class="flex flex-row justify-around items-center h-16">
-      <li
-        v-for="item in mobileLinks"
-        :key="item.to"
-      >
+      <li v-for="item in mobileLinks" :key="item.to">
         <NuxtLink
           :to="item.to"
           class="flex flex-col items-center justify-center px-2 py-1 text-xs text-muted-foreground hover:text-accent-foreground transition-colors"
           active-class="text-primary"
         >
-          <Icon
-            v-if="item.icon"
-            :name="item.icon"
-            class="text-xl mb-0.5"
-          />
+          <Icon v-if="item.icon" :name="item.icon" class="text-xl mb-0.5" />
           <span class="text-xs">{{ item.label }}</span>
         </NuxtLink>
       </li>

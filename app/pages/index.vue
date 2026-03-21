@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import { useActiveSection } from "~/composables/useActiveSection"
+import { useActiveSection } from "~/composables/useActiveSection";
 
-const { observeSections } = useActiveSection()
+const { observeSections } = useActiveSection();
 
 useSeoMeta({
   title: "JJ Teoh — Software Developer",
   description:
     "Software developer specializing in distributed systems, full-stack applications, and infrastructure. From edge device sync engines to financial platforms and compliance systems.",
-})
+});
 
 onMounted(() => {
-  observeSections()
-})
+  observeSections();
+});
 </script>
 
 <template>
@@ -34,11 +34,15 @@ onMounted(() => {
       <picture>
         <source
           media="(prefers-color-scheme: dark)"
-          srcset="https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake-dark.svg"
+          srcset="
+            https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake-dark.svg
+          "
         />
         <source
           media="(prefers-color-scheme: light)"
-          srcset="https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake.svg"
+          srcset="
+            https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake.svg
+          "
         />
         <img
           alt="GitHub contribution grid snake animation"
@@ -48,10 +52,7 @@ onMounted(() => {
       </picture>
     </div>
 
-    <section
-      id="contact"
-      class="py-16 md:py-24"
-    >
+    <section id="contact" class="py-16 md:py-24">
       <div class="container mx-auto px-4 max-w-6xl">
         <ContactForm />
       </div>
@@ -66,21 +67,24 @@ onMounted(() => {
             target="_blank"
             rel="noopener noreferrer"
             class="underline hover:text-foreground"
-          >"Smart Cube"</a>
+            >"Smart Cube"</a
+          >
           by
           <a
             href="https://sketchfab.com/ABSoln"
             target="_blank"
             rel="noopener noreferrer"
             class="underline hover:text-foreground"
-          >ABSoln</a>
+            >ABSoln</a
+          >
           is licensed under
           <a
             href="http://creativecommons.org/licenses/by-nc/4.0/"
             target="_blank"
             rel="noopener noreferrer"
             class="underline hover:text-foreground"
-          >CC-BY-NC-4.0</a>.
+            >CC-BY-NC-4.0</a
+          >.
         </p>
       </div>
     </footer>

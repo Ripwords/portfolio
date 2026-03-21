@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { projects } from '~/lib/data/projects'
+import { projects } from "~/lib/data/projects";
 
-const sectionId = 'projects'
-const expandedId = ref<string | null>(null)
+const sectionId = "projects";
+const expandedId = ref<string | null>(null);
 
 function toggle(id: string) {
-  expandedId.value = expandedId.value === id ? null : id
+  expandedId.value = expandedId.value === id ? null : id;
 }
 </script>
 
@@ -79,16 +79,17 @@ function toggle(id: string) {
             </div>
 
             <!-- Expandable detail -->
-            <div
-              v-show="expandedId === project.id"
-              class="space-y-3 pt-2 border-t border-border"
-            >
+            <div v-show="expandedId === project.id" class="space-y-3 pt-2 border-t border-border">
               <div>
-                <p class="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">Problem</p>
+                <p class="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">
+                  Problem
+                </p>
                 <p class="text-sm">{{ project.problem }}</p>
               </div>
               <div>
-                <p class="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">Approach</p>
+                <p class="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">
+                  Approach
+                </p>
                 <p class="text-sm">{{ project.approach }}</p>
               </div>
               <div class="flex flex-wrap gap-1.5">

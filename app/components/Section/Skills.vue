@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { skills } from '~/lib/data/skills'
+import { skills } from "~/lib/data/skills";
 </script>
 
 <template>
@@ -32,8 +32,18 @@ import { skills } from '~/lib/data/skills'
           </CardHeader>
           <CardContent>
             <div class="flex flex-wrap gap-1.5">
-              <Badge v-for="skill in category.skills" :key="skill.label" variant="secondary" class="rounded-md">
-                <Icon v-if="skill.icon" :name="skill.icon" class="size-4" :class="skill.invertIcon ? 'dark:invert' : ''" />
+              <Badge
+                v-for="skill in category.skills"
+                :key="skill.label"
+                variant="secondary"
+                class="rounded-md"
+              >
+                <Icon
+                  v-if="skill.icon"
+                  :name="skill.icon"
+                  class="size-4"
+                  :class="skill.invertIcon ? 'dark:invert' : ''"
+                />
                 {{ skill.label }}
               </Badge>
             </div>

@@ -1,3 +1,3 @@
 export default defineEventHandler(async (event) => {
-  return sendRedirect(event, "/docs/TeohJiaJing.pdf", 302)
-})
+  return sendRedirect(event, "/docs/TeohJiaJing.pdf", 302);
+});

@@ -1,14 +1,14 @@
-import { z } from "zod"
+import { z } from "zod";
 
-const config = useRuntimeConfig()
+const config = useRuntimeConfig();
 
 const bodySchema = z.object({
   from: z.email(),
   name: z.string(),
   subject: z.string(),
   content: z.string(),
-})
-type TBody = z.infer<typeof bodySchema>
+});
+type TBody = z.infer<typeof bodySchema>;
 
 const sendEmail = async (body: TBody) => {
   return await $fetch("https://api.brevo.com/v3/smtp/email", {
@@ -31,11 +31,11 @@ const sendEmail = async (body: TBody) => {
       subject: body.subject,
       htmlContent: body.content,
     },
-  })
-}
+  });
+};
 
 export default defineEventHandler(async (event) => {
-  const body = await readValidatedBody(event, bodySchema.parse)
-  const response = await sendEmail(body)
-  return response
-})
+  const body = await readValidatedBody(event, bodySchema.parse);
+  const response = await sendEmail(body);
+  return response;
+});

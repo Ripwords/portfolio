@@ -1,23 +1,23 @@
 <script lang="ts" setup>
-const sectionId = 'architecture'
+const sectionId = "architecture";
 
 const diagrams = [
   {
-    title: 'Edge Sync Architecture',
-    caption: 'Offline-first bidirectional sync with ElectricSQL between field devices and cloud',
-    component: resolveComponent('DiagramEdgeSync'),
+    title: "Edge Sync Architecture",
+    caption: "Offline-first bidirectional sync with ElectricSQL between field devices and cloud",
+    component: resolveComponent("DiagramEdgeSync"),
   },
   {
-    title: 'Multi-App Hospitality Platform',
-    caption: 'Monorepo with shared typed package connecting PMS, POS, and e-invoicing apps',
-    component: resolveComponent('DiagramHospitalityPlatform'),
+    title: "Multi-App Hospitality Platform",
+    caption: "Monorepo with shared typed package connecting PMS, POS, and e-invoicing apps",
+    component: resolveComponent("DiagramHospitalityPlatform"),
   },
   {
-    title: 'Multi-Agent AI Analytics',
-    caption: 'Specialized AI agents with MCP tool integration for financial data analysis',
-    component: resolveComponent('DiagramAIAccounting'),
+    title: "Multi-Agent AI Analytics",
+    caption: "Specialized AI agents with MCP tool integration for financial data analysis",
+    component: resolveComponent("DiagramAIAccounting"),
   },
-]
+];
 </script>
 
 <template>

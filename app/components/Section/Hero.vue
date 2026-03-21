@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { breakpointsTailwind } from "@vueuse/core"
+import { breakpointsTailwind } from "@vueuse/core";
 
-const breakpoints = useBreakpoints(breakpointsTailwind)
-const isDesktop = breakpoints.greaterOrEqual("sm")
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const isDesktop = breakpoints.greaterOrEqual("sm");
 
 const highlights = [
   "Distributed Systems",
@@ -10,14 +10,11 @@ const highlights = [
   "Infrastructure",
   "Desktop Apps",
   "Cross-Platform Mobile",
-]
+];
 </script>
 
 <template>
-  <section
-    id="hero"
-    class="relative min-h-[70vh] flex items-center py-16 md:py-24 overflow-hidden"
-  >
+  <section id="hero" class="relative min-h-[70vh] flex items-center py-16 md:py-24 overflow-hidden">
     <!-- Desktop: 3D cube (v-if prevents mount + asset loading on mobile) -->
     <div
       v-if="isDesktop"
@@ -27,9 +24,7 @@ const highlights = [
     </div>
 
     <!-- Mobile: dot grid with pulse -->
-    <div
-      class="sm:hidden absolute inset-0 pointer-events-none hero-grid opacity-15"
-    />
+    <div class="sm:hidden absolute inset-0 pointer-events-none hero-grid opacity-15" />
 
     <!-- Bottom fade to blend into next section -->
     <div
@@ -80,9 +75,9 @@ const highlights = [
           :duration="600"
           class="text-base md:text-lg text-muted-foreground leading-relaxed"
         >
-          Mechatronics engineer turned software developer. I build reliable
-          systems — from edge device sync engines and financial platforms to
-          compliance infrastructure and developer tooling.
+          Mechatronics engineer turned software developer. I build reliable systems — from edge
+          device sync engines and financial platforms to compliance infrastructure and developer
+          tooling.
         </p>
 
         <div
@@ -92,11 +87,7 @@ const highlights = [
           :duration="600"
           class="flex flex-wrap gap-2"
         >
-          <Badge
-            v-for="highlight in highlights"
-            :key="highlight"
-            variant="secondary"
-          >
+          <Badge v-for="highlight in highlights" :key="highlight" variant="secondary">
             {{ highlight }}
           </Badge>
         </div>
@@ -108,19 +99,8 @@ const highlights = [
           :duration="600"
           class="flex gap-4 pt-2"
         >
-          <Button
-            as="a"
-            href="#projects"
-          >
-            View Projects
-          </Button>
-          <Button
-            as="a"
-            href="#contact"
-            variant="outline"
-          >
-            Get in Touch
-          </Button>
+          <Button as="a" href="#projects"> View Projects </Button>
+          <Button as="a" href="#contact" variant="outline"> Get in Touch </Button>
         </div>
       </div>
     </div>
@@ -135,17 +115,9 @@ const highlights = [
 
 /* Dot grid pattern */
 .hero-grid {
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.5) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
   background-size: 24px 24px;
-  mask-image: radial-gradient(
-    ellipse 70% 60% at 50% 50%,
-    black 20%,
-    transparent 70%
-  );
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
 }
 
 /* Animated gradient glow */

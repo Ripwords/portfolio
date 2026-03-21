@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { TresInstance } from "@tresjs/core"
-import { dispose } from "@tresjs/core"
+import type { TresInstance } from "@tresjs/core";
+import { dispose } from "@tresjs/core";
 
 const {
   initialPosition = [0, 0, 0],
@@ -8,41 +8,37 @@ const {
   modelScale = 0.05,
   modelPath,
 } = defineProps<{
-  initialPosition?: [number, number, number]
-  initialRotation?: [number, number, number]
-  modelScale?: number
-  modelPath: string
-}>()
+  initialPosition?: [number, number, number];
+  initialRotation?: [number, number, number];
+  modelScale?: number;
+  modelPath: string;
+}>();
 
-const modelRef = shallowRef<TresInstance | null>(null)
-const { onBeforeRender } = useLoop()
+const modelRef = shallowRef<TresInstance | null>(null);
+const { onBeforeRender } = useLoop();
 
 onBeforeRender(({ delta }) => {
   if (modelRef.value) {
-    modelRef.value.rotation.y += delta * 0.5
+    modelRef.value.rotation.y += delta * 0.5;
   }
-})
+});
 
 watchOnce(modelRef, (value) => {
   if (modelRef.value && value) {
-    modelRef.value.position.set(...initialPosition)
-    modelRef.value.rotation.set(...initialRotation)
-    modelRef.value.scale.set(modelScale, modelScale, modelScale)
+    modelRef.value.position.set(...initialPosition);
+    modelRef.value.rotation.set(...initialRotation);
+    modelRef.value.scale.set(modelScale, modelScale, modelScale);
   }
-})
+});
 
 onUnmounted(() => {
   if (modelRef.value) {
-    dispose(modelRef.value)
+    dispose(modelRef.value);
   }
-})
+});
 </script>
 <template>
   <TresMesh ref="modelRef">
-    <GLTFModel
-      :path="modelPath"
-      :scale="modelScale"
-      draco
-    />
+    <GLTFModel :path="modelPath" :scale="modelScale" draco />
   </TresMesh>
 </template>

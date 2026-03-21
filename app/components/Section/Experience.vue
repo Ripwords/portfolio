@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { experience } from '~/lib/data/experience'
+import { experience } from "~/lib/data/experience";
 
-const sectionId = 'experience'
+const sectionId = "experience";
 </script>
 
 <template>
@@ -35,7 +35,9 @@ const sectionId = 'experience'
                   :alt="`${entry.company} logo`"
                   class="size-12 sm:size-14 rounded-lg object-contain shrink-0 mt-1"
                 />
-                <div class="flex-1 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+                <div
+                  class="flex-1 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1"
+                >
                   <div>
                     <CardTitle class="text-xl font-bold">{{ entry.role }}</CardTitle>
                     <CardDescription class="mt-1">

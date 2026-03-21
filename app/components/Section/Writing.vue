@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-const sectionId = 'writing'
+const sectionId = "writing";
 
-const { data: articles } = await useAsyncData('articles', () =>
-  queryCollection('content').order('date', 'DESC').all()
-)
+const { data: articles } = await useAsyncData("articles", () =>
+  queryCollection("content").order("date", "DESC").all(),
+);
 
 function formatDate(date: string) {
-  return new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 </script>
 
@@ -67,7 +67,6 @@ function formatDate(date: string) {
           </Card>
         </NuxtLink>
       </div>
-
     </div>
   </section>
 </template>

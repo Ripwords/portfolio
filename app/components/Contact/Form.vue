@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { toTypedSchema } from "@vee-validate/zod"
-import * as z from "zod"
-import { useForm } from "vee-validate"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card"
+import { toTypedSchema } from "@vee-validate/zod";
+import * as z from "zod";
+import { useForm } from "vee-validate";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   FormControl,
   FormDescription,
@@ -10,8 +10,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "~/components/ui/form"
-import { toast } from "vue-sonner"
+} from "~/components/ui/form";
+import { toast } from "vue-sonner";
 
 const formSchema = toTypedSchema(
   z.object({
@@ -19,24 +19,24 @@ const formSchema = toTypedSchema(
     name: z.string().min(1, { message: "Name is required" }),
     subject: z.string().min(1, { message: "Subject is required" }),
     text: z.string().min(1, { message: "Text is required" }),
-  })
-)
+  }),
+);
 
 const form = useForm({
   validationSchema: formSchema,
-})
+});
 
-const isSending = ref(false)
+const isSending = ref(false);
 
 interface FetchError extends Error {
-  statusCode?: number
+  statusCode?: number;
   data?: {
-    statusCode?: number
-  }
+    statusCode?: number;
+  };
 }
 
 const onSubmit = form.handleSubmit(async (values) => {
-  isSending.value = true
+  isSending.value = true;
   try {
     await $fetch("/api/mail/send", {
       method: "POST",
@@ -46,32 +46,32 @@ const onSubmit = form.handleSubmit(async (values) => {
         content: values.text,
         name: values.name,
       },
-    })
-    toast.success("Mail sent successfully")
-    form.resetForm()
+    });
+    toast.success("Mail sent successfully");
+    form.resetForm();
   } catch (e) {
-    const error = e as FetchError
-    let statusCode = 500 // Default to 500
+    const error = e as FetchError;
+    let statusCode = 500; // Default to 500
 
     if (error.statusCode) {
-      statusCode = error.statusCode
+      statusCode = error.statusCode;
     } else if (error.data && error.data.statusCode) {
-      statusCode = error.data.statusCode
+      statusCode = error.data.statusCode;
     }
 
     if (statusCode === 429) {
       toast.error("Too many requests", {
         description: "Please try again later",
-      })
+      });
     } else {
       toast.error("Failed to Submit", {
         description: "Please try again later",
-      })
+      });
     }
   } finally {
-    isSending.value = false
+    isSending.value = false;
   }
-})
+});
 </script>
 
 <template>
@@ -93,67 +93,40 @@ const onSubmit = form.handleSubmit(async (values) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form
-          class="space-y-5"
-          @submit="onSubmit"
-        >
+        <form class="space-y-5" @submit="onSubmit">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <FormField
-              v-slot="{ componentField }"
-              name="email"
-            >
+            <FormField v-slot="{ componentField }" name="email">
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="you@example.com"
-                    v-bind="componentField"
-                  />
+                  <Input type="email" placeholder="you@example.com" v-bind="componentField" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             </FormField>
 
-            <FormField
-              v-slot="{ componentField }"
-              name="name"
-            >
+            <FormField v-slot="{ componentField }" name="name">
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="John Doe"
-                    v-bind="componentField"
-                  />
+                  <Input type="text" placeholder="John Doe" v-bind="componentField" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             </FormField>
           </div>
 
-          <FormField
-            v-slot="{ componentField }"
-            name="subject"
-          >
+          <FormField v-slot="{ componentField }" name="subject">
             <FormItem>
               <FormLabel>Subject</FormLabel>
               <FormControl>
-                <Input
-                  type="text"
-                  placeholder="Hello World"
-                  v-bind="componentField"
-                />
+                <Input type="text" placeholder="Hello World" v-bind="componentField" />
               </FormControl>
               <FormMessage />
             </FormItem>
           </FormField>
 
-          <FormField
-            v-slot="{ componentField }"
-            name="text"
-          >
+          <FormField v-slot="{ componentField }" name="text">
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
@@ -168,21 +141,9 @@ const onSubmit = form.handleSubmit(async (values) => {
           </FormField>
 
           <div class="flex justify-end pt-2">
-            <Button
-              :disabled="isSending"
-              type="submit"
-              size="lg"
-            >
-              <Icon
-                v-if="isSending"
-                name="lucide:loader-2"
-                class="size-4 animate-spin mr-2"
-              />
-              <Icon
-                v-else
-                name="lucide:send"
-                class="size-4 mr-2"
-              />
+            <Button :disabled="isSending" type="submit" size="lg">
+              <Icon v-if="isSending" name="lucide:loader-2" class="size-4 animate-spin mr-2" />
+              <Icon v-else name="lucide:send" class="size-4 mr-2" />
               Send Message
             </Button>
           </div>

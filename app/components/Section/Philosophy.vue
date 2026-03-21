@@ -1,23 +1,26 @@
 <script lang="ts" setup>
-const sectionId = 'philosophy'
+const sectionId = "philosophy";
 
 const tenets = [
   {
-    title: 'Build for failure',
-    description: 'Systems fail. I design with that assumption: graceful degradation, retry logic, and clear error boundaries are architectural requirements, not afterthoughts.',
-    icon: 'shield-alert',
+    title: "Build for failure",
+    description:
+      "Systems fail. I design with that assumption: graceful degradation, retry logic, and clear error boundaries are architectural requirements, not afterthoughts.",
+    icon: "shield-alert",
   },
   {
-    title: 'Prefer simplicity',
-    description: 'The best code is the code you don\'t write. I reach for the simplest solution that solves the actual problem, and resist complexity until it\'s earned.',
-    icon: 'minimize-2',
+    title: "Prefer simplicity",
+    description:
+      "The best code is the code you don't write. I reach for the simplest solution that solves the actual problem, and resist complexity until it's earned.",
+    icon: "minimize-2",
   },
   {
-    title: 'Design for maintainability',
-    description: 'Code is read far more than it\'s written. I optimize for clarity, explicit contracts, and the developer who inherits the codebase six months from now.',
-    icon: 'book-open',
+    title: "Design for maintainability",
+    description:
+      "Code is read far more than it's written. I optimize for clarity, explicit contracts, and the developer who inherits the codebase six months from now.",
+    icon: "book-open",
   },
-]
+];
 </script>
 
 <template>

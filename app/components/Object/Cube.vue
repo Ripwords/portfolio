@@ -1,24 +1,18 @@
 <script lang="ts" setup>
-import { breakpointsTailwind } from "@vueuse/core"
+import { breakpointsTailwind } from "@vueuse/core";
 
-const breakpoints = useBreakpoints(breakpointsTailwind)
-const smAndLarger = breakpoints.greaterOrEqual("sm")
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const smAndLarger = breakpoints.greaterOrEqual("sm");
 
 const scale = computed(() => {
-  if (smAndLarger.value) return 1.2
-  return 1
-})
-
-const handleError = (error: Error) => {
-  if (import.meta.dev) {
-    console.log("TresJS: ", error)
-  }
-}
+  if (smAndLarger.value) return 1.2;
+  return 1;
+});
 </script>
 
 <template>
   <!-- TresJS throwing error when unmounting component -->
-  <NuxtErrorBoundary @error="handleError">
+  <NuxtErrorBoundary>
     <TresCanvas>
       <TresPerspectiveCamera />
       <Suspense>
@@ -29,15 +23,8 @@ const handleError = (error: Error) => {
           :model-scale="scale"
         />
       </Suspense>
-      <TresDirectionalLight
-        :intensity="4"
-        :position="[3, 3, 3]"
-        cast-shadow
-      />
-      <TresDirectionalLight
-        :intensity="2"
-        :position="[-3, -1, -3]"
-      />
+      <TresDirectionalLight :intensity="4" :position="[3, 3, 3]" cast-shadow />
+      <TresDirectionalLight :intensity="2" :position="[-3, -1, -3]" />
       <Suspense>
         <ObjectAnimatedStars />
       </Suspense>

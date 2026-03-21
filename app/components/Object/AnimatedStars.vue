@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-const yRotation = shallowRef(0)
-const { onBeforeRender } = useLoop()
+const yRotation = shallowRef(0);
+const { onBeforeRender } = useLoop();
 onBeforeRender(() => {
-  yRotation.value += 0.001
-})
+  yRotation.value += 0.001;
+});
 </script>
 
 <template>

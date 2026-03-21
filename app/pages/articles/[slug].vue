@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-const route = useRoute()
+const route = useRoute();
 
 const { data: article } = await useAsyncData(`article-${route.params.slug}`, () =>
-  queryCollection('content').path(`/articles/${route.params.slug}`).first()
-)
+  queryCollection("content").path(`/articles/${route.params.slug}`).first(),
+);
 
 if (!article.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Article not found' })
+  throw createError({ statusCode: 404, statusMessage: "Article not found" });
 }
 
 useSeoMeta({
   title: article.value.title,
   description: article.value.description,
-})
+});
 </script>
 
 <template>
@@ -34,11 +34,14 @@ useSeoMeta({
           <p v-if="article.description" class="text-lg text-muted-foreground mb-4">
             {{ article.description }}
           </p>
-          <time
-            v-if="article.date"
-            class="text-sm text-muted-foreground"
-          >
-            {{ new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }}
+          <time v-if="article.date" class="text-sm text-muted-foreground">
+            {{
+              new Date(article.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }}
           </time>
         </header>
 

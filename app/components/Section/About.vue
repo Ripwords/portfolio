@@ -1,21 +1,24 @@
 <script lang="ts" setup>
 const specializations = [
   {
-    title: 'Distributed Systems',
-    icon: 'lucide:network',
-    description: 'Building reliable data synchronization, offline-first architectures, and edge computing solutions that work in constrained environments.',
+    title: "Distributed Systems",
+    icon: "lucide:network",
+    description:
+      "Building reliable data synchronization, offline-first architectures, and edge computing solutions that work in constrained environments.",
   },
   {
-    title: 'Full-Stack Product Engineering',
-    icon: 'lucide:layers',
-    description: 'End-to-end application development from database design and API architecture to polished user interfaces and deployment pipelines.',
+    title: "Full-Stack Product Engineering",
+    icon: "lucide:layers",
+    description:
+      "End-to-end application development from database design and API architecture to polished user interfaces and deployment pipelines.",
   },
   {
-    title: 'Infrastructure & DevOps',
-    icon: 'lucide:container',
-    description: 'Container orchestration, CI/CD pipelines, monitoring, and the operational tooling that keeps systems running in production.',
+    title: "Infrastructure & DevOps",
+    icon: "lucide:container",
+    description:
+      "Container orchestration, CI/CD pipelines, monitoring, and the operational tooling that keeps systems running in production.",
   },
-]
+];
 </script>
 
 <template>
@@ -38,7 +41,10 @@ const specializations = [
         :duration="600"
         class="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-12"
       >
-        I started in mechatronics engineering — designing control systems and working with embedded hardware. That foundation in systems thinking shapes how I approach software: I think in terms of failure modes, data flow, and operational constraints, not just features and frameworks.
+        I started in mechatronics engineering — designing control systems and working with embedded
+        hardware. That foundation in systems thinking shapes how I approach software: I think in
+        terms of failure modes, data flow, and operational constraints, not just features and
+        frameworks.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">

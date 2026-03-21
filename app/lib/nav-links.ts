@@ -19,7 +19,7 @@ export const sectionLinks = [
     icon: "line-md:email",
     to: "#contact",
   },
-] as const
+] as const;
 
 export const pageLinks = [
   {
@@ -35,12 +35,12 @@ export const pageLinks = [
     external: true,
   },
 ] as {
-  label: string
-  icon: string
-  to: string
-  target?: string
-  external?: boolean
-}[]
+  label: string;
+  icon: string;
+  to: string;
+  target?: string;
+  external?: boolean;
+}[];
 
 export const mobileLinks = [
   {
@@ -68,7 +68,7 @@ export const mobileLinks = [
     icon: "line-md:sunny-outline-to-moon-alt-loop-transition",
     to: "/astrophotography",
   },
-] as const
+] as const;
 
 export const socialLinks = [
   {
@@ -95,4 +95,4 @@ export const socialLinks = [
     to: "https://bsky.app/profile/ripwords.bsky.social",
     target: "_blank",
   },
-] as const
+] as const;

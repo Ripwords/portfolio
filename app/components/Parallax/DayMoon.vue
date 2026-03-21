@@ -1,26 +1,24 @@
 <script setup lang="ts">
-import type { CSSProperties } from "vue"
-import { Card, CardHeader, CardContent } from "@/components/ui/card"
+import type { CSSProperties } from "vue";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
-const colorMode = useColorMode()
-const target = ref()
+const colorMode = useColorMode();
+const target = ref();
 
 const bannerImage = computed(() =>
-  colorMode.value === 'dark' ? '/img/morning_moon.jpeg' : '/img/night_moon.jpeg'
-)
+  colorMode.value === "dark" ? "/img/morning_moon.jpeg" : "/img/night_moon.jpeg",
+);
 
-const bannerAlt = computed(() =>
-  colorMode.value === 'dark' ? 'morning moon' : 'night moon'
-)
+const bannerAlt = computed(() => (colorMode.value === "dark" ? "morning moon" : "night moon"));
 
-const parallax = reactive(useParallax(target))
+const parallax = reactive(useParallax(target));
 
 const targetStyle: CSSProperties = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   transition: ".3s ease-out all",
-}
+};
 const cardWindowStyle: CSSProperties = {
   overflow: "hidden",
   fontSize: "6rem",
@@ -29,47 +27,42 @@ const cardWindowStyle: CSSProperties = {
   left: "calc(50% - 2.33em/2)",
   height: "2em",
   width: "2.33em",
-}
+};
 const layerBase: CSSProperties = {
   position: "absolute",
   height: "100%",
   width: "100%",
   transition: ".3s ease-out all",
-}
+};
 const containerStyle: CSSProperties = {
   margin: "2em auto",
   perspective: "400px",
-}
+};
 
 const layer0 = computed(() => ({
   ...layerBase,
-  transform: `translateX(${parallax.tilt * 10}px) translateY(${
-    parallax.roll * 10
-  }px) scale(1.20)`,
-}))
+  transform: `translateX(${parallax.tilt * 10}px) translateY(${parallax.roll * 10}px) scale(1.20)`,
+}));
 
 const layer1 = computed(() => ({
   ...layerBase,
-  transform: `translateX(${parallax.tilt * 15}px) translateY(${
-    parallax.roll * 15
-  }px) scale(1.33)`,
-}))
+  transform: `translateX(${parallax.tilt * 15}px) translateY(${parallax.roll * 15}px) scale(1.33)`,
+}));
 
 const cardStyle = computed(() => ({
-  background: colorMode.value === 'dark' ? '#1c1c1c' : '#fff',
+  background: colorMode.value === "dark" ? "#1c1c1c" : "#fff",
   height: "13rem",
   width: "15rem",
   borderRadius: "5px",
-  border: colorMode.value === 'dark' ? '1px solid #333' : '1px solid #cdcdcd',
+  border: colorMode.value === "dark" ? "1px solid #333" : "1px solid #cdcdcd",
   overflow: "hidden",
   transition: ".3s ease-out all",
-  boxShadow: colorMode.value === 'dark'
-    ? '0 0 20px 0 rgba(255, 255, 255, 0.1)'
-    : '0 0 20px 0 rgba(0, 0, 0, 0.15)',
-  transform: `rotateX(${parallax.roll * 20}deg) rotateY(${
-    parallax.tilt * 20
-  }deg)`,
-}))
+  boxShadow:
+    colorMode.value === "dark"
+      ? "0 0 20px 0 rgba(255, 255, 255, 0.1)"
+      : "0 0 20px 0 rgba(0, 0, 0, 0.15)",
+  transform: `rotateX(${parallax.roll * 20}deg) rotateY(${parallax.tilt * 20}deg)`,
+}));
 </script>
 
 <template>
@@ -96,10 +89,7 @@ const cardStyle = computed(() => ({
         :duration="1000"
       >
         <div class="flex flex-col md:gap-10 md:flex-row">
-          <div
-            ref="target"
-            :style="targetStyle"
-          >
+          <div ref="target" :style="targetStyle">
             <div :style="containerStyle">
               <div :style="cardStyle">
                 <div :style="cardWindowStyle">
@@ -122,18 +112,17 @@ const cardStyle = computed(() => ({
           <div>
             <div class="flex flex-col gap-4 py-8">
               <p>
-                My journey with astrophotography started with a fascination with
-                the stars. How the universe makes us feel small and
-                insignificant.
+                My journey with astrophotography started with a fascination with the stars. How the
+                universe makes us feel small and insignificant.
               </p>
               <p>
-                In 2020, I bought my first telescope, and started imaging the
-                night sky, and here are some of my favorite images.
+                In 2020, I bought my first telescope, and started imaging the night sky, and here
+                are some of my favorite images.
               </p>
               <p>
-                The process of capturing these images required a lot of learning
-                and patience, learning the software required to process the
-                images and the hardware required to capture the images.
+                The process of capturing these images required a lot of learning and patience,
+                learning the software required to process the images and the hardware required to
+                capture the images.
               </p>
             </div>
           </div>

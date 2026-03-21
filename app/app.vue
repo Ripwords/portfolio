@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { Toaster } from "~/components/ui/sonner"
+import { Toaster } from "~/components/ui/sonner";
 
 const {
   public: { umamiWebsiteId },
-} = useRuntimeConfig()
+} = useRuntimeConfig();
 
-const colorMode = useColorMode()
-colorMode.preference = 'dark'
+const colorMode = useColorMode();
+colorMode.preference = "dark";
 
 onMounted(() => {
   if (import.meta.env.PROD) {
@@ -18,9 +18,9 @@ onMounted(() => {
           defer: true,
         },
       ],
-    })
+    });
   }
-})
+});
 </script>
 
 <template>
