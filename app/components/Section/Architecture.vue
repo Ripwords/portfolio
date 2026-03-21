@@ -1,11 +1,22 @@
 <script lang="ts" setup>
 const sectionId = 'architecture'
 
-const placeholders = [
-  { title: 'Edge Sync Architecture', caption: 'Offline-first sync engine with CRDT-based conflict resolution' },
-  { title: 'Multi-Tenant Platform', caption: 'Shared application shell with isolated tenant data layers' },
-  { title: 'E-Invoicing Pipeline', caption: 'End-to-end document signing and tax authority submission flow' },
-  { title: 'CI/CD & Deployment', caption: 'Automated build, test, and deployment pipeline architecture' },
+const diagrams = [
+  {
+    title: 'Edge Sync Architecture',
+    caption: 'Offline-first bidirectional sync with ElectricSQL between field devices and cloud',
+    component: resolveComponent('DiagramEdgeSync'),
+  },
+  {
+    title: 'Multi-App Hospitality Platform',
+    caption: 'Monorepo with shared typed package connecting PMS, POS, and e-invoicing apps',
+    component: resolveComponent('DiagramHospitalityPlatform'),
+  },
+  {
+    title: 'Multi-Agent AI Analytics',
+    caption: 'Specialized AI agents with MCP tool integration for financial data analysis',
+    component: resolveComponent('DiagramAIAccounting'),
+  },
 ]
 </script>
 
@@ -27,28 +38,29 @@ const placeholders = [
         :visible-once="{ opacity: 1, y: 0, transition: { delay: 100, duration: 500 } }"
         class="text-muted-foreground mb-10"
       >
-        Visual documentation of system architectures I've designed. Diagrams coming soon.
+        Simplified views of system architectures I've designed and built.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-8">
         <Card
-          v-for="(item, index) in placeholders"
-          :key="item.title"
+          v-for="(diagram, index) in diagrams"
+          :key="diagram.title"
           v-motion
           :initial="{ opacity: 0, y: 40 }"
-          :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 100, duration: 500 } }"
+          :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 150, duration: 500 } }"
         >
           <CardHeader>
-            <CardTitle>{{ item.title }}</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-3">
-            <div class="aspect-video border-2 border-dashed border-muted-foreground/25 rounded-lg flex flex-col items-center justify-center gap-2 text-muted-foreground">
-              <Icon name="lucide:image" class="size-10 opacity-50" />
-              <span class="text-sm">Diagram coming soon</span>
-            </div>
+            <CardTitle>{{ diagram.title }}</CardTitle>
             <p class="text-sm text-muted-foreground">
-              {{ item.caption }}
+              {{ diagram.caption }}
             </p>
+          </CardHeader>
+          <CardContent>
+            <div class="overflow-x-auto">
+              <div class="min-w-[600px]">
+                <component :is="diagram.component" />
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
