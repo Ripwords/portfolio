@@ -136,18 +136,19 @@ export const projects: Project[] = [
       "Published npm package enabling developers to achieve MyInvois compliance with minimal integration effort.",
   },
   {
-    id: "accounting-dashboard",
-    title: "Accounting Analytics with AI Chat",
-    description: "Multi-agent AI system for natural language financial analysis and reporting.",
+    id: "ai-trip",
+    title: "AI Trip Planner",
+    description:
+      "AI-powered travel itinerary planner with real-time collaboration, expense tracking, and Google Maps integration.",
     category: "AI / Full-Stack",
     problem:
-      "Business owners needed faster access to financial insights without navigating complex accounting software.",
+      "Planning group trips is tedious — coordinating itineraries, splitting expenses, and finding verified places across multiple tools.",
     approach:
-      "Built a multi-agent AI system with specialized agents for financial analysis, invoice management, and contact handling. Integrated via Model Context Protocol (MCP) with accounting APIs, backed by streaming chat and pgvector-powered semantic search.",
+      "Built a full-stack Nuxt 4 PWA with Gemini AI for itinerary generation, Google Maps API for place verification, real-time collaboration with invite system, expense tracking with splitting, and checklists. Deployed as a serverless PWA with rate-limited AI endpoints.",
     primaryStack: toStack(["Nuxt", "TypeScript", "PostgreSQL"]),
-    stack: toStack(["TypeScript", "Nuxt", "Vue", "PostgreSQL"]),
+    stack: toStack(["TypeScript", "Nuxt", "Vue", "Tailwind CSS", "PostgreSQL"]),
     impact:
-      "Natural language access to financial data with real-time streaming AI responses and multi-tenant isolation.",
+      "Installable PWA with AI-generated itineraries backed by verified Google Maps places and real-time team collaboration.",
   },
   {
     id: "starnet-gui",
