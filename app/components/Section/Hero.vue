@@ -4,6 +4,29 @@ import { breakpointsTailwind } from "@vueuse/core";
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const isDesktop = breakpoints.greaterOrEqual("sm");
 
+// Defer 3D loading until browser is idle AND viewport is desktop-sized
+const shouldLoad3D = ref(false);
+
+watch(
+  isDesktop,
+  (desktop) => {
+    if (desktop && !shouldLoad3D.value) {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => {
+          shouldLoad3D.value = true;
+        });
+      } else {
+        setTimeout(() => {
+          shouldLoad3D.value = true;
+        }, 200);
+      }
+    } else if (!desktop) {
+      shouldLoad3D.value = false;
+    }
+  },
+  { immediate: true },
+);
+
 const highlights = [
   "Distributed Systems",
   "Full-Stack",
@@ -15,10 +38,10 @@ const highlights = [
 
 <template>
   <section id="hero" class="relative min-h-[70vh] flex items-center py-16 md:py-24 overflow-hidden">
-    <!-- Desktop: 3D cube (v-if prevents mount + asset loading on mobile) -->
+    <!-- Desktop: 3D cube (deferred until idle + desktop viewport) -->
     <div
-      v-if="isDesktop"
-      class="absolute inset-0 left-1/3 opacity-50 pointer-events-none hero-cube-mask"
+      v-if="shouldLoad3D"
+      class="absolute inset-0 left-1/2 opacity-50 pointer-events-none hero-cube-mask"
     >
       <LazyObjectCube />
     </div>
@@ -101,6 +124,10 @@ const highlights = [
         >
           <Button as="a" href="#projects"> View Projects </Button>
           <Button as="a" href="#contact" variant="outline"> Get in Touch </Button>
+          <Button as="a" href="/resume" target="_blank" variant="outline">
+            <Icon name="line-md:file-document" class="size-4" />
+            Resume
+          </Button>
         </div>
       </div>
     </div>

@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
     optimizeDeps: {
       include: [
-        "three",
         "@vue/devtools-core",
         "@vue/devtools-kit",
         "vue-sonner",
@@ -25,6 +24,7 @@ export default defineNuxtConfig({
         "reka-ui",
         "clsx",
         "tailwind-merge",
+        "three",
         "@tresjs/cientos",
         "@tresjs/core",
         "@unhead/schema-org/vue",
