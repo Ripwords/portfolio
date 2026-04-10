@@ -55,6 +55,7 @@ const specializations = [
           :initial="{ opacity: 0, y: 40 }"
           :enter="{ opacity: 1, y: 0, transition: { delay: 200 + index * 100 } }"
           :duration="600"
+          class="transition-all duration-300 hover:shadow-[0_0_20px_-4px_rgba(150,150,170,0.15)] dark:hover:shadow-[0_0_24px_-4px_rgba(180,180,200,0.1)]"
         >
           <CardHeader>
             <div class="flex items-center gap-3">

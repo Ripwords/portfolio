@@ -29,7 +29,7 @@ function toggle(id: string) {
           v-motion
           :initial="{ opacity: 0, y: 40 }"
           :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 100, duration: 500 } }"
-          class="cursor-pointer transition-colors hover:border-primary/30"
+          class="cursor-pointer transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_20px_-4px_rgba(150,150,170,0.15)] dark:hover:shadow-[0_0_24px_-4px_rgba(180,180,200,0.1)]"
           @click="toggle(project.id)"
         >
           <CardHeader class="pb-3">

@@ -37,6 +37,7 @@ const skillIcons: Record<string, string> = {
   Expo: "devicon:expo",
   "Elysia.js": "skill-icons:elysia-light",
   Hono: "logos:hono",
+  Mastra: "lucide:sparkles",
   WebSocket: "logos:websocket",
   MQTT: "ix:mqtt",
   Vitest: "devicon:vitest",
@@ -68,7 +69,16 @@ export const skills: SkillCategory[] = [
   {
     title: "Backend",
     icon: "lucide:server",
-    skills: toSkills(["Node.js", "NestJS", "Elysia.js", "Hono", "REST", "GraphQL", "WebSocket"]),
+    skills: toSkills([
+      "Node.js",
+      "NestJS",
+      "Elysia.js",
+      "Hono",
+      "Mastra",
+      "REST",
+      "GraphQL",
+      "WebSocket",
+    ]),
   },
   {
     title: "Databases",

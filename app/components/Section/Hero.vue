@@ -31,6 +31,7 @@ const highlights = [
   "Distributed Systems",
   "Full-Stack",
   "Infrastructure",
+  "AI Agents",
   "Desktop Apps",
   "Cross-Platform Mobile",
 ];

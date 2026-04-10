@@ -35,6 +35,7 @@ const techIcons: Record<string, string> = {
   "Tailwind CSS": "devicon:tailwindcss",
   MQTT: "ix:mqtt",
   Elysia: "devicon:bun",
+  Mastra: "lucide:sparkles",
   Expo: "devicon:react",
   Electron: "devicon:electron",
   TimescaleDB: "devicon:postgresql",
@@ -144,9 +145,9 @@ export const projects: Project[] = [
     problem:
       "Planning group trips is tedious — coordinating itineraries, splitting expenses, and finding verified places across multiple tools.",
     approach:
-      "Built a full-stack Nuxt 4 PWA with Gemini AI for itinerary generation, Google Maps API for place verification, real-time collaboration with invite system, expense tracking with splitting, and checklists. Deployed as a serverless PWA with rate-limited AI endpoints.",
-    primaryStack: toStack(["Nuxt", "TypeScript", "PostgreSQL"]),
-    stack: toStack(["TypeScript", "Nuxt", "Vue", "Tailwind CSS", "PostgreSQL"]),
+      "Built a full-stack Nuxt 4 PWA with Mastra AI agents and Gemini for itinerary generation, Google Maps API for place verification, real-time collaboration with invite system, expense tracking with splitting, and checklists. Deployed as a serverless PWA with rate-limited AI endpoints.",
+    primaryStack: toStack(["Nuxt", "Mastra", "TypeScript", "PostgreSQL"]),
+    stack: toStack(["TypeScript", "Nuxt", "Vue", "Mastra", "Tailwind CSS", "PostgreSQL"]),
     impact:
       "Installable PWA with AI-generated itineraries backed by verified Google Maps places and real-time team collaboration.",
   },
