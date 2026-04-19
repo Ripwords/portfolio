@@ -38,6 +38,7 @@ const techIcons: Record<string, string> = {
   Mastra: "lucide:sparkles",
   Expo: "devicon:react",
   Electron: "devicon:electron",
+  Preact: "simple-icons:preact",
   TimescaleDB: "devicon:postgresql",
   Vitest: "devicon:vitest",
   Playwright: "devicon:playwright",
@@ -152,17 +153,19 @@ export const projects: Project[] = [
       "Installable PWA with AI-generated itineraries backed by verified Google Maps places and real-time team collaboration.",
   },
   {
-    id: "starnet-gui",
-    title: "StarNet++ GUI",
-    description: "Cross-platform desktop GUI for astronomical image processing.",
-    category: "Desktop App",
+    id: "repro",
+    title: "Repro — Embeddable Feedback SDK",
+    description:
+      "Framework-agnostic bug-report widget with annotated screenshots, 30s session replay, and a self-hostable Nuxt triage dashboard.",
+    category: "SDK / Full-Stack",
     problem:
-      "StarNet++ is a powerful star removal tool for astrophotography, but its CLI-only interface is inaccessible for most hobbyists.",
+      "Reproducing user-reported bugs in production web apps is slow — reporters can't describe what they saw, and teams lack the diagnostic context to act on it.",
     approach:
-      "Built a cross-platform desktop GUI wrapping the StarNet++ CLI with drag-and-drop batch processing and auto-update functionality.",
-    primaryStack: toStack(["Tauri", "Vue", "Rust"]),
-    stack: toStack(["Tauri", "Vue", "TypeScript", "Rust"]),
-    impact: "Open-source with 14+ stars on GitHub. Used by astrophotography hobbyists.",
-    github: "https://github.com/Ripwords/starnetGUI",
+      "Built a Preact widget rendered inside a Shadow DOM root for true host-style isolation, with a hand-written rrweb-compatible recorder buffering the last 30s of DOM events. Reports bundle an annotated screenshot, console + network logs, cookies, and system info, then POST to a Nuxt 4 intake API (Drizzle + Postgres, better-auth magic-link, pluggable local / S3-compatible blob storage). Optional two-way GitHub Issues sync via a GitHub App.",
+    primaryStack: toStack(["Nuxt", "Preact", "TypeScript", "PostgreSQL"]),
+    stack: toStack(["TypeScript", "Nuxt", "Vue", "Preact", "PostgreSQL", "Docker", "Tailwind CSS"]),
+    impact:
+      "Open-source and self-hostable end-to-end — SDK, dashboard, Postgres, and blob storage all run locally via Docker, with a drop-in <script> or ESM install for any web app.",
+    github: "https://github.com/Ripwords/reprokit",
   },
 ];
