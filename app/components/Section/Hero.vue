@@ -28,12 +28,12 @@ watch(
 );
 
 const highlights = [
-  "Distributed Systems",
-  "Full-Stack",
+  "AI Systems",
+  "SDKs & DevTools",
+  "Self-Hosted Products",
+  "Full-Stack Platforms",
   "Infrastructure",
-  "AI Agents",
-  "Desktop Apps",
-  "Cross-Platform Mobile",
+  "Trading & Data Workflows",
 ];
 </script>
 
@@ -89,7 +89,7 @@ const highlights = [
           :duration="600"
           class="text-lg md:text-xl text-muted-foreground"
         >
-          Systems, Infrastructure & Full-Stack Applications
+          AI Systems, Product Infrastructure & Full-Stack Platforms
         </p>
 
         <p
@@ -99,9 +99,9 @@ const highlights = [
           :duration="600"
           class="text-base md:text-lg text-muted-foreground leading-relaxed"
         >
-          Mechatronics engineer turned software developer. I build reliable systems — from edge
-          device sync engines and financial platforms to compliance infrastructure and developer
-          tooling.
+          Mechatronics engineer turned software developer. I build complex, reliable products — from
+          AI trading copilots and embeddable feedback SDKs to edge sync engines, financial
+          platforms, and compliance infrastructure.
         </p>
 
         <div

@@ -1,0 +1,163 @@
+<script lang="ts" setup>
+const groups = [
+  { label: "MARKET CONTEXT", x: 214, y: 38, width: 454, height: 112 },
+  { label: "AGENT RUNTIME", x: 206, y: 178, width: 356, height: 136, tone: "primary" },
+  { label: "EXECUTION", x: 736, y: 178, width: 152, height: 202, tone: "primary" },
+];
+
+const nodes = [
+  {
+    id: "ui",
+    title: "Chat UI",
+    subtitle: "streaming runs",
+    x: 54,
+    y: 224,
+    width: 112,
+    height: 58,
+  },
+  {
+    id: "orchestrator",
+    title: "Tool Router",
+    subtitle: "schemas + tools",
+    x: 236,
+    y: 224,
+    width: 112,
+    height: 58,
+    tone: "primary",
+  },
+  {
+    id: "graph",
+    title: "LangGraph Run",
+    subtitle: "analysts + debate",
+    x: 406,
+    y: 214,
+    width: 132,
+    height: 78,
+    tone: "primary",
+  },
+  {
+    id: "decision",
+    title: "Risk Gate",
+    subtitle: "limits + policy",
+    x: 612,
+    y: 224,
+    width: 104,
+    height: 58,
+    tone: "primary",
+  },
+  {
+    id: "market",
+    title: "Market APIs",
+    subtitle: "prices + broker",
+    x: 238,
+    y: 84,
+    width: 112,
+    height: 52,
+  },
+  {
+    id: "filings",
+    title: "News + Filings",
+    subtitle: "fresh evidence",
+    x: 386,
+    y: 84,
+    width: 112,
+    height: 52,
+  },
+  {
+    id: "memory",
+    title: "Run Memory",
+    subtitle: "Postgres",
+    x: 534,
+    y: 84,
+    width: 108,
+    height: 52,
+  },
+  {
+    id: "orders",
+    title: "Broker",
+    subtitle: "gated orders",
+    x: 760,
+    y: 224,
+    width: 104,
+    height: 58,
+    tone: "primary",
+  },
+  {
+    id: "ledger",
+    title: "Order Log",
+    subtitle: "fills + audit",
+    x: 760,
+    y: 318,
+    width: 104,
+    height: 44,
+  },
+];
+
+const links = [
+  {
+    id: "ui-orchestrator",
+    d: "M166 253 L236 253",
+    label: "prompt",
+    labelX: 201,
+    labelY: 241,
+  },
+  {
+    id: "orchestrator-graph",
+    d: "M348 253 L406 253",
+    variant: "primary",
+    label: "run",
+    labelX: 377,
+    labelY: 241,
+  },
+  {
+    id: "graph-decision",
+    d: "M538 253 L612 253",
+    variant: "primary",
+    label: "recommend",
+    labelX: 575,
+    labelY: 241,
+  },
+  {
+    id: "decision-orders",
+    d: "M716 253 L760 253",
+    variant: "primary",
+    label: "approve",
+    labelX: 738,
+    labelY: 241,
+  },
+  {
+    id: "market-graph",
+    d: "M294 136 C320 174 382 178 432 214",
+    label: "quotes",
+    labelX: 350,
+    labelY: 170,
+  },
+  {
+    id: "filings-graph",
+    d: "M442 136 L462 214",
+    label: "context",
+    labelX: 482,
+    labelY: 174,
+  },
+  {
+    id: "memory-graph",
+    d: "M588 136 C570 176 526 182 500 214",
+    variant: "async",
+    label: "read/write",
+    labelX: 572,
+    labelY: 174,
+  },
+  {
+    id: "orders-ledger",
+    d: "M812 282 L812 318",
+    variant: "async",
+    label: "fills",
+    labelX: 842,
+    labelY: 304,
+  },
+];
+</script>
+
+<template>
+  <DiagramSystemMap marker-id="ai-trader-map" :groups="groups" :nodes="nodes" :links="links" />
+</template>

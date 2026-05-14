@@ -38,7 +38,7 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <TresMesh ref="modelRef">
+  <TresGroup ref="modelRef">
     <GLTFModel :path="modelPath" :scale="modelScale" draco />
-  </TresMesh>
+  </TresGroup>
 </template>

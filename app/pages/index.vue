@@ -6,7 +6,7 @@ const { observeSections } = useActiveSection();
 useSeoMeta({
   title: "JJ Teoh — Software Developer",
   description:
-    "Software developer specializing in distributed systems, full-stack applications, and infrastructure. From edge device sync engines to financial platforms and compliance systems.",
+    "Software developer building complex AI systems, SDKs, self-hosted products, distributed infrastructure, and full-stack platforms.",
 });
 
 onMounted(() => {
