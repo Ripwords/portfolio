@@ -6,12 +6,16 @@ const colorMode = useColorMode();
 const target = ref();
 
 const bannerImage = computed(() =>
-  colorMode.value === "dark" ? "/img/morning_moon.jpeg" : "/img/night_moon.jpeg",
+  colorMode.value === "dark"
+    ? "/img/astro/morning-moon-banner.webp"
+    : "/img/astro/night-moon-banner.webp",
 );
 
 const bannerAlt = computed(() => (colorMode.value === "dark" ? "morning moon" : "night moon"));
 
 const parallax = reactive(useParallax(target));
+const tilt = computed(() => (Number.isFinite(parallax.tilt) ? parallax.tilt : 0));
+const roll = computed(() => (Number.isFinite(parallax.roll) ? parallax.roll : 0));
 
 const targetStyle: CSSProperties = {
   display: "flex",
@@ -41,18 +45,19 @@ const containerStyle: CSSProperties = {
 
 const layer0 = computed(() => ({
   ...layerBase,
-  transform: `translateX(${parallax.tilt * 10}px) translateY(${parallax.roll * 10}px) scale(1.20)`,
+  transform: `translateX(${tilt.value * 10}px) translateY(${roll.value * 10}px) scale(1.20)`,
 }));
 
 const layer1 = computed(() => ({
   ...layerBase,
-  transform: `translateX(${parallax.tilt * 15}px) translateY(${parallax.roll * 15}px) scale(1.33)`,
+  transform: `translateX(${tilt.value * 15}px) translateY(${roll.value * 15}px) scale(1.33)`,
 }));
 
 const cardStyle = computed(() => ({
   background: colorMode.value === "dark" ? "#1c1c1c" : "#fff",
   height: "13rem",
   width: "15rem",
+  position: "relative",
   borderRadius: "5px",
   border: colorMode.value === "dark" ? "1px solid #333" : "1px solid #cdcdcd",
   overflow: "hidden",
@@ -61,21 +66,21 @@ const cardStyle = computed(() => ({
     colorMode.value === "dark"
       ? "0 0 20px 0 rgba(255, 255, 255, 0.1)"
       : "0 0 20px 0 rgba(0, 0, 0, 0.15)",
-  transform: `rotateX(${parallax.roll * 20}deg) rotateY(${parallax.tilt * 20}deg)`,
+  transform: `rotateX(${roll.value * 20}deg) rotateY(${tilt.value * 20}deg)`,
 }));
 </script>
 
 <template>
-  <div class="p-4 w-full flex justify-center">
+  <div class="w-full">
     <Card
       v-motion
       :initial="{ opacity: 0, y: 40 }"
       :enter="{ opacity: 1, y: 0 }"
       :duration="800"
-      class="w-full max-w-3xl"
+      class="w-full overflow-hidden rounded-md"
     >
       <CardHeader class="p-0">
-        <NuxtImg
+        <img
           :src="bannerImage"
           loading="lazy"
           :alt="bannerAlt"
@@ -88,21 +93,21 @@ const cardStyle = computed(() => ({
         :enter="{ opacity: 1, x: 0 }"
         :duration="1000"
       >
-        <div class="flex flex-col md:gap-10 md:flex-row">
+        <div class="flex flex-col md:gap-10 md:flex-row md:items-center">
           <div ref="target" :style="targetStyle">
             <div :style="containerStyle">
               <div :style="cardStyle">
                 <div :style="cardWindowStyle">
-                  <NuxtImg
+                  <img
                     :style="layer0"
                     loading="lazy"
-                    src="/img/lagoon.jpeg"
+                    src="/img/astro/lagoon-parallax.webp"
                     alt="morning moon"
                   />
-                  <NuxtImg
+                  <img
                     :style="layer1"
                     loading="lazy"
-                    src="/img/lagoon_no_bg.png"
+                    src="/img/astro/lagoon-parallax-cutout.webp"
                     alt="lagoon no background"
                   />
                 </div>

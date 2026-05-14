@@ -10,11 +10,6 @@ export const sectionLinks = [
     to: "#experience",
   },
   {
-    label: "Writing",
-    icon: "line-md:edit-twotone",
-    to: "#writing",
-  },
-  {
     label: "Contact",
     icon: "line-md:email",
     to: "#contact",
@@ -57,11 +52,6 @@ export const mobileLinks = [
     label: "Experience",
     icon: "line-md:briefcase",
     to: "/#experience",
-  },
-  {
-    label: "Writing",
-    icon: "line-md:edit-twotone",
-    to: "/#writing",
   },
   {
     label: "Astro",

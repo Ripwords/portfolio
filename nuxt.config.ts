@@ -72,10 +72,13 @@ export default defineNuxtConfig({
         "img-src": ["'self'", "data:", "https://raw.githubusercontent.com"],
       },
     },
-    rateLimiter: {
-      interval: 120000,
-      tokensPerInterval: 25,
-    },
+    rateLimiter:
+      process.env.NODE_ENV === "development"
+        ? false
+        : {
+            interval: 120000,
+            tokensPerInterval: 100,
+          },
   },
   site: {
     url: "https://jjteoh.com",
