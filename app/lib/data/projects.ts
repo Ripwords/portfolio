@@ -192,6 +192,7 @@ export const projects: Project[] = [
   },
   {
     id: "edge-sync",
+    displayIcon: "lucide:radio-tower",
     title: "Edge Device Sync Engine",
     description:
       "Offline-first bidirectional sync between IoT field devices and cloud infrastructure.",
@@ -216,6 +217,7 @@ export const projects: Project[] = [
   },
   {
     id: "hotel-pms",
+    displayIcon: "lucide:building-2",
     title: "Hospitality Management Platform",
     description: "Unified PMS, POS, and e-invoicing system for hotel operations.",
     category: "Enterprise Platform",
@@ -240,6 +242,7 @@ export const projects: Project[] = [
   },
   {
     id: "fitness-platform",
+    displayIcon: "lucide:dumbbell",
     title: "Fitness Coaching Platform",
     description:
       "Cross-platform coaching tool with web dashboard, mobile app, and native health integrations.",
@@ -265,6 +268,7 @@ export const projects: Project[] = [
   },
   {
     id: "e-invoicing",
+    displayIcon: "lucide:receipt-text",
     title: "E-Invoicing Compliance SDK",
     description:
       "Published npm SDK for Malaysian e-invoicing with digital signing and rate limiting.",
@@ -280,6 +284,7 @@ export const projects: Project[] = [
   },
   {
     id: "ai-trip",
+    displayIcon: "lucide:map",
     title: "AI Trip Planner",
     description:
       "AI-powered travel itinerary planner with real-time collaboration, expense tracking, and Google Maps integration.",

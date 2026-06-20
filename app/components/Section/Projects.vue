@@ -119,7 +119,7 @@ function projectLinks(project: Project) {
       <div class="mt-12">
         <p class="eyebrow mb-5">More work</p>
         <div
-          class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.06] md:grid-cols-2"
+          class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-white/[0.07] md:grid-cols-2"
         >
           <div
             v-for="(project, index) in supportingProjects"
@@ -131,18 +131,28 @@ function projectLinks(project: Project) {
               y: 0,
               transition: { delay: index * 60, duration: 450 },
             }"
-            class="bg-white/[0.012] transition-colors duration-500"
-            :class="expandedId === project.id ? 'bg-white/[0.03]' : 'hover:bg-white/[0.025]'"
+            class="bg-card/85 backdrop-blur-sm transition-colors duration-500"
+            :class="[
+              expandedId === project.id ? 'bg-card' : 'hover:bg-card',
+              index === supportingProjects.length - 1 && supportingProjects.length % 2 === 1
+                ? 'md:col-span-2'
+                : '',
+            ]"
           >
             <button
               type="button"
-              class="group flex w-full items-start justify-between gap-4 p-6 text-left"
+              class="group flex w-full items-start gap-4 p-6 text-left"
               :aria-expanded="expandedId === project.id"
               @click="toggle(project.id)"
             >
-              <div class="min-w-0">
+              <span
+                class="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04] text-foreground/70 transition-colors duration-500 group-hover:text-foreground"
+              >
+                <Icon :name="project.displayIcon || 'lucide:boxes'" class="size-5" />
+              </span>
+              <div class="min-w-0 flex-1">
                 <p class="eyebrow">{{ project.category }}</p>
-                <h4 class="mt-2 font-medium leading-tight">{{ project.title }}</h4>
+                <h4 class="mt-2 font-medium leading-tight text-foreground">{{ project.title }}</h4>
                 <p
                   class="mt-1.5 text-sm text-muted-foreground"
                   :class="expandedId === project.id ? '' : 'line-clamp-1'"
@@ -157,9 +167,9 @@ function projectLinks(project: Project) {
               />
             </button>
 
-            <div v-show="expandedId === project.id" class="space-y-4 px-6 pb-6">
+            <div v-show="expandedId === project.id" class="space-y-4 pb-6 pl-[3.75rem] pr-6">
               <p class="text-sm leading-relaxed text-muted-foreground">{{ project.approach }}</p>
-              <p class="border-l-2 border-white/15 pl-3 text-sm leading-relaxed">
+              <p class="border-l-2 border-white/15 pl-3 text-sm leading-relaxed text-foreground/90">
                 {{ project.impact }}
               </p>
               <a
