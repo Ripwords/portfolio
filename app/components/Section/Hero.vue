@@ -1,134 +1,97 @@
 <script lang="ts" setup>
-import { breakpointsTailwind } from "@vueuse/core";
-
-const breakpoints = useBreakpoints(breakpointsTailwind);
-const isDesktop = breakpoints.greaterOrEqual("sm");
-
-// Defer 3D loading until browser is idle AND viewport is desktop-sized
-const shouldLoad3D = ref(false);
-
-watch(
-  isDesktop,
-  (desktop) => {
-    if (desktop && !shouldLoad3D.value) {
-      if ("requestIdleCallback" in window) {
-        requestIdleCallback(() => {
-          shouldLoad3D.value = true;
-        });
-      } else {
-        setTimeout(() => {
-          shouldLoad3D.value = true;
-        }, 200);
-      }
-    } else if (!desktop) {
-      shouldLoad3D.value = false;
-    }
-  },
-  { immediate: true },
-);
-
-const highlights = [
-  "AI Systems",
-  "SDKs & DevTools",
-  "Self-Hosted Products",
-  "Full-Stack Platforms",
-  "Infrastructure",
-  "Trading & Data Workflows",
-];
+// Hero: editorial split. Left = type + CTAs. Right = real astrophotography
+// (Lagoon Nebula, shot by JJ) framed in a concentric "observation panel".
+const enter = (delay = 0) => ({
+  initial: { opacity: 0, y: 28, filter: "blur(8px)" },
+  enter: { opacity: 1, y: 0, filter: "blur(0px)", transition: { delay, duration: 700 } },
+});
 </script>
 
 <template>
-  <section id="hero" class="relative min-h-[70vh] flex items-center py-16 md:py-24 overflow-hidden">
-    <!-- Desktop: 3D cube (deferred until idle + desktop viewport) -->
-    <div
-      v-if="shouldLoad3D"
-      class="absolute inset-0 left-1/2 opacity-50 pointer-events-none hero-cube-mask"
-    >
-      <LazyObjectCube />
-    </div>
+  <section
+    id="hero"
+    class="relative flex min-h-[100dvh] items-center overflow-hidden pt-28 pb-20 md:pt-24 md:pb-24"
+  >
+    <div class="container mx-auto max-w-6xl px-4">
+      <div class="grid items-center gap-12 md:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <!-- Left: editorial type -->
+        <div class="max-w-xl">
+          <p
+            v-motion
+            :initial="enter().initial"
+            :enter="enter().enter"
+            class="legible font-display text-lg italic text-muted-foreground"
+          >
+            Hello, world. I'm
+          </p>
 
-    <!-- Mobile: dot grid with pulse -->
-    <div class="sm:hidden absolute inset-0 pointer-events-none hero-grid opacity-15" />
+          <h1
+            v-motion
+            :initial="enter(0.08).initial"
+            :enter="enter(0.08).enter"
+            class="legible mt-2 font-display text-6xl font-semibold leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl"
+          >
+            JJ Teoh
+          </h1>
 
-    <!-- Bottom fade to blend into next section -->
-    <div
-      class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-linear-to-t from-background to-transparent z-20"
-    />
+          <p
+            v-motion
+            :initial="enter(0.16).initial"
+            :enter="enter(0.16).enter"
+            class="legible mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg"
+          >
+            Mechatronics engineer turned software developer. I build reliable AI systems, SDKs, and
+            self-hosted infrastructure.
+          </p>
 
-    <!-- Mobile: animated gradient glow -->
-    <div class="sm:hidden absolute inset-0 pointer-events-none overflow-hidden">
-      <div class="hero-glow" />
-    </div>
+          <div
+            v-motion
+            :initial="enter(0.24).initial"
+            :enter="enter(0.24).enter"
+            class="mt-9 flex flex-wrap items-center gap-3"
+          >
+            <!-- Primary CTA with nested button-in-button arrow -->
+            <a
+              href="#projects"
+              class="group inline-flex items-center gap-3 rounded-full bg-primary py-2 pl-6 pr-2 text-sm font-medium text-primary-foreground transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02] active:scale-[0.98]"
+            >
+              View my work
+              <span
+                class="flex size-8 items-center justify-center rounded-full bg-background/20 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              >
+                <Icon name="lucide:arrow-up-right" class="size-4" />
+              </span>
+            </a>
 
-    <div class="container mx-auto px-4 max-w-6xl relative z-10">
-      <div class="max-w-3xl space-y-6">
-        <h1
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :enter="{ opacity: 1, y: 0 }"
-          :duration="600"
-          class="text-4xl md:text-6xl font-bold tracking-tight"
-        >
-          JJ Teoh
-        </h1>
-
-        <p
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :enter="{ opacity: 1, y: 0, transition: { delay: 100 } }"
-          :duration="600"
-          class="text-xl md:text-2xl font-medium text-muted-foreground"
-        >
-          Software Developer
-        </p>
-
-        <p
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :enter="{ opacity: 1, y: 0, transition: { delay: 200 } }"
-          :duration="600"
-          class="text-lg md:text-xl text-muted-foreground"
-        >
-          AI Systems, Product Infrastructure & Full-Stack Platforms
-        </p>
-
-        <p
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :enter="{ opacity: 1, y: 0, transition: { delay: 300 } }"
-          :duration="600"
-          class="text-base md:text-lg text-muted-foreground leading-relaxed"
-        >
-          Mechatronics engineer turned software developer. I build complex, reliable products — from
-          AI trading copilots and embeddable feedback SDKs to edge sync engines, financial
-          platforms, and compliance infrastructure.
-        </p>
-
-        <div
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :enter="{ opacity: 1, y: 0, transition: { delay: 400 } }"
-          :duration="600"
-          class="flex flex-wrap gap-2"
-        >
-          <Badge v-for="highlight in highlights" :key="highlight" variant="secondary">
-            {{ highlight }}
-          </Badge>
+            <!-- Secondary CTA -->
+            <a
+              href="/resume"
+              target="_blank"
+              class="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-foreground transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <Icon name="line-md:file-document" class="size-4" />
+              Resume
+            </a>
+          </div>
         </div>
 
+        <!-- Right: interactive procedural galaxy (three.js), frameless to blend with the starfield -->
         <div
           v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :enter="{ opacity: 1, y: 0, transition: { delay: 500 } }"
-          :duration="600"
-          class="flex gap-4 pt-2"
+          :initial="{ opacity: 0, scale: 0.92 }"
+          :enter="{ opacity: 1, scale: 1, transition: { delay: 0.2, duration: 1100 } }"
+          class="relative justify-self-center md:justify-self-end"
         >
-          <Button as="a" href="#projects"> View Projects </Button>
-          <Button as="a" href="#contact" variant="outline"> Get in Touch </Button>
-          <Button as="a" href="/resume" target="_blank" variant="outline">
-            <Icon name="line-md:file-document" class="size-4" />
-            Resume
-          </Button>
+          <div
+            class="galaxy-stage relative aspect-square w-[78vw] max-w-[300px] sm:max-w-[440px] lg:max-w-[520px]"
+          >
+            <ClientOnly>
+              <LazyObjectGalaxy />
+              <template #fallback>
+                <div class="size-full animate-pulse rounded-full bg-primary/5" />
+              </template>
+            </ClientOnly>
+          </div>
         </div>
       </div>
     </div>
@@ -136,46 +99,7 @@ const highlights = [
 </template>
 
 <style scoped>
-/* Desktop cube: fade left edge */
-.hero-cube-mask {
-  mask-image: linear-gradient(to right, transparent, black 30%);
-}
-
-/* Dot grid pattern */
-.hero-grid {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
-}
-
-/* Animated gradient glow */
-.hero-glow {
-  position: absolute;
-  width: 120%;
-  height: 120%;
-  top: 20%;
-  left: -10%;
-  background: radial-gradient(
-    ellipse at 30% 60%,
-    rgba(100, 120, 255, 0.12) 0%,
-    rgba(80, 200, 255, 0.06) 30%,
-    transparent 70%
-  );
-  animation: glow-drift 8s ease-in-out infinite alternate;
-}
-
-@keyframes glow-drift {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translate(5%, -8%) scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-5%, 5%) scale(0.95);
-    opacity: 0.7;
-  }
+.galaxy-stage {
+  filter: drop-shadow(0 0 60px color-mix(in oklch, var(--primary) 18%, transparent));
 }
 </style>

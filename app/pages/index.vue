@@ -26,30 +26,20 @@ onMounted(() => {
 
     <div
       v-motion
-      :initial="{ opacity: 0 }"
-      :visible-once="{ opacity: 1 }"
+      :initial="{ opacity: 0, y: 24 }"
+      :visible-once="{ opacity: 1, y: 0 }"
       :duration="800"
-      class="container mx-auto px-4 max-w-6xl py-8"
+      class="container mx-auto px-4 max-w-6xl py-12"
     >
-      <picture>
-        <source
-          media="(prefers-color-scheme: dark)"
-          srcset="
-            https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake-dark.svg
-          "
-        />
-        <source
-          media="(prefers-color-scheme: light)"
-          srcset="
-            https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake.svg
-          "
-        />
+      <div class="glass rounded-[1.75rem] p-5 sm:p-7">
+        <p class="eyebrow mb-4">Contribution activity</p>
+        <!-- Site is force-dark, so always use the dark SVG (OS prefers-color-scheme is unreliable here) -->
         <img
           alt="GitHub contribution grid snake animation"
           src="https://raw.githubusercontent.com/Ripwords/Ripwords/output/github-contribution-grid-snake-dark.svg"
-          class="w-full opacity-60"
+          class="w-full"
         />
-      </picture>
+      </div>
     </div>
 
     <section id="contact" class="py-16 md:py-24">
@@ -58,34 +48,12 @@ onMounted(() => {
       </div>
     </section>
 
-    <footer class="border-t border-border py-6">
-      <div class="container mx-auto px-4 max-w-6xl text-xs text-muted-foreground">
-        <p>
-          3D model
-          <a
-            href="https://sketchfab.com/3d-models/smart-cube-93c9330b3eba470c9c2f26fad0e1d8f7"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline hover:text-foreground"
-            >"Smart Cube"</a
-          >
-          by
-          <a
-            href="https://sketchfab.com/ABSoln"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline hover:text-foreground"
-            >ABSoln</a
-          >
-          is licensed under
-          <a
-            href="http://creativecommons.org/licenses/by-nc/4.0/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline hover:text-foreground"
-            >CC-BY-NC-4.0</a
-          >.
-        </p>
+    <footer class="border-t border-border/60 py-8">
+      <div
+        class="container mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 text-xs text-muted-foreground sm:flex-row"
+      >
+        <p>© {{ new Date().getFullYear() }} JJ Teoh</p>
+        <p class="font-mono tracking-wide">Built with Nuxt. Backdrop shot through my telescope.</p>
       </div>
     </footer>
   </div>

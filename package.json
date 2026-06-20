@@ -55,6 +55,7 @@
     "@iconify-json/lucide": "^1.2.98",
     "@iconify-json/meteor-icons": "^1.2.1",
     "@iconify-json/skill-icons": "^1.2.4",
+    "@nuxt/fonts": "^0.14.0",
     "@nuxtjs/color-mode": "^4.0.0",
     "@types/three": "^0.183.1",
     "husky": "^9.1.7",

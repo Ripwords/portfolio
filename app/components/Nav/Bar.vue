@@ -5,62 +5,76 @@ import { useActiveSection } from "~/composables/useActiveSection";
 const { activeSection } = useActiveSection();
 const route = useRoute();
 const isHome = computed(() => route.path === "/");
+
+function isActive(to: string) {
+  return isHome.value && activeSection.value === to.slice(1);
+}
 </script>
 
 <template>
-  <!-- Top bar: main links (desktop left), social links (desktop right) -->
-  <nav class="w-full py-2 px-2 flex items-center justify-end sm:justify-between">
-    <!-- Logo + nav links -->
-    <div class="hidden sm:flex items-center gap-1">
-      <NuxtLink to="/" aria-label="Home" class="inline-flex items-center mr-2">
-        <NuxtImg src="/img/logo/logo.png" alt="JJ Teoh" class="h-10 w-auto" />
+  <!-- Floating glass dock — detached from the top, centered, single line -->
+  <nav class="fixed top-4 left-1/2 z-50 hidden -translate-x-1/2 sm:block" aria-label="Primary">
+    <div class="glass flex items-center gap-1 rounded-full px-2 py-1.5">
+      <NuxtLink
+        to="/"
+        aria-label="Home"
+        class="mr-1 inline-flex items-center rounded-full p-1 transition-transform duration-300 hover:scale-105"
+      >
+        <NuxtImg src="/img/logo/logo.png" alt="JJ Teoh" class="h-7 w-auto" />
       </NuxtLink>
 
-      <ul class="flex flex-row gap-1">
-        <!-- Section anchor links -->
+      <span class="mx-1 h-5 w-px bg-border/70" />
+
+      <ul class="flex flex-row items-center gap-0.5">
         <li v-for="item in sectionLinks" :key="item.to">
           <NuxtLink
             :to="isHome ? item.to : `/${item.to}`"
-            class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground transition-colors"
+            class="group relative inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors duration-300"
             :class="
-              isHome && activeSection === item.to.slice(1) ? 'bg-accent text-accent-foreground' : ''
+              isActive(item.to)
+                ? 'text-primary-foreground'
+                : 'text-muted-foreground hover:text-foreground'
             "
           >
-            <Icon v-if="item.icon" :name="item.icon" class="mr-1 text-base" />
+            <span
+              v-if="isActive(item.to)"
+              class="absolute inset-0 -z-10 rounded-full bg-primary shadow-[0_0_20px_-4px_var(--primary)]"
+            />
+            <Icon v-if="item.icon" :name="item.icon" class="text-base" />
             <span>{{ item.label }}</span>
           </NuxtLink>
         </li>
 
-        <!-- Page links -->
         <li v-for="item in pageLinks" :key="item.to">
           <NuxtLink
             :to="item.to"
             :target="item.target || '_self'"
             rel="noopener noreferrer"
             :external="item.external"
-            class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground transition-colors"
-            active-class="bg-accent text-accent-foreground"
+            class="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-foreground"
+            active-class="text-foreground"
           >
-            <Icon v-if="item.icon" :name="item.icon" class="mr-1 text-base" />
+            <Icon v-if="item.icon" :name="item.icon" class="text-base" />
             <span>{{ item.label }}</span>
           </NuxtLink>
         </li>
       </ul>
-    </div>
 
-    <!-- Color mode toggle + Social links: always top right -->
-    <ul class="flex flex-row gap-2 items-center">
-      <li v-for="item in socialLinks" :key="item.to">
-        <NuxtLink
-          :to="item.to"
-          :target="item.target || '_blank'"
-          rel="noopener noreferrer"
-          :aria-label="item.label"
-          class="inline-flex items-center justify-center rounded-md px-3 py-2 text-lg hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground transition-colors"
-        >
-          <Icon v-if="item.icon" :name="item.icon" class="text-lg" />
-        </NuxtLink>
-      </li>
-    </ul>
+      <span class="mx-1 h-5 w-px bg-border/70" />
+
+      <ul class="flex flex-row items-center gap-0.5 pr-1">
+        <li v-for="item in socialLinks" :key="item.to">
+          <NuxtLink
+            :to="item.to"
+            :target="item.target || '_blank'"
+            rel="noopener noreferrer"
+            :aria-label="item.label"
+            class="inline-flex size-9 items-center justify-center rounded-full text-base text-muted-foreground transition-all duration-300 hover:scale-110 hover:bg-accent hover:text-foreground"
+          >
+            <Icon v-if="item.icon" :name="item.icon" />
+          </NuxtLink>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>

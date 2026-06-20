@@ -1,74 +1,59 @@
 <script lang="ts" setup>
-const specializations = [
+const focus = [
   {
-    title: "Distributed Systems",
+    title: "Distributed systems",
     icon: "lucide:network",
-    description:
-      "Building reliable data synchronization, offline-first architectures, and edge computing solutions that work in constrained environments.",
+    description: "Offline-first sync, edge computing, and data that survives bad networks.",
   },
   {
-    title: "Full-Stack Product Engineering",
+    title: "Full-stack product",
     icon: "lucide:layers",
-    description:
-      "End-to-end application development from database design and API architecture to polished user interfaces and deployment pipelines.",
+    description: "End to end. Schema and API design through to a polished, shipped interface.",
   },
   {
-    title: "Infrastructure & DevOps",
+    title: "Infrastructure",
     icon: "lucide:container",
-    description:
-      "Container orchestration, CI/CD pipelines, monitoring, and the operational tooling that keeps systems running in production.",
+    description: "Containers, pipelines, and the operational glue that keeps things alive in prod.",
   },
 ];
 </script>
 
 <template>
-  <section id="about" class="py-16 md:py-24">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <h2
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :enter="{ opacity: 1, y: 0 }"
-        :duration="600"
-        class="text-3xl md:text-4xl font-bold mb-8"
-      >
-        About
-      </h2>
+  <section id="about" class="py-24 md:py-32">
+    <div class="container mx-auto max-w-6xl px-4">
+      <SectionHeading title="About" />
 
       <p
         v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 100 } }"
+        :initial="{ opacity: 0, y: 20 }"
+        :visible-once="{ opacity: 1, y: 0 }"
         :duration="600"
-        class="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-12"
+        class="legible max-w-2xl text-lg leading-relaxed text-foreground/90 md:text-xl"
       >
-        I started in mechatronics engineering — designing control systems and working with embedded
-        hardware. That foundation in systems thinking shapes how I approach software: I think in
-        terms of failure modes, data flow, and operational constraints, not just features and
-        frameworks.
+        I came to software from mechatronics. Control systems, embedded hardware, things that fail
+        in the field. So I build software the way I'd build a machine: for failure modes and data
+        flow, not just the happy path.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card
-          v-for="(spec, index) in specializations"
-          :key="spec.title"
+      <!-- Focus areas: minimal, hairline-led, no boxy cards -->
+      <div
+        class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/[0.06] sm:grid-cols-3"
+      >
+        <div
+          v-for="(item, index) in focus"
+          :key="item.title"
           v-motion
-          :initial="{ opacity: 0, y: 40 }"
-          :enter="{ opacity: 1, y: 0, transition: { delay: 200 + index * 100 } }"
-          :duration="600"
-          class="transition-all duration-300 hover:shadow-[0_0_20px_-4px_rgba(150,150,170,0.15)] dark:hover:shadow-[0_0_24px_-4px_rgba(180,180,200,0.1)]"
+          :initial="{ opacity: 0, y: 24 }"
+          :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 110, duration: 600 } }"
+          class="group bg-white/[0.015] p-7 transition-colors duration-500 hover:bg-white/[0.03]"
         >
-          <CardHeader>
-            <div class="flex items-center gap-3">
-              <Icon :name="spec.icon" class="size-6 text-primary" />
-              <CardTitle>{{ spec.title }}</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <CardDescription class="text-sm leading-relaxed">
-              {{ spec.description }}
-            </CardDescription>
-          </CardContent>
-        </Card>
+          <Icon
+            :name="item.icon"
+            class="size-5 text-foreground/70 transition-colors duration-500 group-hover:text-foreground"
+          />
+          <h3 class="mt-5 text-base font-medium">{{ item.title }}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{{ item.description }}</p>
+        </div>
       </div>
     </div>
   </section>

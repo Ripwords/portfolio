@@ -15,25 +15,12 @@ function formatDate(date: string) {
 </script>
 
 <template>
-  <section v-if="articles?.length" :id="sectionId" class="py-16 md:py-24">
+  <section v-if="articles?.length" :id="sectionId" class="py-24 md:py-32">
     <div class="container mx-auto px-4 max-w-6xl">
-      <h2
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :visible-once="{ opacity: 1, y: 0 }"
-        :duration="600"
-        class="text-3xl font-bold tracking-tight mb-2"
-      >
-        Writing
-      </h2>
-      <p
-        v-motion
-        :initial="{ opacity: 0, y: 20 }"
-        :visible-once="{ opacity: 1, y: 0, transition: { delay: 100, duration: 500 } }"
-        class="text-muted-foreground mb-10"
-      >
-        Technical articles and engineering notes.
-      </p>
+      <SectionHeading
+        title="Writing"
+        lede="Notes from building things, mostly the parts that bit me."
+      />
 
       <!-- Articles list -->
       <div v-if="articles?.length" class="grid grid-cols-1 md:grid-cols-2 gap-6">

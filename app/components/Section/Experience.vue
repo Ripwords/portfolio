@@ -5,17 +5,9 @@ const sectionId = "experience";
 </script>
 
 <template>
-  <section :id="sectionId" class="py-16 md:py-24">
+  <section :id="sectionId" class="py-24 md:py-32">
     <div class="container mx-auto px-4 max-w-6xl">
-      <h2
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :enter="{ opacity: 1, y: 0 }"
-        :duration="600"
-        class="text-3xl md:text-4xl font-bold tracking-tight mb-10"
-      >
-        Experience
-      </h2>
+      <SectionHeading title="Experience" />
 
       <div class="flex flex-col gap-6">
         <template v-for="(entry, index) in experience" :key="entry.role + entry.period">

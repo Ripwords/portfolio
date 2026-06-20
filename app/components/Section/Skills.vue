@@ -3,53 +3,39 @@ import { skills } from "~/lib/data/skills";
 </script>
 
 <template>
-  <section id="skills" class="py-16 md:py-24">
+  <section id="skills" class="py-24 md:py-32">
     <div class="container mx-auto px-4 max-w-6xl">
-      <h2
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :enter="{ opacity: 1, y: 0 }"
-        :duration="600"
-        class="text-3xl md:text-4xl font-bold mb-8"
-      >
-        Skills & Technologies
-      </h2>
+      <SectionHeading title="Toolkit" />
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Card
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div
           v-for="(category, index) in skills"
           :key="category.title"
           v-motion
-          :initial="{ opacity: 0, y: 40 }"
-          :enter="{ opacity: 1, y: 0, transition: { delay: 100 + index * 80 } }"
-          :duration="600"
-          class="transition-all duration-300 hover:shadow-[0_0_20px_-4px_rgba(150,150,170,0.15)] dark:hover:shadow-[0_0_24px_-4px_rgba(180,180,200,0.1)]"
+          :initial="{ opacity: 0, y: 28 }"
+          :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 90, duration: 600 } }"
+          class="surface surface-hover rounded-2xl p-6"
         >
-          <CardHeader>
-            <div class="flex items-center gap-3">
-              <Icon :name="category.icon" class="size-6 text-primary" />
-              <CardTitle>{{ category.title }}</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div class="flex flex-wrap gap-1.5">
-              <Badge
-                v-for="skill in category.skills"
-                :key="skill.label"
-                variant="secondary"
-                class="rounded-md"
-              >
-                <Icon
-                  v-if="skill.icon"
-                  :name="skill.icon"
-                  class="size-4"
-                  :class="skill.invertIcon ? 'dark:invert' : ''"
-                />
-                {{ skill.label }}
-              </Badge>
-            </div>
-          </CardContent>
-        </Card>
+          <div class="mb-5 flex items-center gap-3">
+            <Icon :name="category.icon" class="size-5 text-foreground/70" />
+            <h3 class="text-base font-medium">{{ category.title }}</h3>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span
+              v-for="skill in category.skills"
+              :key="skill.label"
+              class="inline-flex items-center gap-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] px-2.5 py-1 text-xs text-muted-foreground"
+            >
+              <Icon
+                v-if="skill.icon"
+                :name="skill.icon"
+                class="size-3.5"
+                :class="skill.invertIcon ? 'dark:invert' : ''"
+              />
+              {{ skill.label }}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </section>

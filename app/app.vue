@@ -25,11 +25,15 @@ onMounted(() => {
 
 <template>
   <div>
+    <BackgroundCosmos />
+    <ClientOnly>
+      <CursorSplash />
+    </ClientOnly>
     <Toaster />
     <NuxtRouteAnnouncer />
     <NavBar />
     <!-- Main content with bottom padding for tab bar -->
-    <div class="pb-16 sm:pb-0">
+    <div class="relative z-10 pb-24 sm:pb-0">
       <NuxtPage />
     </div>
     <NavMobile />

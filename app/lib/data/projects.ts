@@ -136,7 +136,7 @@ export const projects: Project[] = [
   },
   {
     id: "repro",
-    title: "Repro — Feedback SDK & Triage Dashboard",
+    title: "Repro Feedback SDK & Dashboard",
     description:
       "Framework-agnostic feedback widget with annotated screenshots, session replay, diagnostics, and a self-hostable Nuxt dashboard.",
     category: "SDK / Full-Stack",
@@ -222,7 +222,7 @@ export const projects: Project[] = [
     problem:
       "Hotel operations spanning bookings, housekeeping, POS, and financials were fragmented across disconnected tools.",
     approach:
-      "Built a unified monorepo platform with a web-based PMS, Electron-based POS for multi-outlet F&B, and an integrated e-invoicing portal — all sharing a common backend and typed API layer.",
+      "Built a unified monorepo platform with a web-based PMS, Electron-based POS for multi-outlet F&B, and an integrated e-invoicing portal, all sharing a common backend and typed API layer.",
     primaryStack: toStack(["Next.js", "NestJS", "Electron", "PostgreSQL"]),
     stack: toStack([
       "TypeScript",
@@ -285,7 +285,7 @@ export const projects: Project[] = [
       "AI-powered travel itinerary planner with real-time collaboration, expense tracking, and Google Maps integration.",
     category: "AI / Full-Stack",
     problem:
-      "Planning group trips is tedious — coordinating itineraries, splitting expenses, and finding verified places across multiple tools.",
+      "Planning group trips is tedious: coordinating itineraries, splitting expenses, and finding verified places across multiple tools.",
     approach:
       "Built a full-stack Nuxt 4 PWA with Mastra AI agents and Gemini for itinerary generation, Google Maps API for place verification, real-time collaboration with invite system, expense tracking with splitting, and checklists. Deployed as a serverless PWA with rate-limited AI endpoints.",
     primaryStack: toStack(["Nuxt", "Mastra", "TypeScript", "PostgreSQL"]),
