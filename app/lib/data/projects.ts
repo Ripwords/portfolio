@@ -15,6 +15,11 @@ export interface ProjectLink {
   icon: string;
 }
 
+export interface ProjectScreenshot {
+  src: string;
+  alt: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -31,6 +36,7 @@ export interface Project {
   highlights?: string[];
   links?: ProjectLink[];
   github?: string;
+  screenshot?: ProjectScreenshot;
 }
 
 const techIcons: Record<string, string> = {
@@ -133,6 +139,10 @@ export const projects: Project[] = [
       },
     ],
     github: "https://github.com/Ripwords/ai-trader",
+    screenshot: {
+      src: "/img/projects/ai-trader.png",
+      alt: "AI Trading Copilot research intelligence dashboard with per-symbol theses and ticker signals.",
+    },
   },
   {
     id: "repro",
@@ -189,6 +199,10 @@ export const projects: Project[] = [
       },
     ],
     github: "https://github.com/Ripwords/ReproJs",
+    screenshot: {
+      src: "/img/projects/repro.png",
+      alt: "Repro landing page highlighting feedback reports with annotated screenshots and session replay.",
+    },
   },
   {
     id: "edge-sync",
@@ -297,5 +311,9 @@ export const projects: Project[] = [
     stack: toStack(["TypeScript", "Nuxt", "Vue", "Mastra", "Tailwind CSS", "PostgreSQL"]),
     impact:
       "Installable PWA with AI-generated itineraries backed by verified Google Maps places and real-time team collaboration.",
+    screenshot: {
+      src: "/img/projects/ai-trip.png",
+      alt: "AI Trip Planner itinerary for a Tokyo trip with day-by-day activities, ratings, and cost estimates.",
+    },
   },
 ];

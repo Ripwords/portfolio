@@ -40,11 +40,12 @@ function projectLinks(project: Project) {
             transition: { delay: index * 120, duration: 650 },
           }"
           class="surface surface-hover group flex flex-col rounded-[1.5rem] p-7"
+          :class="expandedId === project.id ? 'lg:col-span-2' : ''"
         >
           <div class="flex items-start justify-between gap-5">
             <div class="min-w-0">
               <p class="eyebrow">{{ project.category }}</p>
-              <h3 class="mt-3 text-2xl font-medium leading-tight tracking-tight">
+              <h3 class="heading mt-3 text-2xl leading-tight">
                 {{ project.title }}
               </h3>
             </div>
@@ -58,11 +59,41 @@ function projectLinks(project: Project) {
             {{ project.description }}
           </p>
 
+          <NuxtImg
+            v-if="project.screenshot"
+            :src="project.screenshot.src"
+            :alt="project.screenshot.alt"
+            class="mt-5 aspect-video w-full rounded-2xl border border-border/70 object-cover"
+            loading="lazy"
+          />
+
+          <div
+            v-if="project.metrics?.length"
+            class="mt-5 grid grid-cols-2 gap-2"
+            :class="expandedId === project.id ? 'lg:grid-cols-4' : 'lg:grid-cols-2'"
+          >
+            <div
+              v-for="metric in project.metrics.slice(0, 4)"
+              :key="metric.label"
+              class="rounded-2xl border border-border/70 bg-accent/25 p-3"
+            >
+              <div class="flex items-center gap-2 text-primary">
+                <Icon v-if="metric.icon" :name="metric.icon" class="size-4" />
+                <p class="text-[11px] font-medium uppercase tracking-[0.18em]">
+                  {{ metric.label }}
+                </p>
+              </div>
+              <p class="mt-2 text-sm font-medium leading-tight text-foreground">
+                {{ metric.value }}
+              </p>
+            </div>
+          </div>
+
           <div class="mt-6 flex flex-wrap gap-1.5">
             <span
               v-for="tech in project.primaryStack"
               :key="tech.label"
-              class="inline-flex items-center gap-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] px-2.5 py-1 text-xs text-muted-foreground"
+              class="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-accent/30 px-2.5 py-1 text-xs text-muted-foreground"
             >
               <Icon v-if="tech.icon" :name="tech.icon" class="size-3.5" />
               {{ tech.label }}
@@ -71,7 +102,7 @@ function projectLinks(project: Project) {
 
           <div
             v-show="expandedId === project.id"
-            class="mt-6 grid gap-4 border-t border-white/[0.06] pt-6 sm:grid-cols-3"
+            class="mt-6 grid gap-3 border-t border-border/60 pt-6 lg:grid-cols-3"
           >
             <div
               v-for="block in [
@@ -80,9 +111,10 @@ function projectLinks(project: Project) {
                 { k: 'Impact', v: project.impact },
               ]"
               :key="block.k"
+              class="rounded-2xl border border-border/60 bg-accent/20 p-4"
             >
               <p class="eyebrow mb-2">{{ block.k }}</p>
-              <p class="text-[13px] leading-relaxed text-muted-foreground">{{ block.v }}</p>
+              <p class="text-sm leading-7 text-foreground/85">{{ block.v }}</p>
             </div>
           </div>
 
@@ -94,7 +126,7 @@ function projectLinks(project: Project) {
                 :href="link.href"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 text-sm text-foreground/80 transition-colors hover:text-foreground"
+                class="focus-ring inline-flex cursor-pointer items-center gap-1.5 rounded-md text-sm text-foreground/80 transition-colors hover:text-foreground"
               >
                 <Icon :name="link.icon" class="size-4" />
                 {{ link.label }}
@@ -102,7 +134,7 @@ function projectLinks(project: Project) {
             </div>
             <button
               type="button"
-              class="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              class="focus-ring inline-flex cursor-pointer items-center gap-1 rounded-md text-sm text-muted-foreground transition-colors hover:text-foreground"
               @click="toggle(project.id)"
             >
               {{ expandedId === project.id ? "Less" : "How it works" }}
@@ -119,7 +151,7 @@ function projectLinks(project: Project) {
       <div class="mt-12">
         <p class="eyebrow mb-5">More work</p>
         <div
-          class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-white/[0.07] md:grid-cols-2"
+          class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-border/70 md:grid-cols-2"
         >
           <div
             v-for="(project, index) in supportingProjects"
@@ -141,18 +173,18 @@ function projectLinks(project: Project) {
           >
             <button
               type="button"
-              class="group flex w-full items-start gap-4 p-6 text-left"
+              class="focus-ring group flex w-full cursor-pointer items-start gap-4 rounded-none p-6 text-left"
               :aria-expanded="expandedId === project.id"
               @click="toggle(project.id)"
             >
               <span
-                class="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04] text-foreground/70 transition-colors duration-500 group-hover:text-foreground"
+                class="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border/70 bg-accent/30 text-foreground/70 transition-colors duration-500 group-hover:text-foreground"
               >
                 <Icon :name="project.displayIcon || 'lucide:boxes'" class="size-5" />
               </span>
               <div class="min-w-0 flex-1">
                 <p class="eyebrow">{{ project.category }}</p>
-                <h4 class="mt-2 font-medium leading-tight text-foreground">{{ project.title }}</h4>
+                <h4 class="heading mt-2 leading-tight text-foreground">{{ project.title }}</h4>
                 <p
                   class="mt-1.5 text-sm text-muted-foreground"
                   :class="expandedId === project.id ? '' : 'line-clamp-1'"
@@ -168,8 +200,15 @@ function projectLinks(project: Project) {
             </button>
 
             <div v-show="expandedId === project.id" class="space-y-4 pb-6 pl-[3.75rem] pr-6">
+              <NuxtImg
+                v-if="project.screenshot"
+                :src="project.screenshot.src"
+                :alt="project.screenshot.alt"
+                class="aspect-video w-full rounded-2xl border border-border/70 object-cover"
+                loading="lazy"
+              />
               <p class="text-sm leading-relaxed text-muted-foreground">{{ project.approach }}</p>
-              <p class="border-l-2 border-white/15 pl-3 text-sm leading-relaxed text-foreground/90">
+              <p class="border-l-2 border-border pl-3 text-sm leading-relaxed text-foreground/90">
                 {{ project.impact }}
               </p>
               <a
@@ -177,7 +216,7 @@ function projectLinks(project: Project) {
                 :href="projectLinks(project)[0].href"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 text-sm text-foreground/80 transition-colors hover:text-foreground"
+                class="focus-ring inline-flex cursor-pointer items-center gap-1.5 rounded-md text-sm text-foreground/80 transition-colors hover:text-foreground"
               >
                 <Icon :name="projectLinks(project)[0].icon" class="size-4" />
                 {{ projectLinks(project)[0].label }}
