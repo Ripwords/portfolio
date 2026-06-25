@@ -4,8 +4,11 @@ import { skills } from "~/lib/data/skills";
 
 <template>
   <section id="skills" class="py-24 md:py-32">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <SectionHeading title="Toolkit" />
+    <div class="container mx-auto max-w-6xl px-4">
+      <SectionHeading
+        title="Toolkit"
+        lede="A practical stack for full-stack systems, AI product surfaces, SDKs, and infrastructure."
+      />
 
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <div
@@ -18,13 +21,13 @@ import { skills } from "~/lib/data/skills";
         >
           <div class="mb-5 flex items-center gap-3">
             <Icon :name="category.icon" class="size-5 text-foreground/70" />
-            <h3 class="text-base font-medium">{{ category.title }}</h3>
+            <h3 class="heading text-base">{{ category.title }}</h3>
           </div>
           <div class="flex flex-wrap gap-1.5">
             <span
               v-for="skill in category.skills"
               :key="skill.label"
-              class="inline-flex items-center gap-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] px-2.5 py-1 text-xs text-muted-foreground"
+              class="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-accent/30 px-2.5 py-1 text-xs text-muted-foreground"
             >
               <Icon
                 v-if="skill.icon"

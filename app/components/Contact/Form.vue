@@ -81,12 +81,12 @@ const onSubmit = form.handleSubmit(async (values) => {
       :initial="{ opacity: 0, y: 40 }"
       :visible-once="{ opacity: 1, y: 0 }"
       :duration="800"
-      class="w-full max-w-3xl"
+      class="surface w-full max-w-3xl rounded-[1.5rem]"
     >
       <CardHeader class="space-y-2">
         <div class="flex items-center gap-3">
           <Icon name="lucide:mail" class="size-6 text-primary" />
-          <CardTitle class="text-2xl font-bold">Get in touch!</CardTitle>
+          <CardTitle class="heading text-2xl">Get in touch</CardTitle>
         </div>
         <CardDescription>
           Have a project in mind, want to collaborate, or just say hello? Drop me a message.
@@ -109,7 +109,7 @@ const onSubmit = form.handleSubmit(async (values) => {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="John Doe" v-bind="componentField" />
+                  <Input type="text" placeholder="Your name" v-bind="componentField" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -120,7 +120,11 @@ const onSubmit = form.handleSubmit(async (values) => {
             <FormItem>
               <FormLabel>Subject</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Hello World" v-bind="componentField" />
+                <Input
+                  type="text"
+                  placeholder="Project, collaboration, or hello"
+                  v-bind="componentField"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -141,7 +145,7 @@ const onSubmit = form.handleSubmit(async (values) => {
           </FormField>
 
           <div class="flex justify-end pt-2">
-            <Button :disabled="isSending" type="submit" size="lg">
+            <Button :disabled="isSending" type="submit" size="lg" class="w-full sm:w-auto">
               <Icon v-if="isSending" name="lucide:loader-2" class="size-4 animate-spin mr-2" />
               <Icon v-else name="lucide:send" class="size-4 mr-2" />
               Send Message

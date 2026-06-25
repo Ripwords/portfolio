@@ -25,7 +25,7 @@ function isActive(to: string) {
         <NuxtLink
           :to="item.to"
           :aria-label="item.label"
-          class="relative flex size-11 flex-col items-center justify-center rounded-full transition-colors duration-300"
+          class="focus-ring interactive relative flex size-11 flex-col items-center justify-center rounded-full"
           :class="isActive(item.to) ? 'text-primary-foreground' : 'text-muted-foreground'"
         >
           <span

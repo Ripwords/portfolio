@@ -44,6 +44,10 @@ onMounted(() => {
 
     <section id="contact" class="py-16 md:py-24">
       <div class="container mx-auto px-4 max-w-6xl">
+        <SectionHeading
+          title="Contact"
+          lede="Have a system to build, a product to polish, or a technical problem that needs a reliable path forward?"
+        />
         <ContactForm />
       </div>
     </section>

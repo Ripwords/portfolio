@@ -121,6 +121,14 @@ const astroImages = [
   },
 ];
 
+const categories = ["All", ...new Set(astroImages.map((image) => image.category))];
+const activeCategory = ref("All");
+const filteredImages = computed(() =>
+  activeCategory.value === "All"
+    ? astroImages
+    : astroImages.filter((image) => image.category === activeCategory.value),
+);
+
 useSeoMeta({
   title: "Astrophotography",
   description:
@@ -130,7 +138,7 @@ useSeoMeta({
 
 <template>
   <div class="min-h-screen">
-    <section class="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <section class="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pt-28 pb-10 sm:px-6 lg:px-8">
       <div
         v-motion
         :initial="{ opacity: 0, y: 24 }"
@@ -139,9 +147,9 @@ useSeoMeta({
         class="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(420px,1.15fr)] lg:items-end"
       >
         <div class="space-y-5">
-          <p class="text-sm font-medium uppercase text-muted-foreground">Astrophotography</p>
+          <p class="eyebrow">Astrophotography</p>
           <div class="space-y-4">
-            <h1 class="max-w-3xl text-4xl font-semibold tracking-normal sm:text-5xl lg:text-6xl">
+            <h1 class="heading legible max-w-3xl text-4xl sm:text-5xl lg:text-6xl">
               Night sky portfolio
             </h1>
             <p class="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
@@ -151,7 +159,7 @@ useSeoMeta({
           </div>
         </div>
 
-        <div class="overflow-hidden rounded-md border bg-card shadow-sm">
+        <div class="surface overflow-hidden rounded-[1.5rem]">
           <img
             src="/img/astro/lagoon-nebula-wide.webp"
             alt="Lagoon Nebula widefield astrophotography"
@@ -165,25 +173,41 @@ useSeoMeta({
     </section>
 
     <section class="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
-      <div class="mb-6 flex items-end justify-between gap-4">
+      <div class="mb-6 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
         <div>
-          <h2 class="text-2xl font-semibold tracking-normal">Gallery</h2>
+          <h2 class="heading text-2xl">Gallery</h2>
           <p class="mt-2 text-sm text-muted-foreground">
-            {{ astroImages.length }} optimized WebP images
+            {{ filteredImages.length }} optimized WebP images
           </p>
+        </div>
+        <div class="flex flex-wrap gap-2" aria-label="Astrophotography category filters">
+          <button
+            v-for="category in categories"
+            :key="category"
+            type="button"
+            class="focus-ring cursor-pointer rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
+            :class="
+              activeCategory === category
+                ? 'border-primary bg-primary text-primary-foreground'
+                : 'border-border bg-card/70 text-muted-foreground hover:bg-accent hover:text-foreground'
+            "
+            @click="activeCategory = category"
+          >
+            {{ category }}
+          </button>
         </div>
       </div>
 
       <div class="grid auto-rows-[260px] grid-cols-1 gap-4 md:grid-cols-3 lg:auto-rows-[300px]">
         <article
-          v-for="(image, index) in astroImages"
+          v-for="(image, index) in filteredImages"
           :key="image.src"
           v-motion
           :initial="{ opacity: 0, y: 24 }"
           :visible-once="{ opacity: 1, y: 0 }"
           :duration="650"
           :delay="Math.min(index * 45, 360)"
-          class="group relative overflow-hidden rounded-md border bg-card shadow-sm"
+          class="surface group relative overflow-hidden rounded-2xl"
           :class="image.class"
         >
           <img
@@ -193,14 +217,14 @@ useSeoMeta({
             loading="lazy"
           />
           <div
-            class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 via-black/35 to-transparent p-4 text-white"
+            class="absolute inset-x-0 bottom-0 bg-linear-to-t from-background/95 via-background/55 to-transparent p-4 text-foreground"
           >
             <div class="flex flex-wrap items-end justify-between gap-2">
               <div>
-                <h3 class="text-lg font-semibold tracking-normal">{{ image.title }}</h3>
-                <p class="text-sm text-white/75">{{ image.object }}</p>
+                <h3 class="heading text-lg">{{ image.title }}</h3>
+                <p class="text-sm text-muted-foreground">{{ image.object }}</p>
               </div>
-              <span class="rounded-sm bg-white/15 px-2 py-1 text-xs font-medium text-white/85">
+              <span class="rounded-full bg-primary/15 px-2.5 py-1 text-xs font-medium text-primary">
                 {{ image.category }}
               </span>
             </div>

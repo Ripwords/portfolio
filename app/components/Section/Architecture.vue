@@ -25,7 +25,7 @@ const diagrams = [
 
 <template>
   <section :id="sectionId" class="py-24 md:py-32">
-    <div class="container mx-auto px-4 max-w-6xl">
+    <div class="container mx-auto max-w-6xl px-4">
       <SectionHeading
         title="System design"
         lede="A cleaner slice through the data flows and integration boundaries behind the work."
@@ -40,8 +40,8 @@ const diagrams = [
           :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 150, duration: 500 } }"
           class="surface overflow-hidden rounded-2xl"
         >
-          <div class="border-b border-white/[0.06] p-6">
-            <h3 class="text-lg font-medium">{{ diagram.title }}</h3>
+          <div class="border-b border-border/60 p-6">
+            <h3 class="heading text-lg">{{ diagram.title }}</h3>
             <p class="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
               {{ diagram.caption }}
             </p>

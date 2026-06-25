@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type { CSSProperties } from "vue";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { usePreferredReducedMotion } from "@vueuse/core";
 
 const colorMode = useColorMode();
 const target = ref();
+const reduced = usePreferredReducedMotion();
 
 const bannerImage = computed(() =>
   colorMode.value === "dark"
@@ -45,28 +47,34 @@ const containerStyle: CSSProperties = {
 
 const layer0 = computed(() => ({
   ...layerBase,
-  transform: `translateX(${tilt.value * 10}px) translateY(${roll.value * 10}px) scale(1.20)`,
+  transform:
+    reduced.value === "reduce"
+      ? "scale(1.20)"
+      : `translateX(${tilt.value * 10}px) translateY(${roll.value * 10}px) scale(1.20)`,
 }));
 
 const layer1 = computed(() => ({
   ...layerBase,
-  transform: `translateX(${tilt.value * 15}px) translateY(${roll.value * 15}px) scale(1.33)`,
+  transform:
+    reduced.value === "reduce"
+      ? "scale(1.33)"
+      : `translateX(${tilt.value * 15}px) translateY(${roll.value * 15}px) scale(1.33)`,
 }));
 
 const cardStyle = computed(() => ({
-  background: colorMode.value === "dark" ? "#1c1c1c" : "#fff",
+  background: "var(--card)",
   height: "13rem",
   width: "15rem",
   position: "relative",
-  borderRadius: "5px",
-  border: colorMode.value === "dark" ? "1px solid #333" : "1px solid #cdcdcd",
+  borderRadius: "1.25rem",
+  border: "1px solid var(--border)",
   overflow: "hidden",
   transition: ".3s ease-out all",
-  boxShadow:
-    colorMode.value === "dark"
-      ? "0 0 20px 0 rgba(255, 255, 255, 0.1)"
-      : "0 0 20px 0 rgba(0, 0, 0, 0.15)",
-  transform: `rotateX(${roll.value * 20}deg) rotateY(${tilt.value * 20}deg)`,
+  boxShadow: "0 24px 60px -34px rgb(0 0 0 / 0.7)",
+  transform:
+    reduced.value === "reduce"
+      ? "none"
+      : `rotateX(${roll.value * 20}deg) rotateY(${tilt.value * 20}deg)`,
 }));
 </script>
 
@@ -77,7 +85,7 @@ const cardStyle = computed(() => ({
       :initial="{ opacity: 0, y: 40 }"
       :enter="{ opacity: 1, y: 0 }"
       :duration="800"
-      class="w-full overflow-hidden rounded-md"
+      class="surface w-full overflow-hidden rounded-[1.5rem]"
     >
       <CardHeader class="p-0">
         <img
@@ -102,13 +110,15 @@ const cardStyle = computed(() => ({
                     :style="layer0"
                     loading="lazy"
                     src="/img/astro/lagoon-parallax.webp"
-                    alt="morning moon"
+                    alt=""
+                    aria-hidden="true"
                   />
                   <img
                     :style="layer1"
                     loading="lazy"
                     src="/img/astro/lagoon-parallax-cutout.webp"
-                    alt="lagoon no background"
+                    alt=""
+                    aria-hidden="true"
                   />
                 </div>
               </div>
@@ -116,15 +126,15 @@ const cardStyle = computed(() => ({
           </div>
           <div>
             <div class="flex flex-col gap-4 py-8">
-              <p>
+              <p class="leading-relaxed text-muted-foreground">
                 My journey with astrophotography started with a fascination with the stars. How the
                 universe makes us feel small and insignificant.
               </p>
-              <p>
+              <p class="leading-relaxed text-muted-foreground">
                 In 2020, I bought my first telescope, and started imaging the night sky, and here
                 are some of my favorite images.
               </p>
-              <p>
+              <p class="leading-relaxed text-muted-foreground">
                 The process of capturing these images required a lot of learning and patience,
                 learning the software required to process the images and the hardware required to
                 capture the images.

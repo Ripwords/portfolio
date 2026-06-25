@@ -37,7 +37,7 @@ const focus = [
 
       <!-- Focus areas: minimal, hairline-led, no boxy cards -->
       <div
-        class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/[0.06] sm:grid-cols-3"
+        class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border/60 sm:grid-cols-3"
       >
         <div
           v-for="(item, index) in focus"
@@ -45,13 +45,13 @@ const focus = [
           v-motion
           :initial="{ opacity: 0, y: 24 }"
           :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 110, duration: 600 } }"
-          class="group bg-white/[0.015] p-7 transition-colors duration-500 hover:bg-white/[0.03]"
+          class="group bg-card/40 p-7 transition-colors duration-500 hover:bg-accent/40"
         >
           <Icon
             :name="item.icon"
             class="size-5 text-foreground/70 transition-colors duration-500 group-hover:text-foreground"
           />
-          <h3 class="mt-5 text-base font-medium">{{ item.title }}</h3>
+          <h3 class="heading mt-5 text-base">{{ item.title }}</h3>
           <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{{ item.description }}</p>
         </div>
       </div>

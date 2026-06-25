@@ -16,11 +16,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="py-16 md:py-24">
-    <div class="container mx-auto px-4 max-w-3xl">
+  <div class="pt-28 pb-16 md:pb-24">
+    <div class="container mx-auto max-w-3xl px-4">
       <NuxtLink
         to="/#writing"
-        class="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+        class="focus-ring mb-8 inline-flex cursor-pointer items-center gap-1 rounded-md text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <Icon name="lucide:arrow-left" class="size-4" />
         Back to writing
@@ -28,7 +28,7 @@ useSeoMeta({
 
       <article v-if="article">
         <header class="mb-8">
-          <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+          <h1 class="heading mb-4 text-3xl md:text-4xl">
             {{ article.title }}
           </h1>
           <p v-if="article.description" class="text-lg text-muted-foreground mb-4">
@@ -45,7 +45,7 @@ useSeoMeta({
           </time>
         </header>
 
-        <ContentRenderer :value="article" class="prose dark:prose-invert max-w-none" />
+        <ContentRenderer :value="article" class="content" />
       </article>
     </div>
   </div>

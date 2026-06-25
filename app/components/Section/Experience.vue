@@ -6,8 +6,11 @@ const sectionId = "experience";
 
 <template>
   <section :id="sectionId" class="py-24 md:py-32">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <SectionHeading title="Experience" />
+    <div class="container mx-auto max-w-6xl px-4">
+      <SectionHeading
+        title="Experience"
+        lede="Production work across backend systems, internal tools, platform integrations, and field-ready software."
+      />
 
       <div class="flex flex-col gap-6">
         <template v-for="(entry, index) in experience" :key="entry.role + entry.period">
@@ -18,7 +21,7 @@ const sectionId = "experience";
             :initial="{ opacity: 0, y: 30 }"
             :enter="{ opacity: 1, y: 0, transition: { delay: index * 150 } }"
             :duration="600"
-            class="border-none shadow-none"
+            class="surface rounded-2xl"
           >
             <CardHeader>
               <div class="flex items-start gap-4">
@@ -31,7 +34,7 @@ const sectionId = "experience";
                   class="flex-1 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1"
                 >
                   <div>
-                    <CardTitle class="text-xl font-bold">{{ entry.role }}</CardTitle>
+                    <CardTitle class="heading text-xl">{{ entry.role }}</CardTitle>
                     <CardDescription class="mt-1">
                       {{ entry.company }} · {{ entry.type }}
                     </CardDescription>
@@ -39,14 +42,14 @@ const sectionId = "experience";
                       {{ entry.location }}
                     </p>
                   </div>
-                  <span class="text-sm text-muted-foreground shrink-0">
+                  <span class="shrink-0 text-sm text-muted-foreground">
                     {{ entry.period }}
                   </span>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
-              <ul class="list-disc list-inside space-y-1.5 text-muted-foreground leading-relaxed">
+              <ul class="ml-4 list-disc space-y-1.5 leading-relaxed text-muted-foreground">
                 <li v-for="highlight in entry.highlights" :key="highlight">
                   {{ highlight }}
                 </li>

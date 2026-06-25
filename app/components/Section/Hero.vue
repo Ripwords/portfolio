@@ -53,7 +53,7 @@ const enter = (delay = 0) => ({
             <!-- Primary CTA with nested button-in-button arrow -->
             <a
               href="#projects"
-              class="group inline-flex items-center gap-3 rounded-full bg-primary py-2 pl-6 pr-2 text-sm font-medium text-primary-foreground transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02] active:scale-[0.98]"
+              class="focus-ring group inline-flex cursor-pointer items-center gap-3 rounded-full bg-primary py-2 pr-2 pl-6 text-sm font-medium text-primary-foreground shadow-[0_0_28px_-10px_var(--primary)] transition-[background-color,box-shadow] duration-200 hover:bg-primary/90 hover:shadow-[0_0_36px_-10px_var(--primary)] active:bg-primary/85"
             >
               View my work
               <span
@@ -67,7 +67,7 @@ const enter = (delay = 0) => ({
             <a
               href="/resume"
               target="_blank"
-              class="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-foreground transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02] active:scale-[0.98]"
+              class="focus-ring glass inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-accent/70"
             >
               <Icon name="line-md:file-document" class="size-4" />
               Resume

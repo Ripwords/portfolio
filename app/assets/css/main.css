@@ -7,6 +7,7 @@
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", monospace;
   --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 
   --color-nebula-violet: var(--nebula-violet);
   --color-nebula-cyan: var(--nebula-cyan);
@@ -66,7 +67,7 @@
   --accent: oklch(0.967 0.001 286.375);
   --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.705 0.015 286.067);
@@ -94,10 +95,10 @@
   --card-foreground: oklch(0.98 0.004 285);
   --popover: oklch(0.2 0.02 285);
   --popover-foreground: oklch(0.98 0.004 285);
-  /* PLATINUM / soft-white is the locked INTERACTIVE accent (buttons, links, focus).
-     Minimal + restrained — the violet cosmos carries the color, the accent stays classy. */
-  --primary: oklch(0.96 0.004 280);
-  --primary-foreground: oklch(0.19 0.02 285);
+  /* Interactive accent — a restrained cosmic blue-violet.
+     Platinum remains the text/surface color; action states get a clearer signal. */
+  --primary: oklch(0.72 0.14 250);
+  --primary-foreground: oklch(0.985 0.004 285);
   --secondary: oklch(0.27 0.02 287);
   --secondary-foreground: oklch(0.98 0.004 285);
   --muted: oklch(0.27 0.02 287);
@@ -109,16 +110,16 @@
   --destructive-foreground: oklch(0.98 0.004 285);
   --border: oklch(0.34 0.025 288);
   --input: oklch(0.31 0.025 288);
-  --ring: oklch(0.88 0.008 280);
-  --chart-1: oklch(0.96 0.004 280);
+  --ring: oklch(0.72 0.14 250);
+  --chart-1: oklch(0.72 0.14 250);
   --chart-2: oklch(0.78 0.09 300);
   --chart-3: oklch(0.7 0.1 330);
   --chart-4: oklch(0.74 0.08 260);
   --chart-5: oklch(0.82 0.06 280);
   --sidebar: oklch(0.18 0.02 285);
   --sidebar-foreground: oklch(0.98 0.004 285);
-  --sidebar-primary: oklch(0.96 0.004 280);
-  --sidebar-primary-foreground: oklch(0.19 0.02 285);
+  --sidebar-primary: oklch(0.72 0.14 250);
+  --sidebar-primary-foreground: oklch(0.985 0.004 285);
   --sidebar-accent: oklch(0.3 0.04 285);
   --sidebar-accent-foreground: oklch(0.98 0.004 285);
   --sidebar-border: oklch(0.34 0.025 288);
@@ -155,15 +156,19 @@
   font-family: var(--font-display);
 }
 
+@utility font-heading {
+  font-family: var(--font-heading);
+}
+
 @layer components {
   /* Frosted glass panel — only ever used on fixed/sticky chrome or small cards */
   .glass {
     background: color-mix(in oklch, var(--card) 55%, transparent);
     backdrop-filter: blur(16px) saturate(150%);
     -webkit-backdrop-filter: blur(16px) saturate(150%);
-    border: 1px solid color-mix(in oklch, white 8%, transparent);
+    border: 1px solid color-mix(in oklch, var(--foreground) 10%, transparent);
     box-shadow:
-      inset 0 1px 0 color-mix(in oklch, white 10%, transparent),
+      inset 0 1px 0 color-mix(in oklch, var(--foreground) 10%, transparent),
       0 18px 50px -20px rgb(0 0 0 / 0.6);
   }
 
@@ -180,11 +185,11 @@
   /* Premium surface: hairline edge, faint inner highlight, soft tinted shadow.
      Replaces boxy shadcn cards across the content sections. */
   .surface {
-    background: color-mix(in oklch, var(--card) 42%, transparent);
-    border: 1px solid color-mix(in oklch, white 6%, transparent);
+    background: color-mix(in oklch, var(--card) 42%, transparent) !important;
+    border: 1px solid color-mix(in oklch, var(--foreground) 8%, transparent) !important;
     box-shadow:
-      inset 0 1px 0 color-mix(in oklch, white 6%, transparent),
-      0 24px 60px -34px rgb(0 0 0 / 0.7);
+      inset 0 1px 0 color-mix(in oklch, var(--foreground) 7%, transparent),
+      0 24px 60px -34px rgb(0 0 0 / 0.7) !important;
     backdrop-filter: blur(6px);
   }
   .surface-hover {
@@ -195,25 +200,95 @@
   }
   .surface-hover:hover {
     transform: translateY(-3px);
-    border-color: color-mix(in oklch, white 14%, transparent);
+    border-color: color-mix(in oklch, var(--foreground) 16%, transparent);
     box-shadow:
-      inset 0 1px 0 color-mix(in oklch, white 9%, transparent),
-      0 34px 70px -30px rgb(0 0 0 / 0.8);
+      inset 0 1px 0 color-mix(in oklch, var(--foreground) 10%, transparent),
+      0 34px 70px -30px rgb(0 0 0 / 0.8) !important;
   }
 
-  /* Display headline: Playfair, refined weight + tight tracking */
+  /* Editorial signature headline: Playfair, refined weight + tight tracking */
   .display {
     font-family: var(--font-display);
     font-weight: 500;
     letter-spacing: -0.01em;
   }
 
+  /* Product-minded section/card headings. Keeps the portfolio technical, not only editorial. */
+  .heading {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+  }
+
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .interactive {
+    @apply cursor-pointer transition-colors duration-200;
+  }
+
+  .content {
+    @apply max-w-none text-foreground;
+  }
+
+  .content :where(h1, h2, h3, h4) {
+    @apply mt-10 mb-4 leading-tight text-foreground;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+  }
+
+  .content :where(h2) {
+    @apply text-2xl md:text-3xl;
+  }
+
+  .content :where(h3) {
+    @apply text-xl md:text-2xl;
+  }
+
+  .content :where(p, li) {
+    @apply leading-8 text-muted-foreground;
+  }
+
+  .content :where(a) {
+    @apply cursor-pointer rounded-sm text-primary underline underline-offset-4 outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .content :where(ul, ol) {
+    @apply my-5 ml-6 space-y-2;
+  }
+
+  .content :where(ul) {
+    @apply list-disc;
+  }
+
+  .content :where(ol) {
+    @apply list-decimal;
+  }
+
+  .content :where(blockquote) {
+    @apply my-6 border-l-2 border-primary/60 pl-4 text-muted-foreground;
+  }
+
+  .content :where(code) {
+    @apply rounded-md border border-border/70 bg-accent/40 px-1.5 py-0.5 font-mono text-sm text-foreground;
+  }
+
+  .content :where(pre) {
+    @apply my-6 overflow-x-auto rounded-2xl border border-border/70 bg-card/80 p-4;
+  }
+
+  .content :where(pre code) {
+    @apply border-0 bg-transparent p-0;
+  }
+
   /* Concentric "double-bezel" hardware frame */
   .bezel {
     background: color-mix(in oklch, var(--card) 70%, transparent);
-    border: 1px solid color-mix(in oklch, white 8%, transparent);
+    border: 1px solid color-mix(in oklch, var(--foreground) 10%, transparent);
     box-shadow:
-      inset 0 1px 0 color-mix(in oklch, white 10%, transparent),
+      inset 0 1px 0 color-mix(in oklch, var(--foreground) 10%, transparent),
       0 30px 80px -30px rgb(0 0 0 / 0.7);
   }
 }
@@ -224,5 +299,20 @@
     background: var(--card);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .surface-hover:hover {
+    transform: none;
   }
 }

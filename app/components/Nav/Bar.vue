@@ -18,9 +18,13 @@ function isActive(to: string) {
       <NuxtLink
         to="/"
         aria-label="Home"
-        class="mr-1 inline-flex items-center rounded-full p-1 transition-transform duration-300 hover:scale-105"
+        class="focus-ring interactive mr-1 inline-flex items-center rounded-full p-1 hover:bg-accent/70"
       >
-        <NuxtImg src="/img/logo/logo.png" alt="JJ Teoh" class="h-7 w-auto" />
+        <img
+          src="/img/logo/logo.png"
+          alt="JJ Teoh"
+          class="size-8 shrink-0 rounded-full object-contain"
+        />
       </NuxtLink>
 
       <span class="mx-1 h-5 w-px bg-border/70" />
@@ -29,7 +33,7 @@ function isActive(to: string) {
         <li v-for="item in sectionLinks" :key="item.to">
           <NuxtLink
             :to="isHome ? item.to : `/${item.to}`"
-            class="group relative inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors duration-300"
+            class="focus-ring interactive group relative inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium"
             :class="
               isActive(item.to)
                 ? 'text-primary-foreground'
@@ -51,7 +55,7 @@ function isActive(to: string) {
             :target="item.target || '_self'"
             rel="noopener noreferrer"
             :external="item.external"
-            class="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-foreground"
+            class="focus-ring interactive inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent/60 hover:text-foreground"
             active-class="text-foreground"
           >
             <Icon v-if="item.icon" :name="item.icon" class="text-base" />
@@ -69,7 +73,7 @@ function isActive(to: string) {
             :target="item.target || '_blank'"
             rel="noopener noreferrer"
             :aria-label="item.label"
-            class="inline-flex size-9 items-center justify-center rounded-full text-base text-muted-foreground transition-all duration-300 hover:scale-110 hover:bg-accent hover:text-foreground"
+            class="focus-ring interactive inline-flex size-9 items-center justify-center rounded-full text-base text-muted-foreground hover:bg-accent hover:text-foreground"
           >
             <Icon v-if="item.icon" :name="item.icon" />
           </NuxtLink>

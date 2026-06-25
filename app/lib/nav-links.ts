@@ -54,6 +54,11 @@ export const mobileLinks = [
     to: "/#experience",
   },
   {
+    label: "Contact",
+    icon: "line-md:email",
+    to: "/#contact",
+  },
+  {
     label: "Astro",
     icon: "line-md:sunny-outline-to-moon-alt-loop-transition",
     to: "/astrophotography",

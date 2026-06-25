@@ -25,18 +25,13 @@ const tenets = [
 
 <template>
   <section :id="sectionId" class="py-16 md:py-24">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <h2
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :enter="{ opacity: 1, y: 0 }"
-        :duration="600"
-        class="text-3xl md:text-4xl font-bold tracking-tight mb-10"
-      >
-        Engineering Philosophy
-      </h2>
+    <div class="container mx-auto max-w-6xl px-4">
+      <SectionHeading
+        title="Engineering philosophy"
+        lede="The principles I use when systems need to be understandable, resilient, and maintainable."
+      />
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         <Card
           v-for="(tenet, index) in tenets"
           :key="tenet.title"
@@ -44,16 +39,16 @@ const tenets = [
           :initial="{ opacity: 0, y: 30 }"
           :enter="{ opacity: 1, y: 0, transition: { delay: index * 150 } }"
           :duration="600"
-          class="border-border/50 bg-muted/30"
+          class="surface rounded-2xl"
         >
           <CardHeader>
             <div class="flex items-center gap-3">
-              <Icon :name="`lucide:${tenet.icon}`" class="size-5 text-primary shrink-0" />
-              <CardTitle class="text-lg font-bold">{{ tenet.title }}</CardTitle>
+              <Icon :name="`lucide:${tenet.icon}`" class="size-5 shrink-0 text-primary" />
+              <CardTitle class="heading text-lg">{{ tenet.title }}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <p class="text-muted-foreground leading-relaxed">
+            <p class="leading-relaxed text-muted-foreground">
               {{ tenet.description }}
             </p>
           </CardContent>

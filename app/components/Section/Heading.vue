@@ -18,7 +18,7 @@ withDefaults(
       :initial="{ opacity: 0, y: 24, filter: 'blur(6px)' }"
       :visible-once="{ opacity: 1, y: 0, filter: 'blur(0px)' }"
       :duration="700"
-      class="display legible text-4xl leading-[1.05] md:text-5xl"
+      class="heading legible text-4xl leading-[1.05] md:text-5xl"
     >
       {{ title }}
     </h2>

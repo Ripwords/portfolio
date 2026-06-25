@@ -25,6 +25,12 @@ onMounted(() => {
 
 <template>
   <div>
+    <a
+      href="#main"
+      class="focus-ring sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+    >
+      Skip to main content
+    </a>
     <BackgroundCosmos />
     <ClientOnly>
       <CursorSplash />
@@ -33,9 +39,9 @@ onMounted(() => {
     <NuxtRouteAnnouncer />
     <NavBar />
     <!-- Main content with bottom padding for tab bar -->
-    <div class="relative z-10 pb-24 sm:pb-0">
+    <main id="main" class="relative z-10 pb-24 sm:pb-0">
       <NuxtPage />
-    </div>
+    </main>
     <NavMobile />
   </div>
 </template>

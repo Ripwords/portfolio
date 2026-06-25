@@ -100,6 +100,7 @@ export default defineNuxtConfig({
         weights: [400, 500, 600, 700, 800],
         styles: ["normal", "italic"],
       },
+      { name: "Space Grotesk", provider: "google", weights: [400, 500, 600, 700] },
       { name: "Geist", provider: "google", weights: [300, 400, 500, 600, 700] },
       { name: "Geist Mono", provider: "google", weights: [400, 500] },
     ],
