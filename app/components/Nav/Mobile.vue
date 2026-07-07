@@ -11,13 +11,42 @@ function isActive(to: string) {
   }
   return route.path === to;
 }
+
+// iOS in-app browsers (WhatsApp/Instagram WKWebView) pin `position: fixed` to the
+// LAYOUT viewport, not the visual one — so on a long page a bottom-anchored dock
+// rides up into the middle of the screen as you scroll. Compensate with the
+// VisualViewport API: keep the dock 16px above the *visible* bottom edge.
+// On standards-correct browsers the gap is 0, so this reduces to `bottom: 16px`.
+const bottomOffset = ref(16);
+
+function updateOffset() {
+  const vv = window.visualViewport;
+  if (!vv) return;
+  const gap = window.innerHeight - (vv.height + vv.offsetTop);
+  bottomOffset.value = Math.max(0, Math.round(gap)) + 16;
+}
+
+onMounted(() => {
+  const vv = window.visualViewport;
+  if (!vv) return;
+  updateOffset();
+  vv.addEventListener("resize", updateOffset, { passive: true });
+  vv.addEventListener("scroll", updateOffset, { passive: true });
+});
+
+onBeforeUnmount(() => {
+  const vv = window.visualViewport;
+  if (!vv) return;
+  vv.removeEventListener("resize", updateOffset);
+  vv.removeEventListener("scroll", updateOffset);
+});
 </script>
 
 <template>
   <!-- Floating glass dock for mobile primary navigation -->
   <nav
-    class="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 sm:hidden"
-    style="padding-bottom: env(safe-area-inset-bottom)"
+    class="fixed left-1/2 z-50 -translate-x-1/2 sm:hidden"
+    :style="{ bottom: `${bottomOffset}px`, paddingBottom: 'env(safe-area-inset-bottom)' }"
     aria-label="Primary"
   >
     <ul class="glass flex flex-row items-center gap-1 rounded-full px-2 py-1.5">

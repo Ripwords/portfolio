@@ -51,6 +51,8 @@ export default defineNuxtConfig({
         lang: "en",
       },
       charset: "utf-8",
+      // viewport-fit=cover so env(safe-area-inset-*) resolves on notched iOS devices
+      viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
       meta: [
         {
           name: "google-site-verification",
