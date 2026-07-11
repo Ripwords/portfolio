@@ -1,0 +1,113 @@
+/* Cover-letter styling for resume-markdown.
+   The markdown structure this expects:
+     # Teoh Jia Jing          -> letterhead name (H1, becomes the doc title)
+     - contact line items      -> inline centered contact row (h1 + ul)
+     Date / recipient / salutation / body paragraphs / sign-off as plain paragraphs.
+   resume-markdown wraps everything in <div id="resume">. */
+
+body {
+  color: #1a1a1a;
+  background: #eeeeee;
+  font:
+    1.05em Georgia,
+    "Times New Roman",
+    serif;
+  line-height: 1.5;
+  margin: 40px 0;
+}
+
+#resume {
+  margin: 0 auto;
+  max-width: 760px;
+  padding: 56px 64px;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  box-shadow: 2px 2px 6px #aaaaaa;
+  -webkit-box-shadow: 2px 2px 6px #aaaaaa;
+}
+
+/* Letterhead: name */
+h1 {
+  text-align: center;
+  font-size: 190%;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0;
+  padding: 0;
+}
+
+/* Letterhead: contact row (the ul directly after h1) */
+h1 + ul {
+  text-align: center;
+  font-size: 82%;
+  color: #444444;
+  margin: 0.5em 0 0 0;
+  padding: 0 0 1.2em 0;
+  border-bottom: 1px solid #dddddd;
+}
+h1 + ul > li {
+  display: inline;
+  white-space: pre;
+  list-style-type: none;
+}
+h1 + ul > li:after {
+  content: "  \2022  ";
+  color: #bbbbbb;
+}
+h1 + ul > li:last-child:after {
+  content: "";
+}
+
+/* Body */
+p {
+  margin: 0 0 1em 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* First paragraph after the letterhead = date line */
+h1 + ul + p {
+  margin-top: 1.6em;
+  color: #444444;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+strong {
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
+
+/* Sign-off / closing kept tight */
+hr {
+  border: 0;
+  border-top: 1px solid #e5e5e5;
+  margin: 1.4em 0;
+}
+
+@media print {
+  body {
+    font-size: 11pt;
+    margin: 0;
+    padding: 0;
+    background: none;
+  }
+  #resume {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+  @page {
+    margin: 2.2cm 2.4cm;
+  }
+}
