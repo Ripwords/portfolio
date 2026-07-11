@@ -70,22 +70,28 @@ PDF.** Iterate on the text until they're happy.
 
 Once the text is approved:
 
-1. Make sure `cover-letters/` is gitignored (see step 5) and the folder exists.
-2. Choose a slug: `<Company>-<Role>` with spaces → hyphens, no special chars
-   (e.g. `Acme-Backend-Engineer`).
-3. Write the approved letter to `cover-letters/<slug>.md`. The file **must**
-   start with a single `# Teoh Jia Jing` H1 (resume-markdown uses the first H1
-   as the document title and it becomes the letterhead name), followed by the
-   contact list, then the letter body. See **Markdown structure** below.
-4. Copy the skill's stylesheet to a sibling with the **same stem** so
+1. Make sure `cover-letters/` is gitignored (see step 5) and exists.
+2. Choose a slug: `<Role>_<Location>_<Source>` — hyphenate spaces **within** each
+   segment, join the three segments with underscores, no other special chars
+   (e.g. `Backend-Software-Engineer_Reykjavik_LinkedIn`). Source = where the job
+   was found (e.g. `LinkedIn`); if unknown, use `Direct`.
+3. Create a per-application working folder: `cover-letters/<slug>/`.
+4. Write the approved letter to `cover-letters/<slug>/<slug>.md`. The file
+   **must** start with a single `# Teoh Jia Jing` H1 (resume-markdown uses the
+   first H1 as the document title and it becomes the letterhead name), followed
+   by the contact list, then the letter body. See **Markdown structure** below.
+5. Copy the skill's stylesheet to a sibling with the **same stem** so
    resume-markdown picks it up:
-   `cp .claude/skills/cover-letter/cover-letter.css cover-letters/<slug>.css`
+   `cp .claude/skills/cover-letter/cover-letter.css cover-letters/<slug>/<slug>.css`
    (resume-markdown looks for `<stem>.css` next to the input; without it the PDF
    is unstyled.)
-5. Build:
-   `uvx resume-markdown build cover-letters/<slug>.md`
-   This writes `cover-letters/<slug>.html` and `cover-letters/<slug>.pdf`.
-6. Report the PDF path to the user.
+6. Build:
+   `uvx resume-markdown build cover-letters/<slug>/<slug>.md`
+   This writes `cover-letters/<slug>/<slug>.html` and `.pdf`.
+7. **Clean up** — we only keep the PDF. Delete the intermediate files so only
+   `cover-letters/<slug>/<slug>.pdf` remains:
+   `rm -f cover-letters/<slug>/<slug>.md cover-letters/<slug>/<slug>.css cover-letters/<slug>/<slug>.html`
+8. Report the final PDF path to the user.
 
 ### 5. Keep it private
 
@@ -134,7 +140,7 @@ Teoh Jia Jing
   is available). It renders the markdown to HTML and prints to PDF via a
   headless Chrome/Chromium.
 - **CSS resolution:** it reads `<stem>.css` next to the input file. That's why
-  step 4.4 copies `cover-letter.css` to `cover-letters/<slug>.css`.
+  step 4.5 copies `cover-letter.css` alongside the markdown in the slug folder.
 - **Chrome required:** on macOS it auto-finds Google Chrome / Chromium /
   Chrome Canary. If it errors with "Could not find Chrome", pass
   `--chrome-path <path-to-chrome>`.
@@ -162,5 +168,6 @@ Teoh Jia Jing
 | Missing / wrong `# H1`                           | resume-markdown errors without a single `#` H1; keep it as `# Teoh Jia Jing` |
 | Drafting from the resume alone                   | Also read `app/lib/data/projects.ts` for problem/approach/impact detail      |
 | Generating the PDF before the user approves text | Show the markdown draft first; iterate; then build                           |
+| Leaving `.md`/`.css`/`.html` behind after build  | Clean up (step 4.7) — keep only `<slug>/<slug>.pdf`                          |
 | Committing the generated files                   | Ensure `cover-letters/` is gitignored; never `git add` it                    |
 | Inventing a motivation to fill the opening       | Ask the user for their real reason to join                                   |
