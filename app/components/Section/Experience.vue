@@ -12,51 +12,41 @@ const sectionId = "experience";
         lede="Production work across backend systems, internal tools, platform integrations, and field-ready software."
       />
 
-      <div class="flex flex-col gap-6">
-        <template v-for="(entry, index) in experience" :key="entry.role + entry.period">
-          <Separator v-if="index > 0" />
+      <div class="flex flex-col border-t border-border">
+        <article
+          v-for="(entry, index) in experience"
+          :key="entry.role + entry.period"
+          v-motion
+          :initial="{ opacity: 0, y: 30 }"
+          :enter="{ opacity: 1, y: 0, transition: { delay: index * 150 } }"
+          :duration="600"
+          class="grid gap-y-6 border-b border-border py-10 md:grid-cols-[9rem_1fr] md:gap-x-12 md:py-14"
+        >
+          <p class="eyebrow pt-1 md:pt-2">{{ entry.period }}</p>
 
-          <Card
-            v-motion
-            :initial="{ opacity: 0, y: 30 }"
-            :enter="{ opacity: 1, y: 0, transition: { delay: index * 150 } }"
-            :duration="600"
-            class="surface rounded-2xl"
-          >
-            <CardHeader>
-              <div class="flex items-start gap-4">
-                <NuxtImg
-                  :src="entry.logo"
-                  :alt="`${entry.company} logo`"
-                  class="size-12 sm:size-14 rounded-lg object-contain shrink-0 mt-1"
-                />
-                <div
-                  class="flex-1 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1"
-                >
-                  <div>
-                    <CardTitle class="heading text-xl">{{ entry.role }}</CardTitle>
-                    <CardDescription class="mt-1">
-                      {{ entry.company }} · {{ entry.type }}
-                    </CardDescription>
-                    <p class="text-xs text-muted-foreground mt-0.5">
-                      {{ entry.location }}
-                    </p>
-                  </div>
-                  <span class="shrink-0 text-sm text-muted-foreground">
-                    {{ entry.period }}
-                  </span>
-                </div>
+          <div>
+            <div class="flex items-start gap-4">
+              <NuxtImg
+                :src="entry.logo"
+                :alt="`${entry.company} logo`"
+                class="mt-1 size-11 shrink-0 rounded-md object-contain"
+              />
+              <div>
+                <h3 class="heading text-xl md:text-2xl">{{ entry.role }}</h3>
+                <p class="mt-1.5 text-sm text-foreground">{{ entry.company }} · {{ entry.type }}</p>
+                <p class="mt-1 text-xs text-muted-foreground">
+                  {{ entry.location }}
+                </p>
               </div>
-            </CardHeader>
-            <CardContent>
-              <ul class="ml-4 list-disc space-y-1.5 leading-relaxed text-muted-foreground">
-                <li v-for="highlight in entry.highlights" :key="highlight">
-                  {{ highlight }}
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </template>
+            </div>
+
+            <ul class="mt-6 space-y-3 border-l border-border pl-5 text-muted-foreground">
+              <li v-for="highlight in entry.highlights" :key="highlight" class="leading-relaxed">
+                {{ highlight }}
+              </li>
+            </ul>
+          </div>
+        </article>
       </div>
     </div>
   </section>
