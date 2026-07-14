@@ -22,36 +22,46 @@ function formatDate(date: string) {
         lede="Notes from building things, mostly the parts that bit me."
       />
 
-      <!-- Articles list -->
-      <div v-if="articles?.length" class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <!-- Editorial index -->
+      <div v-if="articles?.length" class="mt-12 border-t border-border">
         <NuxtLink
           v-for="(article, index) in articles"
           :key="article.path"
           :to="article.path"
-          class="focus-ring group block rounded-2xl"
+          class="focus-ring group block border-b border-border py-8 md:py-10"
         >
-          <Card
+          <article
             v-motion
-            :initial="{ opacity: 0, y: 40 }"
-            :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 100, duration: 500 } }"
-            class="surface h-full rounded-2xl transition-all duration-300 group-hover:border-primary/50"
+            :initial="{ opacity: 0, y: 24 }"
+            :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 80, duration: 500 } }"
+            class="grid gap-3 md:grid-cols-[10rem_1fr] md:gap-8"
           >
-            <CardHeader>
-              <CardTitle class="heading text-xl">{{ article.title }}</CardTitle>
-              <CardDescription v-if="article.date">
-                {{ formatDate(article.date) }}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p v-if="article.description" class="text-sm text-muted-foreground">
+            <p v-if="article.date" class="eyebrow pt-1.5">
+              {{ formatDate(article.date) }}
+            </p>
+            <div class="min-w-0">
+              <h3
+                class="heading text-2xl leading-tight transition-colors duration-300 group-hover:text-primary md:text-3xl"
+              >
+                {{ article.title }}
+              </h3>
+              <p
+                v-if="article.description"
+                class="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground"
+              >
                 {{ article.description }}
               </p>
-              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                Read more
-                <Icon name="lucide:arrow-right" class="size-4" />
+              <span
+                class="mt-4 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.24em] text-muted-foreground transition-colors duration-300 group-hover:text-primary"
+              >
+                Read
+                <Icon
+                  name="lucide:arrow-right"
+                  class="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                />
               </span>
-            </CardContent>
-          </Card>
+            </div>
+          </article>
         </NuxtLink>
       </div>
     </div>
