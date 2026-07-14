@@ -5,9 +5,6 @@ const {
   public: { umamiWebsiteId },
 } = useRuntimeConfig();
 
-const colorMode = useColorMode();
-colorMode.preference = "dark";
-
 onMounted(() => {
   if (import.meta.env.PROD) {
     useHead({
@@ -31,10 +28,8 @@ onMounted(() => {
     >
       Skip to main content
     </a>
-    <BackgroundCosmos />
-    <ClientOnly>
-      <CursorSplash />
-    </ClientOnly>
+    <!-- Faint paper/ink grain — the only global backdrop texture -->
+    <div class="grain pointer-events-none fixed inset-0 -z-10" aria-hidden="true" />
     <Toaster />
     <NuxtRouteAnnouncer />
     <NavBar />
