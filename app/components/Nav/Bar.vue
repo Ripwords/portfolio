@@ -18,7 +18,7 @@ function isActive(to: string) {
       <NuxtLink
         to="/"
         aria-label="Home"
-        class="focus-ring interactive mr-1 inline-flex items-center rounded-full p-1 hover:bg-accent/70"
+        class="focus-ring interactive mr-1 inline-flex items-center rounded-full p-1 hover:bg-accent"
       >
         <img
           src="/img/logo/logo.png"
@@ -37,13 +37,10 @@ function isActive(to: string) {
             :class="
               isActive(item.to)
                 ? 'text-primary-foreground'
-                : 'text-muted-foreground hover:text-foreground'
+                : 'text-muted-foreground hover:bg-accent hover:text-foreground'
             "
           >
-            <span
-              v-if="isActive(item.to)"
-              class="absolute inset-0 -z-10 rounded-full bg-primary shadow-[0_0_20px_-4px_var(--primary)]"
-            />
+            <span v-if="isActive(item.to)" class="absolute inset-0 -z-10 rounded-full bg-primary" />
             <Icon v-if="item.icon" :name="item.icon" class="text-base" />
             <span>{{ item.label }}</span>
           </NuxtLink>
@@ -55,7 +52,7 @@ function isActive(to: string) {
             :target="item.target || '_self'"
             rel="noopener noreferrer"
             :external="item.external"
-            class="focus-ring interactive inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent/60 hover:text-foreground"
+            class="focus-ring interactive inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground"
             active-class="text-foreground"
           >
             <Icon v-if="item.icon" :name="item.icon" class="text-base" />
