@@ -81,14 +81,15 @@ const onSubmit = form.handleSubmit(async (values) => {
       :initial="{ opacity: 0, y: 40 }"
       :visible-once="{ opacity: 1, y: 0 }"
       :duration="800"
-      class="surface w-full max-w-3xl rounded-[1.5rem]"
+      class="surface w-full max-w-3xl rounded-2xl"
     >
-      <CardHeader class="space-y-2">
+      <CardHeader class="space-y-3">
+        <p class="eyebrow">Say hello</p>
         <div class="flex items-center gap-3">
           <Icon name="lucide:mail" class="size-6 text-primary" />
           <CardTitle class="heading text-2xl">Get in touch</CardTitle>
         </div>
-        <CardDescription>
+        <CardDescription class="text-muted-foreground">
           Have a project in mind, want to collaborate, or just say hello? Drop me a message.
         </CardDescription>
       </CardHeader>
@@ -97,9 +98,14 @@ const onSubmit = form.handleSubmit(async (values) => {
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <FormField v-slot="{ componentField }" name="email">
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel class="eyebrow">Email</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="you@example.com" v-bind="componentField" />
+                  <Input
+                    type="email"
+                    placeholder="you@example.com"
+                    class="h-11 rounded-lg border-input bg-card"
+                    v-bind="componentField"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -107,9 +113,14 @@ const onSubmit = form.handleSubmit(async (values) => {
 
             <FormField v-slot="{ componentField }" name="name">
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel class="eyebrow">Name</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Your name" v-bind="componentField" />
+                  <Input
+                    type="text"
+                    placeholder="Your name"
+                    class="h-11 rounded-lg border-input bg-card"
+                    v-bind="componentField"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -118,11 +129,12 @@ const onSubmit = form.handleSubmit(async (values) => {
 
           <FormField v-slot="{ componentField }" name="subject">
             <FormItem>
-              <FormLabel>Subject</FormLabel>
+              <FormLabel class="eyebrow">Subject</FormLabel>
               <FormControl>
                 <Input
                   type="text"
                   placeholder="Project, collaboration, or hello"
+                  class="h-11 rounded-lg border-input bg-card"
                   v-bind="componentField"
                 />
               </FormControl>
@@ -132,11 +144,11 @@ const onSubmit = form.handleSubmit(async (values) => {
 
           <FormField v-slot="{ componentField }" name="text">
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel class="eyebrow">Message</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Your message..."
-                  class="min-h-[120px]"
+                  class="min-h-[140px] rounded-lg border-input bg-card"
                   v-bind="componentField"
                 />
               </FormControl>
@@ -145,7 +157,12 @@ const onSubmit = form.handleSubmit(async (values) => {
           </FormField>
 
           <div class="flex justify-end pt-2">
-            <Button :disabled="isSending" type="submit" size="lg" class="w-full sm:w-auto">
+            <Button
+              :disabled="isSending"
+              type="submit"
+              size="lg"
+              class="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 sm:w-auto"
+            >
               <Icon v-if="isSending" name="lucide:loader-2" class="size-4 animate-spin mr-2" />
               <Icon v-else name="lucide:send" class="size-4 mr-2" />
               Send Message
