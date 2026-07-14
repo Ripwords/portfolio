@@ -64,6 +64,10 @@ onBeforeUnmount(() => {
           <Icon v-if="item.icon" :name="item.icon" class="text-xl" />
         </NuxtLink>
       </li>
+      <li class="flex items-center">
+        <span class="mx-0.5 h-6 w-px bg-border/70" />
+        <NavModeToggle />
+      </li>
     </ul>
   </nav>
 </template>

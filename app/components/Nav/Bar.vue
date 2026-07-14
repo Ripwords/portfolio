@@ -66,7 +66,7 @@ function isActive(to: string) {
 
       <span class="mx-1 h-5 w-px bg-border/70" />
 
-      <ul class="flex flex-row items-center gap-0.5 pr-1">
+      <ul class="flex flex-row items-center gap-0.5">
         <li v-for="item in socialLinks" :key="item.to">
           <NuxtLink
             :to="item.to"
@@ -79,6 +79,12 @@ function isActive(to: string) {
           </NuxtLink>
         </li>
       </ul>
+
+      <span class="mx-1 h-5 w-px bg-border/70" />
+
+      <div class="pr-1">
+        <NavModeToggle />
+      </div>
     </div>
   </nav>
 </template>

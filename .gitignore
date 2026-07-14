@@ -31,3 +31,7 @@ resume.md
 cover-letters
 # Superpowers brainstorm scratch
 .superpowers/
+
+# Playwright MCP
+.playwright-mcp/
+*.png
