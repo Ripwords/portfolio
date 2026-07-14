@@ -1,5 +1,14 @@
 <script lang="ts" setup>
 import { skills } from "~/lib/data/skills";
+
+// Brand marks (devicon / logos / skill-icons) render as multicolor SVGs, so they
+// are held to a monochrome grayscale in the Paper & Ink system. Lucide marks draw
+// with currentColor, so they can take the foreground tone and a clay hover tint.
+function iconTone(icon?: string): string {
+  return icon?.startsWith("lucide:")
+    ? "text-foreground/70 group-hover:text-primary"
+    : "grayscale opacity-80";
+}
 </script>
 
 <template>
@@ -10,34 +19,35 @@ import { skills } from "~/lib/data/skills";
         lede="A practical stack for full-stack systems, AI product surfaces, SDKs, and infrastructure."
       />
 
-      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="border-t border-border">
         <div
           v-for="(category, index) in skills"
           :key="category.title"
           v-motion
           :initial="{ opacity: 0, y: 28 }"
           :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 90, duration: 600 } }"
-          class="surface surface-hover rounded-2xl p-6"
+          class="grid grid-cols-1 gap-x-10 gap-y-5 border-b border-border py-8 md:grid-cols-[minmax(0,14rem)_1fr]"
         >
-          <div class="mb-5 flex items-center gap-3">
-            <Icon :name="category.icon" class="size-5 text-foreground/70" />
-            <h3 class="heading text-base">{{ category.title }}</h3>
+          <div class="flex items-center gap-2.5 md:pt-1">
+            <Icon :name="category.icon" class="size-4 shrink-0 text-foreground/70" />
+            <span class="eyebrow">{{ category.title }}</span>
           </div>
-          <div class="flex flex-wrap gap-1.5">
-            <span
+
+          <ul class="flex flex-wrap gap-2">
+            <li
               v-for="skill in category.skills"
               :key="skill.label"
-              class="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-accent/30 px-2.5 py-1 text-xs text-muted-foreground"
+              class="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary"
             >
               <Icon
                 v-if="skill.icon"
                 :name="skill.icon"
-                class="size-3.5"
-                :class="skill.invertIcon ? 'dark:invert' : ''"
+                class="size-3.5 shrink-0 transition-colors"
+                :class="[iconTone(skill.icon), skill.invertIcon ? 'dark:invert' : '']"
               />
               {{ skill.label }}
-            </span>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
