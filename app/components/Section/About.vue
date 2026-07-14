@@ -28,16 +28,16 @@ const focus = [
         :initial="{ opacity: 0, y: 20 }"
         :visible-once="{ opacity: 1, y: 0 }"
         :duration="600"
-        class="legible max-w-2xl text-lg leading-relaxed text-foreground/90 md:text-xl"
+        class="max-w-3xl text-2xl leading-snug tracking-tight text-foreground md:text-3xl"
       >
         I came to software from mechatronics. Control systems, embedded hardware, things that fail
         in the field. So I build software the way I'd build a machine: for failure modes and data
         flow, not just the happy path.
       </p>
 
-      <!-- Focus areas: minimal, hairline-led, no boxy cards -->
+      <!-- Focus areas: hairline-divided editorial cells -->
       <div
-        class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border/60 sm:grid-cols-3"
+        class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3"
       >
         <div
           v-for="(item, index) in focus"
@@ -45,15 +45,26 @@ const focus = [
           v-motion
           :initial="{ opacity: 0, y: 24 }"
           :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 110, duration: 600 } }"
-          class="group bg-card/40 p-7 transition-colors duration-500 hover:bg-accent/40"
+          class="group bg-card p-8 transition-colors duration-500 md:p-10"
         >
           <Icon
             :name="item.icon"
-            class="size-5 text-foreground/70 transition-colors duration-500 group-hover:text-foreground"
+            class="size-5 text-foreground/70 transition-colors duration-500 group-hover:text-primary"
           />
-          <h3 class="heading mt-5 text-base">{{ item.title }}</h3>
+          <h3 class="heading mt-6 text-base">{{ item.title }}</h3>
           <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{{ item.description }}</p>
         </div>
+      </div>
+
+      <!-- Editorial interlude: 3D specimen -->
+      <div
+        v-motion
+        :initial="{ opacity: 0, y: 24 }"
+        :visible-once="{ opacity: 1, y: 0 }"
+        :duration="600"
+        class="mt-20 flex justify-center md:mt-24"
+      >
+        <ShaderInstrument>fig.02 — instrument · drag to rotate</ShaderInstrument>
       </div>
     </div>
   </section>
