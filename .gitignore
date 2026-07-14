@@ -35,3 +35,4 @@ cover-letters
 # Playwright MCP
 .playwright-mcp/
 *.png
+*.jpeg
