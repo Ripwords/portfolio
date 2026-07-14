@@ -39,9 +39,19 @@ function projectLinks(project: Project) {
             filter: 'blur(0px)',
             transition: { delay: index * 120, duration: 650 },
           }"
-          class="surface surface-hover group flex flex-col rounded-[1.5rem] p-7"
+          class="surface surface-hover group relative flex flex-col rounded-[1.5rem] p-7"
           :class="expandedId === project.id ? 'lg:col-span-2' : ''"
         >
+          <!-- Subtle clay glow bleed on hover (CSS only, behind content) -->
+          <div
+            class="pointer-events-none absolute inset-0 -z-10 rounded-[1.5rem] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            aria-hidden="true"
+            :style="{
+              background:
+                'radial-gradient(120% 80% at 50% 0%, color-mix(in oklch, var(--primary) 12%, transparent), transparent 62%)',
+            }"
+          />
+
           <div class="flex items-start justify-between gap-5">
             <div class="min-w-0">
               <p class="eyebrow">{{ project.category }}</p>
@@ -63,7 +73,7 @@ function projectLinks(project: Project) {
             v-if="project.screenshot"
             :src="project.screenshot.src"
             :alt="project.screenshot.alt"
-            class="mt-5 aspect-video w-full rounded-2xl border border-border/70 object-cover"
+            class="mt-5 aspect-video w-full rounded-2xl border border-border object-cover"
             loading="lazy"
           />
 
@@ -75,7 +85,7 @@ function projectLinks(project: Project) {
             <div
               v-for="metric in project.metrics.slice(0, 4)"
               :key="metric.label"
-              class="rounded-2xl border border-border/70 bg-accent/25 p-3"
+              class="rounded-2xl border border-border bg-card p-3"
             >
               <div class="flex items-center gap-2 text-primary">
                 <Icon v-if="metric.icon" :name="metric.icon" class="size-4" />
@@ -93,7 +103,7 @@ function projectLinks(project: Project) {
             <span
               v-for="tech in project.primaryStack"
               :key="tech.label"
-              class="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-accent/30 px-2.5 py-1 text-xs text-muted-foreground"
+              class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-2.5 py-1 text-xs text-muted-foreground"
             >
               <Icon v-if="tech.icon" :name="tech.icon" class="size-3.5" />
               {{ tech.label }}
@@ -102,7 +112,7 @@ function projectLinks(project: Project) {
 
           <div
             v-show="expandedId === project.id"
-            class="mt-6 grid gap-3 border-t border-border/60 pt-6 lg:grid-cols-3"
+            class="mt-6 grid gap-3 border-t border-border pt-6 lg:grid-cols-3"
           >
             <div
               v-for="block in [
@@ -111,7 +121,7 @@ function projectLinks(project: Project) {
                 { k: 'Impact', v: project.impact },
               ]"
               :key="block.k"
-              class="rounded-2xl border border-border/60 bg-accent/20 p-4"
+              class="rounded-2xl border border-border bg-card p-4"
             >
               <p class="eyebrow mb-2">{{ block.k }}</p>
               <p class="text-sm leading-7 text-foreground/85">{{ block.v }}</p>
@@ -150,9 +160,7 @@ function projectLinks(project: Project) {
       <!-- Supporting: quiet rows that expand in place for detail -->
       <div class="mt-12">
         <p class="eyebrow mb-5">More work</p>
-        <div
-          class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-border/70 md:grid-cols-2"
-        >
+        <div class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-border md:grid-cols-2">
           <div
             v-for="(project, index) in supportingProjects"
             :key="project.id"
@@ -163,9 +171,9 @@ function projectLinks(project: Project) {
               y: 0,
               transition: { delay: index * 60, duration: 450 },
             }"
-            class="bg-card/85 backdrop-blur-sm transition-colors duration-500"
+            class="bg-card transition-colors duration-500"
             :class="[
-              expandedId === project.id ? 'bg-card' : 'hover:bg-card',
+              expandedId === project.id ? '' : 'hover:bg-accent',
               index === supportingProjects.length - 1 && supportingProjects.length % 2 === 1
                 ? 'md:col-span-2'
                 : '',
@@ -178,7 +186,7 @@ function projectLinks(project: Project) {
               @click="toggle(project.id)"
             >
               <span
-                class="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border/70 bg-accent/30 text-foreground/70 transition-colors duration-500 group-hover:text-foreground"
+                class="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-accent text-foreground/70 transition-colors duration-500 group-hover:text-foreground"
               >
                 <Icon :name="project.displayIcon || 'lucide:boxes'" class="size-5" />
               </span>
@@ -204,7 +212,7 @@ function projectLinks(project: Project) {
                 v-if="project.screenshot"
                 :src="project.screenshot.src"
                 :alt="project.screenshot.alt"
-                class="aspect-video w-full rounded-2xl border border-border/70 object-cover"
+                class="aspect-video w-full rounded-2xl border border-border object-cover"
                 loading="lazy"
               />
               <p class="text-sm leading-relaxed text-muted-foreground">{{ project.approach }}</p>
