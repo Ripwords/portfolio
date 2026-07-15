@@ -17,10 +17,10 @@ export const experience: ExperienceEntry[] = [
     period: "Aug 2025 - Present",
     location: "Kuala Lumpur · Hybrid",
     highlights: [
-      "Promoted to lead backend technical direction across compliance, platform, and client-project work; own architecture decisions, code review, and engineering standards for the team.",
-      "Set up and maintain shared infrastructure, project scaffolding, CI/CD, and Docker-based deployments across 17+ concurrent client web and mobile builds.",
-      "Act as technical point of contact for clients: gather requirements, translate business needs into architecture, and walk non-technical stakeholders through trade-offs.",
-      "Mentor backend engineers and drive hands-on delivery on the hardest parts of the stack: digital signing, multi-tenant data isolation, and API design.",
+      "Lead backend technical direction across compliance, platform, and client work, owning architecture, code review, and engineering standards now used across every project.",
+      "Standardized project scaffolding, CI/CD, and Docker-based deployments across 17+ concurrent client web and mobile builds, so new projects start from one consistent baseline.",
+      "Serve as technical point of contact for clients: turn business requirements into architecture proposals and walk non-technical stakeholders through the trade-offs.",
+      "Mentor backend engineers and personally own the hardest parts of the stack: digital signing, multi-tenant data isolation, and API design.",
     ],
   },
   {
@@ -45,7 +45,7 @@ export const experience: ExperienceEntry[] = [
     location: "Remote",
     highlights: [
       "Build ViTrox's AgriTech platform end to end: a pnpm monorepo pairing a Tauri desktop controller, a Hono sync backend, and a Vue PWA.",
-      "Designed the offline-first bidirectional sync engine (local SQLite to ElectricSQL) that keeps field devices and the cloud dashboard consistent over unreliable networks, with debounced auto-sync and token-authenticated shape streams.",
+      "Designed the offline-first bidirectional sync engine (local SQLite to ElectricSQL) that keeps field devices and the cloud dashboard consistent on networks with under 30% uptime, using debounced auto-sync and token-authenticated shape streams.",
       "Shipped a Raspberry Pi irrigation dashboard: real-time EC, water-level, and flow-sensor monitoring, cron-based scheduling, MQTT/LoRa hardware control, Firebase sync, and Telegram alerts.",
       "Built a versioned schema-migration system so exported device configs upgrade automatically across app versions.",
     ],
