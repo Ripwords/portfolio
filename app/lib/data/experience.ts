@@ -10,18 +10,30 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
+    role: "Backend Team Lead",
+    company: "Studio20",
+    logo: "/img/logo/studio20.jpg",
+    type: "Full-time",
+    period: "Aug 2025 - Present",
+    location: "Kuala Lumpur · Hybrid",
+    highlights: [
+      "Promoted to lead backend technical direction across compliance, platform, and client-project work; own architecture decisions, code review, and engineering standards for the team.",
+      "Set up and maintain shared infrastructure, project scaffolding, CI/CD, and Docker-based deployments across 17+ concurrent client web and mobile builds.",
+      "Act as technical point of contact for clients: gather requirements, translate business needs into architecture, and walk non-technical stakeholders through trade-offs.",
+      "Mentor backend engineers and drive hands-on delivery on the hardest parts of the stack: digital signing, multi-tenant data isolation, and API design.",
+    ],
+  },
+  {
     role: "Back End Developer",
     company: "Studio20",
     logo: "/img/logo/studio20.jpg",
     type: "Full-time",
-    period: "Mar 2024 - Present",
+    period: "Mar 2024 - Aug 2025",
     location: "Kuala Lumpur · Hybrid",
     highlights: [
-      "Set up and maintain shared infrastructure, project scaffolding, and CI/CD across 17+ concurrent client web and mobile builds.",
-      "Maintain the studio's internal core that new client projects are bootstrapped from, keeping auth, API, and UI foundations consistent.",
-      "Run client requirement and delivery meetings, then coordinate scope and hand-off across the development team.",
-      "Delivered MyInvois e-invoicing compliance end to end: document validation, PKI digital signing, and LHDN submission.",
-      "Shipped NestJS APIs with role-based access and multi-tenant isolation on a typed, self-hosted stack.",
+      "Built Malaysia's MyInvois e-invoicing compliance system end to end: document validation, PKI digital signing (XML-DSIG / JSON-DSig, X.509), and direct LHDN API integration.",
+      "Designed and shipped backend services and REST APIs with NestJS, PostgreSQL, and MongoDB, with role-based access control and multi-tenant data isolation.",
+      "Published an open-source npm SDK encapsulating the compliance flow (signing, sliding-window rate limiting, multi-tenant support) for external integrators.",
     ],
   },
   {
