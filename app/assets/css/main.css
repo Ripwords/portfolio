@@ -152,9 +152,11 @@
   /* Frosted panel — token-driven so it reads correctly in both modes.
      Restrained in Paper (near-solid), subtle glass in Ink. */
   .glass {
-    background: color-mix(in oklch, var(--card) 85%, transparent);
-    backdrop-filter: blur(10px) saturate(120%);
-    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    /* Near-opaque so page content never ghosts through the floating dock as it
+       scrolls underneath; the slight translucency + blur keeps the glass feel. */
+    background: color-mix(in oklch, var(--card) 94%, transparent);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
     border: 1px solid var(--border);
     box-shadow: 0 10px 30px -18px oklch(0.18 0 0 / 0.35);
   }
