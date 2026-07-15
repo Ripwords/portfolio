@@ -40,8 +40,14 @@ const sectionId = "experience";
               </div>
             </div>
 
-            <ul class="mt-6 space-y-3 border-l border-border pl-5 text-muted-foreground">
-              <li v-for="highlight in entry.highlights" :key="highlight" class="leading-relaxed">
+            <ul
+              class="mt-6 list-disc space-y-2.5 pl-5 text-muted-foreground marker:text-primary/60"
+            >
+              <li
+                v-for="highlight in entry.highlights"
+                :key="highlight"
+                class="pl-1 leading-relaxed"
+              >
                 {{ highlight }}
               </li>
             </ul>

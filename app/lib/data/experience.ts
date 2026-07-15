@@ -44,7 +44,7 @@ export const experience: ExperienceEntry[] = [
     period: "Feb 2024 - Present",
     location: "Remote",
     highlights: [
-      "Build ViTrox's AgriTech platform end to end: a pnpm monorepo pairing a Tauri desktop controller, a Hono sync backend, and a Vue PWA.",
+      "Build ViTrox's AgriTech platform end to end: a monorepo pairing a Tauri desktop controller, a Hono sync backend, and a Nuxt PWA.",
       "Designed the offline-first bidirectional sync engine (local SQLite to ElectricSQL) that keeps field devices and the cloud dashboard consistent on networks with under 30% uptime, using debounced auto-sync and token-authenticated shape streams.",
       "Shipped a Raspberry Pi irrigation dashboard: real-time EC, water-level, and flow-sensor monitoring, cron-based scheduling, MQTT/LoRa hardware control, Firebase sync, and Telegram alerts.",
       "Built a versioned schema-migration system so exported device configs upgrade automatically across app versions.",
