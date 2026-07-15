@@ -197,7 +197,7 @@ useSeoMeta({
       </div>
 
       <div class="grid auto-rows-[260px] grid-cols-1 gap-5 md:grid-cols-3 lg:auto-rows-[300px]">
-        <article
+        <figure
           v-for="(image, index) in filteredImages"
           :key="image.src"
           v-motion
@@ -205,7 +205,7 @@ useSeoMeta({
           :visible-once="{ opacity: 1, y: 0 }"
           :duration="650"
           :delay="Math.min(index * 45, 360)"
-          class="group relative overflow-hidden rounded-lg border border-border"
+          class="group relative m-0 overflow-hidden rounded-lg border border-border"
           :class="image.class"
         >
           <img
@@ -229,7 +229,7 @@ useSeoMeta({
               </span>
             </div>
           </figcaption>
-        </article>
+        </figure>
       </div>
     </section>
   </div>
