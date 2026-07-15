@@ -33,14 +33,13 @@ function isActive(to: string) {
         <li v-for="item in sectionLinks" :key="item.to">
           <NuxtLink
             :to="isHome ? item.to : `/${item.to}`"
-            class="focus-ring interactive group relative inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium"
+            class="focus-ring interactive inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors"
             :class="
               isActive(item.to)
-                ? 'text-primary-foreground'
+                ? 'bg-primary text-primary-foreground'
                 : 'text-muted-foreground hover:bg-accent hover:text-foreground'
             "
           >
-            <span v-if="isActive(item.to)" class="absolute inset-0 -z-10 rounded-full bg-primary" />
             <Icon v-if="item.icon" :name="item.icon" class="text-base" />
             <span>{{ item.label }}</span>
           </NuxtLink>

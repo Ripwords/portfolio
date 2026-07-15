@@ -54,14 +54,13 @@ onBeforeUnmount(() => {
         <NuxtLink
           :to="item.to"
           :aria-label="item.label"
-          class="focus-ring interactive relative flex size-11 flex-col items-center justify-center rounded-full"
+          class="focus-ring interactive flex size-11 flex-col items-center justify-center rounded-full transition-colors"
           :class="
             isActive(item.to)
-              ? 'text-primary-foreground'
+              ? 'bg-primary text-primary-foreground'
               : 'text-muted-foreground hover:bg-accent hover:text-foreground'
           "
         >
-          <span v-if="isActive(item.to)" class="absolute inset-0 -z-10 rounded-full bg-primary" />
           <Icon v-if="item.icon" :name="item.icon" class="text-xl" />
         </NuxtLink>
       </li>
