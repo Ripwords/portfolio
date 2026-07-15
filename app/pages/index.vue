@@ -28,18 +28,18 @@ onMounted(() => {
     <SectionHero />
     <SectionAbout />
 
-    <ShaderDivider label="002 · work" />
+    <ShaderDivider />
     <SectionProjects />
 
-    <ShaderDivider label="003 · experience" />
+    <ShaderDivider />
     <SectionExperience />
     <SectionSkills />
 
-    <ShaderDivider label="004 · writing" />
+    <ShaderDivider />
     <SectionWriting />
     <SectionArchitecture />
 
-    <ShaderDivider label="005 · activity" />
+    <ShaderDivider />
     <div
       v-motion
       :initial="{ opacity: 0, y: 24 }"
@@ -62,7 +62,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <ShaderDivider label="006 · contact" />
+    <ShaderDivider />
     <section id="contact" class="py-16 md:py-24">
       <div class="container mx-auto px-4 max-w-6xl">
         <SectionHeading
