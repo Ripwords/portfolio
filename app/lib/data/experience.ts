@@ -18,7 +18,7 @@ export const experience: ExperienceEntry[] = [
     location: "Kuala Lumpur · Hybrid",
     highlights: [
       "Lead backend technical direction across compliance, platform, and client work, owning architecture, code review, and engineering standards now used across every project.",
-      "Standardized project scaffolding, CI/CD, and Docker-based deployments across 17+ concurrent client web and mobile builds, so new projects start from one consistent baseline.",
+      "Standardized project scaffolding, CI/CD, and Docker-based deployments across 17+ client web and mobile builds, so new projects start from one consistent baseline.",
       "Serve as technical point of contact for clients: turn business requirements into architecture proposals and walk non-technical stakeholders through the trade-offs.",
       "Mentor backend engineers and personally own the hardest parts of the stack: digital signing, multi-tenant data isolation, and API design.",
     ],
