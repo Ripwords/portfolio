@@ -33,6 +33,7 @@ function isActive(to: string) {
         <li v-for="item in sectionLinks" :key="item.to">
           <NuxtLink
             :to="isHome ? item.to : `/${item.to}`"
+            :title="item.label"
             class="focus-ring interactive inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors"
             :class="
               isActive(item.to)
@@ -41,7 +42,8 @@ function isActive(to: string) {
             "
           >
             <Icon v-if="item.icon" :name="item.icon" class="text-base" />
-            <span>{{ item.label }}</span>
+            <!-- Icon-only below lg so the dock fits tablet widths; name stays for AT -->
+            <span class="sr-only lg:not-sr-only">{{ item.label }}</span>
           </NuxtLink>
         </li>
 
@@ -51,11 +53,12 @@ function isActive(to: string) {
             :target="item.target || '_self'"
             rel="noopener noreferrer"
             :external="item.external"
+            :title="item.label"
             class="focus-ring interactive inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground"
             active-class="text-foreground"
           >
             <Icon v-if="item.icon" :name="item.icon" class="text-base" />
-            <span>{{ item.label }}</span>
+            <span class="sr-only lg:not-sr-only">{{ item.label }}</span>
           </NuxtLink>
         </li>
       </ul>
