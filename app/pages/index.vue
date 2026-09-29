@@ -53,7 +53,7 @@ onMounted(() => {
           <img
             alt="GitHub contribution grid snake animation"
             :src="contributionSnake"
-            class="w-full"
+            class="w-full opacity-80 grayscale dark:opacity-90"
           />
           <template #fallback>
             <div class="h-24 w-full animate-pulse rounded-lg bg-accent/40" />
