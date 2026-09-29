@@ -20,9 +20,9 @@ const sectionId = "experience";
           :initial="{ opacity: 0, y: 30 }"
           :enter="{ opacity: 1, y: 0, transition: { delay: index * 150 } }"
           :duration="600"
-          class="grid gap-y-6 border-b border-border py-10 md:grid-cols-[9rem_1fr] md:gap-x-12 md:py-14"
+          class="grid gap-y-6 border-b border-border py-10 md:grid-cols-[12rem_1fr] md:gap-x-12 md:py-14"
         >
-          <p class="eyebrow pt-1 md:pt-2">{{ entry.period }}</p>
+          <p class="eyebrow pt-1 whitespace-nowrap md:pt-2">{{ entry.period }}</p>
 
           <div>
             <div class="flex items-start gap-4">

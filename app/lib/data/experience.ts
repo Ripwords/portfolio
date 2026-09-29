@@ -14,7 +14,7 @@ export const experience: ExperienceEntry[] = [
     company: "Studio20",
     logo: "/img/logo/studio20.jpg",
     type: "Full-time",
-    period: "Aug 2025 - Present",
+    period: "Aug 2025 – Present",
     location: "Kuala Lumpur · Hybrid",
     highlights: [
       "Lead backend technical direction across compliance, platform, and client work, owning architecture, code review, and engineering standards now used across every project.",
@@ -28,7 +28,7 @@ export const experience: ExperienceEntry[] = [
     company: "Studio20",
     logo: "/img/logo/studio20.jpg",
     type: "Full-time",
-    period: "Mar 2024 - Aug 2025",
+    period: "Mar 2024 – Aug 2025",
     location: "Kuala Lumpur · Hybrid",
     highlights: [
       "Built Malaysia's MyInvois e-invoicing compliance system end to end: document validation, PKI digital signing (XML-DSIG / JSON-DSig, X.509), and direct LHDN API integration.",
@@ -41,7 +41,7 @@ export const experience: ExperienceEntry[] = [
     company: "ViTrox Corporation Berhad",
     logo: "/img/logo/vitrox.jpg",
     type: "Part-time",
-    period: "Feb 2024 - Present",
+    period: "Feb 2024 – Present",
     location: "Remote",
     highlights: [
       "Build ViTrox's AgriTech platform end to end: a monorepo pairing a Tauri desktop controller, a Hono sync backend, and a Nuxt PWA.",
@@ -55,7 +55,7 @@ export const experience: ExperienceEntry[] = [
     company: "ViTrox Corporation Berhad",
     logo: "/img/logo/vitrox.jpg",
     type: "Internship",
-    period: "Oct 2023 - Jan 2024",
+    period: "Oct 2023 – Jan 2024",
     location: "Penang · On-site",
     highlights: [
       "Built a full-stack IoT web app for real-time data visualization and device control (Nuxt 3, D3).",
@@ -67,7 +67,7 @@ export const experience: ExperienceEntry[] = [
     company: "i-SURVY SDN BHD",
     logo: "/img/logo/isurvy.jpg",
     type: "Part-time",
-    period: "Feb 2022 - Jul 2024",
+    period: "Feb 2022 – Jul 2024",
     location: "Remote",
     highlights: ["Automated report generation with Python, cutting manual processing time."],
   },
