@@ -2,7 +2,7 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import * as z from "zod";
 import { useForm } from "vee-validate";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
+import { Card, CardContent } from "~/components/ui/card";
 import {
   FormControl,
   FormDescription,
@@ -75,7 +75,7 @@ const onSubmit = form.handleSubmit(async (values) => {
 </script>
 
 <template>
-  <div class="flex justify-center w-full">
+  <div class="w-full">
     <Card
       v-motion
       :initial="{ opacity: 0, y: 40 }"
@@ -83,16 +83,6 @@ const onSubmit = form.handleSubmit(async (values) => {
       :duration="800"
       class="surface w-full max-w-3xl rounded-2xl"
     >
-      <CardHeader class="space-y-3">
-        <p class="eyebrow">Say hello</p>
-        <div class="flex items-center gap-3">
-          <Icon name="lucide:mail" class="size-6 text-primary" />
-          <CardTitle class="heading text-2xl">Get in touch</CardTitle>
-        </div>
-        <CardDescription class="text-muted-foreground">
-          Have a project in mind, want to collaborate, or just say hello? Drop me a message.
-        </CardDescription>
-      </CardHeader>
       <CardContent>
         <form class="space-y-5" @submit="onSubmit">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
