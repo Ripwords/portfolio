@@ -1,13 +1,15 @@
 <script lang="ts" setup>
 import { skills } from "~/lib/data/skills";
 
-// Brand marks (devicon / logos / skill-icons) render as multicolor SVGs, so they
-// are held to a monochrome grayscale in the Paper & Ink system. Lucide marks draw
-// with currentColor, so they can take the foreground tone and a clay hover tint.
+// Brand marks (devicon / logos / skill-icons) render as multicolor SVGs, held to
+// grayscale in Paper & Ink. Plain grayscale leaves pale marks (React, Vue,
+// Tailwind) near-white on paper, so they are also darkened; a flat silhouette
+// would erase the inner detail of filled marks (TS, Next.js). Lucide marks draw
+// with currentColor, so they take the foreground tone and a clay hover tint.
 function iconTone(icon?: string): string {
   return icon?.startsWith("lucide:")
     ? "text-foreground/70 group-hover:text-primary"
-    : "grayscale opacity-80";
+    : "grayscale brightness-[0.55] contrast-150 dark:brightness-125 dark:contrast-100";
 }
 </script>
 

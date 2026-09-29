@@ -54,7 +54,7 @@ const skillIcons: Record<string, string> = {
   Jest: "lucide:flask-conical",
 };
 
-const invertIcons = new Set(["WebSocket"]);
+const invertIcons = new Set(["WebSocket", "Rust", "Three.js", "Expo"]);
 
 function toSkills(names: string[]): Skill[] {
   return names.map((label) => ({
