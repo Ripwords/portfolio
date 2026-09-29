@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Unified editorial section heading: Space Grotesk display title + optional
-// concise lede and mono kicker, with a premium blur-fade-up reveal. Keeps every
+// concise lede and mono kicker, with a fade-up reveal. Keeps every
 // section aligned to the "Paper & Ink" typographic language.
 withDefaults(
   defineProps<{
@@ -26,8 +26,8 @@ withDefaults(
     </p>
     <h2
       v-motion
-      :initial="{ opacity: 0, y: 24, filter: 'blur(6px)' }"
-      :visible-once="{ opacity: 1, y: 0, filter: 'blur(0px)' }"
+      :initial="{ opacity: 0, y: 24 }"
+      :visible-once="{ opacity: 1, y: 0 }"
       :duration="700"
       class="heading text-4xl leading-[1.05] tracking-tight md:text-5xl"
     >

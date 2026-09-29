@@ -32,11 +32,10 @@ function projectLinks(project: Project) {
           v-for="(project, index) in featuredProjects"
           :key="project.id"
           v-motion
-          :initial="{ opacity: 0, y: 40, filter: 'blur(6px)' }"
+          :initial="{ opacity: 0, y: 40 }"
           :visible-once="{
             opacity: 1,
             y: 0,
-            filter: 'blur(0px)',
             transition: { delay: index * 100, duration: 700 },
           }"
         >

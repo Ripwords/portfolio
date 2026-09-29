@@ -2,8 +2,8 @@
 // Hero — editorial split (treatment 3). Left: giant Space Grotesk type + clay
 // CTA. Right: a tall living flow-field shader column that reacts to cursor/scroll.
 const enter = (delay = 0) => ({
-  initial: { opacity: 0, y: 28, filter: "blur(8px)" },
-  enter: { opacity: 1, y: 0, filter: "blur(0px)", transition: { delay, duration: 700 } },
+  initial: { opacity: 0, y: 28 },
+  enter: { opacity: 1, y: 0, transition: { delay, duration: 700 } },
 });
 </script>
 
