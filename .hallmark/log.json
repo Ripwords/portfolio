@@ -1,0 +1,11 @@
+[
+  {
+    "date": "2026-09-29",
+    "macrostructure": "existing (Paper & Ink spec, polish pass)",
+    "theme": "custom",
+    "theme_axes": "light+dark / geometric-sans / warm",
+    "vibe": "Paper & Ink, editorial Swiss, clay accent",
+    "enrichment": "existing (flow-field shader + 3D instrument)",
+    "brief": "Hallmark pass: nav/overflow/diagram/date bugs, icon legibility, contact dedupe, blur-free reveals, rhythm, mono contribution grid"
+  }
+]
