@@ -2,17 +2,14 @@
 const focus = [
   {
     title: "Distributed systems",
-    icon: "lucide:network",
     description: "Offline-first sync, edge computing, and data that survives bad networks.",
   },
   {
     title: "Full-stack product",
-    icon: "lucide:layers",
     description: "End to end. Schema and API design through to a polished, shipped interface.",
   },
   {
     title: "Infrastructure",
-    icon: "lucide:container",
     description: "Containers, pipelines, and the operational glue that keeps things alive in prod.",
   },
 ];
@@ -35,26 +32,22 @@ const focus = [
         flow, not just the happy path.
       </p>
 
-      <!-- Focus areas: hairline-divided editorial cells -->
-      <div
-        class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3"
-      >
+      <!-- Focus areas: an open index, hairline-ruled rows, no boxes or icons -->
+      <dl class="mt-16 border-b border-border md:mt-20">
         <div
           v-for="(item, index) in focus"
           :key="item.title"
           v-motion
           :initial="{ opacity: 0, y: 24 }"
           :visible-once="{ opacity: 1, y: 0, transition: { delay: index * 110, duration: 600 } }"
-          class="group bg-card p-8 transition-colors duration-500 md:p-10"
+          class="grid gap-3 border-t border-border py-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:items-baseline md:gap-12 md:py-9"
         >
-          <Icon
-            :name="item.icon"
-            class="size-5 text-foreground/70 transition-colors duration-500 group-hover:text-primary"
-          />
-          <h3 class="heading mt-6 text-base">{{ item.title }}</h3>
-          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{{ item.description }}</p>
+          <dt class="heading min-w-0 text-2xl leading-tight md:text-3xl">{{ item.title }}</dt>
+          <dd class="max-w-xl text-base leading-relaxed text-muted-foreground">
+            {{ item.description }}
+          </dd>
         </div>
-      </div>
+      </dl>
 
       <!-- Editorial interlude: 3D specimen -->
       <div
