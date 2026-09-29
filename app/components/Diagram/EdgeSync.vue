@@ -106,7 +106,7 @@ const links = [
     d: "M180 246 L204 246",
     label: "changes",
     labelX: 192,
-    labelY: 234,
+    labelY: 212,
   },
   {
     id: "queue-electric",
@@ -160,7 +160,7 @@ const links = [
     variant: "async",
     label: "resolve",
     labelX: 744,
-    labelY: 234,
+    labelY: 212,
   },
   {
     id: "conflicts-postgres",

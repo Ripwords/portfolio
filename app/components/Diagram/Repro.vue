@@ -144,7 +144,7 @@ const links = [
     d: "M622 184 C586 224 586 300 596 329",
     variant: "async",
     label: "assets",
-    labelX: 586,
+    labelX: 568,
     labelY: 258,
   },
   {
