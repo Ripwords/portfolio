@@ -19,7 +19,7 @@ function projectLinks(project: Project) {
 </script>
 
 <template>
-  <section id="projects" class="py-24 md:py-32">
+  <section id="projects" class="py-20 md:py-24">
     <div class="container mx-auto max-w-6xl px-4">
       <SectionHeading
         title="Selected work"
