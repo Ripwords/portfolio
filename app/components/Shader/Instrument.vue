@@ -14,7 +14,7 @@ const animate = computed(() => reduced.value !== "reduce");
 </script>
 
 <template>
-  <figure class="flex flex-col items-center">
+  <figure class="flex w-full flex-col items-center">
     <div class="bezel relative aspect-square w-full max-w-[360px] overflow-hidden rounded-2xl">
       <ClientOnly>
         <NuxtErrorBoundary>

@@ -134,6 +134,12 @@
   html {
     background-color: var(--background);
   }
+  /* clip, not hidden: guards against stray horizontal overflow without
+     creating a scroll container that would break position: sticky. */
+  html,
+  body {
+    overflow-x: clip;
+  }
   body {
     @apply text-foreground font-sans antialiased;
     background: transparent;
