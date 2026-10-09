@@ -43,7 +43,6 @@ const skillIcons: Record<string, string> = {
   Expo: "devicon:expo",
   "Elysia.js": "skill-icons:elysia-light",
   Hono: "logos:hono",
-  Mastra: "lucide:sparkles",
   WebSocket: "logos:websocket",
   ElectricSQL: "lucide:refresh-cw",
   "Shadow DOM": "lucide:layers",
@@ -94,7 +93,6 @@ export const skills: SkillCategory[] = [
       "FastAPI",
       "Elysia.js",
       "Hono",
-      "Mastra",
       "AI SDK",
       "LangGraph",
       "REST",
@@ -126,7 +124,6 @@ export const skills: SkillCategory[] = [
       "GitHub Apps",
       "Tauri",
       "ElectricSQL",
-      "PKI/X.509",
     ]),
   },
 ];

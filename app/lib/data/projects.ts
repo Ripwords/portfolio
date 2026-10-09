@@ -62,7 +62,6 @@ const techIcons: Record<string, string> = {
   Elysia: "devicon:bun",
   Hono: "logos:hono",
   Bun: "devicon:bun",
-  Mastra: "lucide:sparkles",
   "AI SDK": "lucide:bot",
   LangGraph: "lucide:workflow",
   TradingAgents: "lucide:brain-circuit",
@@ -75,9 +74,7 @@ const techIcons: Record<string, string> = {
   "Blob Storage": "lucide:archive",
   "Nuxt UI": "devicon:nuxt",
   Expo: "devicon:react",
-  Electron: "devicon:electron",
   Preact: "logos:preact",
-  TimescaleDB: "devicon:postgresql",
   Vitest: "devicon:vitest",
   Playwright: "devicon:playwright",
   Jest: "lucide:flask-conical",
@@ -209,10 +206,10 @@ export const projects: Project[] = [
     displayIcon: "lucide:radio-tower",
     title: "Edge Device Sync Engine",
     description:
-      "Offline-first bidirectional sync between IoT field devices and cloud infrastructure.",
+      "Offline-first desktop app that syncs with the cloud web app, running at 3+ customer sites.",
     category: "IoT Platform",
     problem:
-      "Field devices in low-connectivity environments needed reliable bidirectional data sync with cloud.",
+      "Customer sites with unreliable connections needed a desktop app that keeps working offline and syncs with the cloud web app when the connection returns.",
     approach:
       "Built conflict-resolution engine with offline-first architecture using ElectricSQL, custom debounced sync watchers, and queue-based protocol across Tauri desktop apps and a Hono API server.",
     primaryStack: toStack(["Tauri", "TypeScript", "SQLite", "ElectricSQL"]),
@@ -227,7 +224,8 @@ export const projects: Project[] = [
       "Docker",
       "Vitest",
     ]),
-    impact: "Enabled reliable operation in environments with <30% uptime connectivity.",
+    impact:
+      "Runs at 3+ customer sites; work done offline syncs back later without overwriting edits made online in the meantime, and sites only get updates after they are approved.",
   },
   {
     id: "hotel-pms",
@@ -238,14 +236,13 @@ export const projects: Project[] = [
     problem:
       "Hotel operations spanning bookings, housekeeping, POS, and financials were fragmented across disconnected tools.",
     approach:
-      "Built a unified monorepo platform with a web-based PMS, Electron-based POS for multi-outlet F&B, and an integrated e-invoicing portal, all sharing a common backend and typed API layer.",
-    primaryStack: toStack(["Next.js", "NestJS", "Electron", "PostgreSQL"]),
+      "Built a unified monorepo platform with a web-based PMS, a POS for multi-outlet F&B, and an integrated LHDN e-invoicing portal, all sharing a common backend and typed API layer. Traced recurring production freezes to an exhausted database connection pool and fixed them.",
+    primaryStack: toStack(["Next.js", "NestJS", "PostgreSQL"]),
     stack: toStack([
       "TypeScript",
       "Next.js",
       "React",
       "NestJS",
-      "Electron",
       "PostgreSQL",
       "Docker",
       "Jest",
@@ -283,34 +280,61 @@ export const projects: Project[] = [
   {
     id: "e-invoicing",
     displayIcon: "lucide:receipt-text",
-    title: "E-Invoicing Compliance SDK",
+    title: "E-Invoicing SDK",
     description:
-      "Published npm SDK for Malaysian e-invoicing with digital signing and rate limiting.",
+      "Open-source TypeScript client for Malaysia's LHDN MyInvois e-invoicing API, with per-endpoint rate limiting.",
     category: "Developer Tool",
     problem:
-      "Malaysian e-invoicing mandate required tax-compliant document generation, digital signing, and submission.",
+      "Malaysia's e-invoicing mandate meant every client system needed to build, submit, and track invoices against LHDN's MyInvois API without hitting its rate limits.",
     approach:
-      "Built an npm SDK with full XML-DSIG/JSON-DSig signing, X.509 certificate handling, sliding-window rate limiting per endpoint, and multi-tenant support. Published as an open-source package.",
+      "Wrapped the MyInvois API in a typed npm package covering document building and submission, with sliding-window rate limiting per endpoint so callers don't get throttled.",
     primaryStack: toStack(["TypeScript", "Node.js", "Vitest"]),
-    stack: toStack(["TypeScript", "Node.js", "PKI/X.509", "Vitest"]),
-    impact:
-      "Published npm package enabling developers to achieve MyInvois compliance with minimal integration effort.",
+    stack: toStack(["TypeScript", "Node.js", "Vitest"]),
+    impact: "In production on Studio20 client projects.",
+    links: [
+      {
+        label: "npm",
+        href: "https://www.npmjs.com/package/@ripwords/myinvois-client",
+        icon: "lucide:package",
+      },
+    ],
   },
   {
     id: "ai-trip",
     displayIcon: "lucide:map",
     title: "AI Trip Planner",
     description:
-      "AI-powered travel itinerary planner with real-time collaboration, expense tracking, and Google Maps integration.",
+      "AI travel planner where every suggested place is verified against Google Maps, with team trips and expense splitting.",
     category: "AI / Full-Stack",
     problem:
       "Planning group trips is tedious: coordinating itineraries, splitting expenses, and finding verified places across multiple tools.",
     approach:
-      "Built a full-stack Nuxt 4 PWA with Mastra AI agents and Gemini for itinerary generation, Google Maps API for place verification, real-time collaboration with invite system, expense tracking with splitting, and checklists. Deployed as a serverless PWA with rate-limited AI endpoints.",
-    primaryStack: toStack(["Nuxt", "Mastra", "TypeScript", "PostgreSQL"]),
-    stack: toStack(["TypeScript", "Nuxt", "Vue", "Mastra", "Tailwind CSS", "PostgreSQL"]),
+      "Built a full-stack Nuxt 4 app where the LLM (DeepSeek and Gemini through the Vercel AI SDK) only proposes candidate places; each one is resolved through Google Places before travellers see it, then scheduled against real travel times. Adds team trips with owner/editor/viewer roles, expense splitting, and checklists, with rate-limited AI endpoints.",
+    primaryStack: toStack(["Nuxt", "AI SDK", "TypeScript", "PostgreSQL"]),
+    stack: toStack([
+      "TypeScript",
+      "Nuxt",
+      "Vue",
+      "AI SDK",
+      "Drizzle",
+      "Tailwind CSS",
+      "PostgreSQL",
+    ]),
     impact:
-      "Installable PWA with AI-generated itineraries backed by verified Google Maps places and real-time team collaboration.",
+      "Live at plantrip.my: itineraries never include made-up venues, because every activity carries a real Google Maps place.",
+    links: [
+      {
+        label: "Live",
+        href: "https://www.plantrip.my",
+        icon: "lucide:globe",
+      },
+      {
+        label: "Source",
+        href: "https://github.com/Ripwords/ai-trip",
+        icon: "line-md:github-loop",
+      },
+    ],
+    github: "https://github.com/Ripwords/ai-trip",
     screenshot: {
       src: "/img/projects/ai-trip.png",
       alt: "AI Trip Planner itinerary for a Tokyo trip with day-by-day activities, ratings, and cost estimates.",
